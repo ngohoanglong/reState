@@ -45,6 +45,11 @@ header{
 #openRight:checked ~ .layout>*:nth-child(3){
   visibility: visible;
 }
+#openRight:checked ~ .layout>*:nth-child(2),
+#openLeft:checked ~ .layout>*:nth-child(2){
+  filter: blur(0.2rem) ;
+}
+
 .layout > *:first-child {
   width: var(--siderLeft-width);
   position: fixed;
@@ -71,6 +76,7 @@ header{
   // padding-right: 250px;
   scroll-snap-align: start; z-index: 1;
   background:var(--background);
+  transition: filter 0.25s linear;
 }
 .layout > *:nth-child(3) {
   width:  var(--siderRight-width);;

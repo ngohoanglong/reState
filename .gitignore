@@ -1,0 +1,36 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+#build
+/build_beta
+/build_prod
+
+# production
+/build
+
+/.idea
+
+# auto gen
+src/envs/_current/
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.lock
+/package-lock.json
+
+/src/envs/buildId.js
