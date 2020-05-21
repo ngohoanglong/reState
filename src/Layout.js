@@ -39,7 +39,7 @@ export function Layout({ left, mid, right, header }) {
             {left}
           </div>
         </div>
-        <div ref={layoutRef} style={{height:'100vh',overflow:'auto'}}>
+        <div ref={layoutRef} >
         <PullToRefresh
         {...pullProps}
         refreshing={refreshing}
