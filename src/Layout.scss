@@ -8,9 +8,9 @@ body {
 .layout {
   padding-left: var(--header-width);
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   margin: auto;
-  overflow: auto;
+  overflow: hidden;
   background: var(--background-rich);
 }
 header{
@@ -46,7 +46,9 @@ header{
 }
 #openRight:checked ~ .layout>*:nth-child(2),
 #openLeft:checked ~ .layout>*:nth-child(2){
-  filter: blur(0.2rem) ;
+  filter: blur(0.2rem) contrast(0.5);
+  overflow: hidden;
+  pointer-events:none ;
 }
 
 .layout > *:first-child {
@@ -71,7 +73,8 @@ header{
   position: sticky;
   right:0;
   width:100% ;
-  min-height: 100vh;
+  height: 100%;
+  overflow: auto;
   // padding-right: 250px;
   scroll-snap-align: start; z-index: 1;
   background:var(--background);

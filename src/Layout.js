@@ -1,15 +1,24 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useMemo } from "react";
 import "./Layout.scss";
 import PullToRefresh from 'rmc-pull-to-refresh'
 import 'rmc-pull-to-refresh/assets/index.css'
 export function Layout({ left, mid, right, header }) {
+  const layoutRef = useRef()
   const [refreshing,setrefreshing] = useState()
+  const pullProps = useMemo(()=>({
+    getScrollContainer: () => layoutRef.current ,
+    distanceToRefresh:50,
+    indicator:{ activate: 'release', deactivate: 'pull', release: 'loading', finish: 'finish' },
+    damping:150,direction:'down'
+  }),[])
   return (
     <>
       <input hidden id="openRight" type="checkbox" />
       <input hidden id="openLeft" type="checkbox" />
-      <div  className={"layout"}>
-        <div >
+      <div   className={"layout"}>
+        <div onTouchStart={e=>{
+          e.stopPropagation()
+        }}>
           <label
             htmlFor="openLeft"
             className="flex items-center justify-center text-xl btn"
@@ -30,11 +39,9 @@ export function Layout({ left, mid, right, header }) {
             {left}
           </div>
         </div>
-        <div id="layoutMid">
+        <div ref={layoutRef} style={{height:'100vh',overflow:'auto'}}>
         <PullToRefresh
-        {...{getScrollContainer: () => document.querySelector("#layoutMid") } }
-        direction="down"
-        distanceToRefresh={50}
+        {...pullProps}
         refreshing={refreshing}
         onRefresh={() => {
           setrefreshing(true);
@@ -42,12 +49,9 @@ export function Layout({ left, mid, right, header }) {
             setrefreshing(false);
           }, 1000);
         }}
-        indicator={{ activate: 'release', deactivate: 'pull', release: 'loading', finish: 'finish' }}
-        damping={150}
       >
         <div className="min-h-screen">{mid}</div>
        </PullToRefresh>
-          
         </div>
         <div >
           <label
@@ -76,7 +80,6 @@ export function Layout({ left, mid, right, header }) {
         />
         {header}
       </header>
-
     </>
   );
 }
