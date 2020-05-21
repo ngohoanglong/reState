@@ -74,7 +74,7 @@ header{
   right:0;
   width:100% ;
   height: 100%;
-  overflow: auto;
+  overflow-y: auto;
   // padding-right: 250px;
   scroll-snap-align: start; z-index: 1;
   background:var(--background);
