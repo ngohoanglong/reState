@@ -20,7 +20,6 @@ header{
   height:100%;
   height: -moz-available;          /* WebKit-based browsers will ignore this. */
   height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
-  height: fill-available;
   overflow-x: hidden;
   overflow-y: auto;
   // fixed top-0 h-screen flex flex-col items-center

@@ -1,19 +1,15 @@
-import React, { useRef } from "react";
-import useCache from "./modules/cache/useCache";
-import useModal from "./hooks/useModal";
+import React, { useRef, useState } from "react";
 import "./Layout.scss";
+import PullToRefresh from 'rmc-pull-to-refresh'
+import 'rmc-pull-to-refresh/assets/index.css'
 export function Layout({ left, mid, right, header }) {
-  const layoutRef = useRef();
-  const leftRef = useRef();
-  const midRef = useRef();
-  const rightRef = useRef();
-
+  const [refreshing,setrefreshing] = useState()
   return (
     <>
       <input hidden id="openRight" type="checkbox" />
       <input hidden id="openLeft" type="checkbox" />
-      <div ref={layoutRef} className={"layout"}>
-        <div ref={leftRef}>
+      <div  className={"layout"}>
+        <div >
           <label
             htmlFor="openLeft"
             className="flex items-center justify-center text-xl btn"
@@ -34,10 +30,26 @@ export function Layout({ left, mid, right, header }) {
             {left}
           </div>
         </div>
-        <div ref={midRef}>
-          <div className="min-h-screen">{mid}</div>
+        <div id="layoutMid">
+        <PullToRefresh
+        {...{getScrollContainer: () => document.querySelector("#layoutMid") } }
+        direction="down"
+        distanceToRefresh={50}
+        refreshing={refreshing}
+        onRefresh={() => {
+          setrefreshing(true);
+          setTimeout(() => {
+            setrefreshing(false);
+          }, 1000);
+        }}
+        indicator={{ activate: 'release', deactivate: 'pull', release: 'loading', finish: 'finish' }}
+        damping={150}
+      >
+        <div className="min-h-screen">{mid}</div>
+       </PullToRefresh>
+          
         </div>
-        <div ref={rightRef}>
+        <div >
           <label
             htmlFor="openRight"
             className="flex items-center justify-center text-xl btn"
@@ -64,6 +76,7 @@ export function Layout({ left, mid, right, header }) {
         />
         {header}
       </header>
+
     </>
   );
 }

@@ -5,10 +5,10 @@ import React, {
   cloneElement
 } from "react";
 
-import Namespace from "./modules/namespace/Namespace";
 import useNamespace from "./modules/namespace/useNamespace";
 import useCache, { CacheProvider, useCacheSet } from "./modules/cache/useCache";
 import { Layout } from "./Layout";
+import PullToRefresh from 'rmc-pull-to-refresh'
 const ReactMarkdown = require("react-markdown");
 
 const Left = () => {
@@ -123,14 +123,17 @@ const Repodetail = () => {
   );
 };
 const App = () => {
+
   return (
     <Layout
       {...{
         left: <Left />,
         mid: (
-          <div className="p-4">
-            <Repodetail />
-          </div>
+ 
+            <div className="p-4">
+              <Repodetail />
+            </div>
+ 
         ),
         right: (
           <div>
