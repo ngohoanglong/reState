@@ -2,6 +2,7 @@ import React, { useRef, useState, useMemo } from "react";
 import "./Layout.scss";
 import PullToRefresh from 'rmc-pull-to-refresh'
 import 'rmc-pull-to-refresh/assets/index.css'
+import Header from "./Layout.Header";
 export function Layout({ left, mid, right, header }) {
   const layoutRef = useRef()
   const [refreshing,setrefreshing] = useState()
@@ -83,3 +84,5 @@ export function Layout({ left, mid, right, header }) {
     </>
   );
 }
+Layout.Header = Header
+export default Layout

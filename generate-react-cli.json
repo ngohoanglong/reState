@@ -1,0 +1,33 @@
+{
+    "usesTypeScript": false,
+    "usesCssModule": true,
+    "cssPreprocessor": "scss",
+    "testLibrary": "Testing Library",
+    "component": {
+      "path": "src/components",
+      "withStyle": true,
+      "withTest": false,
+      "withStory": false,
+      "withLazy": false
+    },
+    "page": {
+      "path": "src/views",
+      "withStyle": true,
+      "withTest": false,
+      "withStory": false,
+      "withLazy": true
+    },
+    "hook": {
+      "customTemplates": {
+        "component": "templates/hook/component.js",
+        "hook": "templates/hook/hook.js"
+      },
+      "path": "src/hooks",
+      "withHook": true,
+      "withLazy": false,
+      "withStory": false,
+      "withStyle": false,
+      "withTest": true
+    }
+  }
+  
