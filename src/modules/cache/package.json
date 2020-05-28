@@ -1,0 +1,15 @@
+{
+  "name": "nhl-usecache",
+  "version": "1.0.0",
+  "description": "quick caching",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "layout",
+    "react","hook"
+  ],
+  "author": "ngohoanglong",
+  "license": "ISC"
+}

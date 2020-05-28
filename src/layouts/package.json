@@ -1,0 +1,15 @@
+{
+  "name": "nhl-layout",
+  "version": "1.0.0",
+  "description": "lite layout",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "layout",
+    "react"
+  ],
+  "author": "ngohoanglong",
+  "license": "ISC"
+}

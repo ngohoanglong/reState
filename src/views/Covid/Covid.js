@@ -31,7 +31,7 @@ const RepoList = () => {
   const handleSearch = ({ keyword }) => {
     setLoading(true);
     fetch(
-      `https://api.Covid.com/search/repositories?q=${keyword}+language:javascript&sort=stars&order=desc`
+      `https://api.github.com/search/repositories?q=${keyword}+language:javascript&sort=stars&order=desc`
     )
       .then(res => {
         setLoading(false);
