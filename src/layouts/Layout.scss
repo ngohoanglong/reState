@@ -17,7 +17,7 @@ body {
   top: 0;
   bottom: 0;
 }
-header{
+header {
   width: var(--header-width);
   display: flex;
   flex-direction: column;
@@ -28,40 +28,43 @@ header{
   position: fixed;
   top: 0;
   bottom: 0;
-  align-items: center
+  align-items: center;
 }
-.header>*{
-  flex-shrink: 0
+.header > * {
+  flex-shrink: 0;
 }
-#openLeft:checked ~ .layout,#openRight:checked ~ .layout{
+#openLeft:checked ~ .layout,
+#openRight:checked ~ .layout {
   overflow: hidden;
 }
-#openLeft:checked ~ .layout>*:first-child{
+#openLeft:checked ~ .layout > *:first-child {
   visibility: visible;
 }
 
 // .layout.openLeft>*:first-child{
 //   visibility: visible;
 // }
-#openRight:checked ~ .layout>*:nth-child(3){
+#openRight:checked ~ .layout > *:nth-child(3) {
   visibility: visible;
 }
-#openRight:checked ~ .layout>*:nth-child(2),
-#openLeft:checked ~ .layout>*:nth-child(2){
+#openRight:checked ~ .layout > *:nth-child(2),
+#openLeft:checked ~ .layout > *:nth-child(2) {
   filter: blur(0.2rem) contrast(0.5);
   overflow: hidden;
-  pointer-events:none ;
+  pointer-events: none;
 }
 
 .layout > *:first-child {
   width: var(--siderLeft-width);
   position: fixed;
-  top: 0;left:var(--header-width);
+  top: 0;
+  left: var(--header-width);
   height: 100%;
   background: inherit;
-  visibility: hidden; z-index: 2;
+  visibility: hidden;
+  z-index: 2;
 
-  &>*:first-child{
+  & > *:first-child {
     position: absolute;
     top: 10px;
     right: -39px;
@@ -73,29 +76,32 @@ header{
 
 .layout > *:nth-child(2) {
   position: sticky;
-  right:0;
-  width:100% ;
-  height:100%;
-  height: -moz-available;          /* WebKit-based browsers will ignore this. */
-  height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+  right: 0;
+  width: 100%;
+  height: 100%;
+  height: -moz-available; /* WebKit-based browsers will ignore this. */
+  height: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
   overflow-y: auto;
   // padding-right: 250px;
-  scroll-snap-align: start; z-index: 1;
-  background:var(--background);
+  scroll-snap-align: start;
+  z-index: 1;
+  background: var(--background);
   transition: filter 0.25s linear;
 }
 .layout > *:nth-child(3) {
-  width:  var(--siderRight-width);;
+  width: var(--siderRight-width);
   position: fixed;
-  top: 0;right:0;
+  top: 0;
+  right: 0;
   height: 100%;
   background: inherit;
-  visibility: hidden; z-index: 2;
-  border-left: 1px solid currentColor
+  visibility: hidden;
+  z-index: 2;
+  border-left: 1px solid currentColor;
 }
-.layout > *:nth-child(3)>*{
+.layout > *:nth-child(3) > * {
   flex-shrink: 0;
-  &:first-child{
+  &:first-child {
     border: 1px solid currentColor;
     position: absolute;
     top: 10px;
@@ -108,51 +114,68 @@ header{
 @media only screen and (min-width: 768px) {
   /* For desktop: */
   .layout {
-
   }
-  #openLeft:checked ~ .layout,#openRight:checked ~ .layout{
+  #openLeft:checked ~ .layout,
+  #openRight:checked ~ .layout {
     overflow: auto;
   }
   .layout > * {
-   
   }
   .layout > *:first-child {
-    left: var(--header-width);   visibility: visible;
-    &>*:first-child{
+    left: var(--header-width);
+    visibility: visible;
+    & > *:first-child {
       display: none;
     }
   }
   .layout > *:nth-child(2) {
-    left: calc(var(--siderLeft-width)); ;   
-    width:calc(100vw - var(--header-width) - var(--siderLeft-width)) ; 
-    padding-left: 10px
+    left: calc(var(--siderLeft-width));
+    width: calc(100vw - var(--header-width) - var(--siderLeft-width));
+    padding-left: 10px;
   }
   .layout > *:nth-child(3) {
+  }
 
+  #openLeft:checked ~ .layout > *:nth-child(2) {
+    filter: unset;
+    overflow: auto;
+    pointer-events: auto;
+  }
+  #openRight:checked ~ .layout > *:nth-child(2){
+    filter: blur(0.2rem) contrast(0.5);
+    overflow: hidden;
+    pointer-events: none;
   }
 }
 
 @media only screen and (min-width: 1224px) {
   /* For desktop: */
   .layout {
-
   }
   .layout > * {
-
   }
   .layout > *:first-child {
   }
   .layout > *:nth-child(2) {
-    width:calc(100vw - var(--header-width) - var(--siderLeft-width) - var(--siderRight-width)) ; 
+    width: calc(
+      100vw - var(--header-width) - var(--siderLeft-width) -
+        var(--siderRight-width)
+    );
   }
   .layout > *:nth-child(3) {
     visibility: visible;
-    border: none
+    border: none;
   }
-  .layout > *:nth-child(3)>*{
+  .layout > *:nth-child(3) > * {
     flex-shrink: 0;
-    &:first-child{
-      display: none
+    &:first-child {
+      display: none;
     }
+  }
+  #openRight:checked ~ .layout > *:nth-child(2),
+  #openLeft:checked ~ .layout > *:nth-child(2) {
+    filter: none;
+    overflow: auto;
+    pointer-events: auto;
   }
 }
