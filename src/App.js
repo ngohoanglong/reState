@@ -12,7 +12,7 @@ import useLocationSubscriber, { LocationSubscriber } from "./modules/navigation/
 import  useLocation from "./modules/navigation/useLocation";
 import Github from "./views/Github/Github";
 import Covid from "./views/Covid/Covid";
-const ReactMarkdown = require("react-markdown");
+import Home from "./views/Home/Home";
 const Switch = ({children})=>{
   const [location] = useLocation()
   const element =  (children.find((child)=>{
@@ -29,7 +29,7 @@ const app = <>
     <Github path="/github"/>
 
     {/* default */}
-    <Covid path="/"/>
+    <Home path="/"/>
   </Switch>
 </>
 export default function App(){
