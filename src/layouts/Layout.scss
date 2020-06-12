@@ -135,6 +135,17 @@ header {
   }
   .layout > *:nth-child(3) {
   }
+
+  #openLeft:checked ~ .layout > *:nth-child(2) {
+    filter: unset;
+    overflow: auto;
+    pointer-events: auto;
+  }
+  #openRight:checked ~ .layout > *:nth-child(2){
+    filter: blur(0.2rem) contrast(0.5);
+    overflow: hidden;
+    pointer-events: none;
+  }
   #openLeft:checked ~ .layout > *:nth-child(2) {
     filter: none;
     overflow: auto;
