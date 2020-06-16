@@ -1,1 +1,72 @@
-.Home {}
+.Home {
+  position: fixed;
+}
+.child {
+}
+
+.pointer {
+  pointer-events: none;
+  position: absolute;
+  background: #cecece;
+  width: 25%;
+  height: calc(100% / 3);
+  visibility: hidden;
+  transform: scale(0.1);
+  opacity: 0;
+}
+.Home:hover .pointer {
+  top: 0;
+  left: 0;
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+  transition: all 0.15s linear;
+}
+.child:nth-child(1):hover ~ .pointer {
+  top: 0;
+  left: 0;
+}
+.child:nth-child(2):hover ~ .pointer {
+  top: 0;
+  left: 25%;
+}
+.child:nth-child(3):hover ~ .pointer {
+  top: 0;
+  left: 50%;
+}
+.child:nth-child(4):hover ~ .pointer {
+  top: 0;
+  left: 75%;
+}
+.child:nth-child(5):hover ~ .pointer {
+  top: calc(100% / 3);
+  left: 0;
+}
+.child:nth-child(6):hover ~ .pointer {
+  top: calc(100% / 3);
+  left: 25%;
+}
+.child:nth-child(7):hover ~ .pointer {
+  top: calc(100% / 3);
+  left: 50%;
+}
+.child:nth-child(8):hover ~ .pointer {
+  top: calc(100% / 3);
+  left: 75%;
+}
+.child:nth-child(9):hover ~ .pointer {
+  top: calc(100% / 3 * 2);
+  left: 0;
+}
+.child:nth-child(10):hover ~ .pointer {
+  top: calc(100% / 3 * 2);
+  left: 25%;
+}
+.child:nth-child(11):hover ~ .pointer {
+  top: calc(100% / 3 * 2);
+  left: 50%;
+}
+.child:nth-child(12):hover ~ .pointer {
+  top: calc(100% / 3 * 2);
+  left: 75%;
+}
