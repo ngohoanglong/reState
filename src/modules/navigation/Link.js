@@ -4,7 +4,7 @@ import useReplace from './useReplace';
 const forwardRefShim = C => C;
 function isModifiedEvent(event) {
     return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
-  }
+}
 const LinkAnchor = forwardRef(
     (
       {
