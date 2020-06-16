@@ -20,7 +20,7 @@
   visibility: visible;
   opacity: 1;
   transform: scale(1);
-  transition: all 0.15s linear;
+  transition: all 0.15s cubic-bezier(0.46, 0.53, 0.41, 1.49);
 }
 .child:nth-child(1):hover ~ .pointer {
   top: 0;
