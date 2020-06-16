@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback } from 'react'
 import history from './history'
-import { useHistory } from 'react-router'
+import useHistory from './useHistory'
 
 const useReplace = ()=>{
     const history = useHistory() 
