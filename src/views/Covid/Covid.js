@@ -35,7 +35,9 @@ const RepoList = () => {
     repolistname,
     dataLocalstorage && dataLocalstorage !== null
       ? JSON.parse(dataLocalstorage)
-      : undefined
+      : {
+        groubByDate  :[],  groupByCountry  :[],  groupByLegion:[]
+      }
   );
   const handleSearch = ({ keyword }) => {
     setLoading(true);
@@ -43,22 +45,25 @@ const RepoList = () => {
       `https://cors-anywhere.herokuapp.com/https://dashboards-dev.sprinklr.com/data/9043/global-covid19-who-gis.json`
     )
       .then((res) => {
-        setLoading(false);
+        
         return res.json();
       })
       .then((data) => {
-        const { 0: groubByDate = [], 1: groupByCountry = [], 2: groupByLegion = [] } = groupBy(data.rows, [0, 1, 2])
-        const days = Object.keys(groubByDate).sort((a,b)=>Number(a)-Number(b))
-        const countries = Object.keys(groupByCountry)
-        const legions = Object.keys(groupByLegion)
-        const lastDay = days&&days.length&&days[days.length-1]
-        const save= {groubByDate,
-          groupByCountry,
-          groupByLegion,days,
-          countries,
-          legions,lastDay}
-        setDataLocalstorage(JSON.stringify(save));
-        setData(save);
+        setTimeout(()=>{
+          const { 0: groubByDate = [], 1: groupByCountry = [], 2: groupByLegion = [] } = groupBy(data.rows, [0, 1, 2])
+          const days = Object.keys(groubByDate).sort((a,b)=>Number(a)-Number(b))
+          const countries = Object.keys(groupByCountry)
+          const legions = Object.keys(groupByLegion)
+          const lastDay = days&&days.length&&days[days.length-1]
+          const save= {groubByDate,
+            groupByCountry,
+            groupByLegion,days,
+            countries,
+            legions,lastDay}
+          setDataLocalstorage(JSON.stringify(save));
+          setData(save);
+          setLoading(false);
+        })
       });
   };
 
