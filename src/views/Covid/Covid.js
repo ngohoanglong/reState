@@ -2,15 +2,20 @@ import React, {
   useState,
   useEffect,
   useLayoutEffect,
-  cloneElement
+  cloneElement,
 } from "react";
 
 import useNamespace from "../../modules/namespace/useNamespace";
-import useCache, { CacheProvider, useCacheSet } from "../../modules/cache/useCache";
+import useCache, {
+  CacheProvider,
+  useCacheSet,
+} from "../../modules/cache/useCache";
 import { Layout } from "../../layouts/Layout";
-import PullToRefresh from 'rmc-pull-to-refresh'
-import ReactMarkdown from 'react-markdown'
+import PullToRefresh from "rmc-pull-to-refresh";
+import ReactMarkdown from "react-markdown";
 import Header from "../../layouts/Layout.Header";
+import useLocalStorage from "../../modules/storage/useLocalStorage";
+import { groupBy } from "../../helpers/array";
 
 const Left = () => {
   return <RepoList />;
@@ -23,30 +28,49 @@ const RepoList = () => {
     repolistname + "__async_loading",
     false
   );
-  const [data, setData] = useCache(repolistname, {
-    incomplete_results: false,
-    items: [],
-    total_count: 0
-  });
+  const [dataLocalstorage, setDataLocalstorage] = useLocalStorage(repolistname);
+  const [data, setData] = useCache(
+    repolistname,
+    dataLocalstorage && dataLocalstorage !== null
+      ? JSON.parse(dataLocalstorage)
+      : undefined
+  );
   const handleSearch = ({ keyword }) => {
     setLoading(true);
     fetch(
-      `https://api.github.com/search/repositories?q=${keyword}+language:javascript&sort=stars&order=desc`
+      `https://cors-anywhere.herokuapp.com/https://dashboards-dev.sprinklr.com/data/9043/global-covid19-who-gis.json`
     )
-      .then(res => {
+      .then((res) => {
         setLoading(false);
         return res.json();
       })
-      .then(setData);
+      .then((data) => {
+        setDataLocalstorage(JSON.stringify(data));
+        setData(data);
+      });
   };
+
   useEffect(() => {
     handleSearch({ keyword: "react" });
   }, []);
+  const [
+    { 0: groubByDate = [], 1: groupByCountry = [], 2: groupByLegion = [] },
+    setIndexData,
+  ] = useState({ "0": [], "1": [], "2": [] });
+  useEffect(() => {
+    if (data && data.rows) {
+      setIndexData(groupBy(data.rows, [0, 1, 2]));
+    }
+  }, [!!(data && data.rows)]);
+  console.log({ groubByDate, groupByCountry, groupByLegion });
 
+  const days = Object.keys(groubByDate).sort((a,b)=>Number(a)-Number(b))
+  const lastDay = days&&days.length&&days[days.length-1]
+  console.log({ days,lastDay});
   return (
     <>
       <input
-        onKeyDown={event => {
+        onKeyDown={(event) => {
           if (
             event.which === 13 ||
             event.keyCode === 13 ||
@@ -64,25 +88,30 @@ const RepoList = () => {
       {loading && (
         <div className="text-gray-500 text-center font-bold">loading</div>
       )}
-      {data
-        ? data.items.map((item, i) => (
-            <div
-              onClick={() => {
-                setCurrentRepo(item);
-              }}
-              key={item.full_name}
+      {
+        lastDay&&groubByDate[lastDay].sort((a,b)=>Number(b[6])-Number(a[6])).map(([date,country,legion,deaths,cumulativeDeaths,confirmed,cumulativeConfirmed])=>(
+          <div
+              key={country}
               className="btn cursor-pointer hover:shadow-lg m-2 ml-0 rounded p-2 flex flex-col justify-between leading-normal "
             >
-              <p className="text-xs  text-color-rich flex items-center truncate">
-                {item.full_name}
-              </p>
-              <div className="text-color font-bold mb-2">{item.name}</div>
-              <p className=" text-color-rich flex items-center">
-                {item.description}
-              </p>
+              <div className="text-xs  text-color-rich flex items-center truncate">
+                {legion}
+              </div>
+              <div className="text-color font-bold mb-2">{country}</div>
+              <div className=" text-color-rich flex items-center flex-wrap">
+                {[
+                  // deaths,
+                `⚰️ ${cumulativeDeaths}`,
+                // confirmed,
+                `🤢 ${cumulativeConfirmed}`].map((value,i)=>(
+                  <div key={i} className="background mt-2 mr-2 px-1 rounded">
+                    {value}
+                  </div>
+                ))}
+              </div>
             </div>
-          ))
-        : null}
+        ))
+      }
       {/* <div className="cursor-pointer m-2 hover:shadow rounded p-4 flex flex-col justify-between leading-normal">
         <div className="text-gray-500 text-center font-bold">
           {loading ? "LOADING" : "LOAD MORE"}
@@ -101,14 +130,12 @@ const Repodetail = () => {
   useEffect(() => {
     if (currentRepo)
       fetch(
-        `https://raw.Covidusercontent.com/${
-          currentRepo.full_name
-        }/master/README.md`
+        `https://raw.Covidusercontent.com/${currentRepo.full_name}/master/README.md`
       )
-        .then(res => {
+        .then((res) => {
           return res.text();
         })
-        .then(res => {
+        .then((res) => {
           setContent(res);
         });
   }, [currentRepo, setContent]);
@@ -128,10 +155,7 @@ const Covid = () => {
     <Layout
       {...{
         left: <Left />,
-        mid: (
-            <div className="p-4">
-              COVID
-            </div>),
+        mid: <div className="p-4">COVID</div>,
         right: (
           <div>
             <div className="w-full justify-center items-center overflow-hidden md:max-w-sm ">
@@ -156,11 +180,9 @@ const Covid = () => {
             </div>
           </div>
         ),
-        header: (
-          <Layout.Header/>
-        )
+        header: <Layout.Header />,
       }}
     />
   );
 };
-export default Covid
+export default Covid;

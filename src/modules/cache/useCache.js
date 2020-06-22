@@ -48,7 +48,7 @@ const useCache = (key = "", initialValue) => {
       unLisenner();
     };
   }, [setValue, key, listenner]);
-  return [value, value => updateCaches(key, value)];
+  return [value|| initialValue, value => updateCaches(key, value)];
 };
 export const useCacheSet = key => {
   const handleUpdate = useContext(UpdateCachesContext);
