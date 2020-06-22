@@ -4,7 +4,7 @@ import React, {
   useLayoutEffect,
   cloneElement,
 } from "react";
-
+import Namespace from "../../modules/namespace/Namespace"
 import useNamespace from "../../modules/namespace/useNamespace";
 import useCache, {
   CacheProvider,
@@ -16,14 +16,14 @@ import ReactMarkdown from "react-markdown";
 import Header from "../../layouts/Layout.Header";
 import useLocalStorage from "../../modules/storage/useLocalStorage";
 import { groupBy } from "../../helpers/array";
-
+import useLocation from "../../modules/navigation/useLocation";
 const Left = () => {
   return <RepoList />;
 };
 const RepoList = () => {
   const repolistname = useNamespace("repolist");
-  const currentReponame = useNamespace("currentRepo");
-  const setCurrentRepo = useCacheSet(currentReponame);
+  const selectedCountryName = useNamespace("selectedCountry");
+  const setSelectCountry = useCacheSet(selectedCountryName);
   const [loading, setLoading] = useCache(
     repolistname + "__async_loading",
     false
@@ -45,28 +45,27 @@ const RepoList = () => {
         return res.json();
       })
       .then((data) => {
-        setDataLocalstorage(JSON.stringify(data));
-        setData(data);
+        const { 0: groubByDate = [], 1: groupByCountry = [], 2: groupByLegion = [] } = groupBy(data.rows, [0, 1, 2])
+ 
+        const days = Object.keys(groubByDate).sort((a,b)=>Number(a)-Number(b))
+        const countries = Object.keys(groupByCountry)
+        const legions = Object.keys(groupByLegion)
+        const lastDay = days&&days.length&&days[days.length-1]
+        const save= {groubByDate,
+          groupByCountry,
+          groupByLegion,days,
+          countries,
+          legions,lastDay}
+        setDataLocalstorage(JSON.stringify(save));
+        setData(save);
       });
   };
 
   useEffect(() => {
     handleSearch({ keyword: "react" });
   }, []);
-  const [
-    { 0: groubByDate = [], 1: groupByCountry = [], 2: groupByLegion = [] },
-    setIndexData,
-  ] = useState({ "0": [], "1": [], "2": [] });
-  useEffect(() => {
-    if (data && data.rows) {
-      setIndexData(groupBy(data.rows, [0, 1, 2]));
-    }
-  }, [!!(data && data.rows)]);
-  console.log({ groubByDate, groupByCountry, groupByLegion });
-
-  const days = Object.keys(groubByDate).sort((a,b)=>Number(a)-Number(b))
-  const lastDay = days&&days.length&&days[days.length-1]
-  console.log({ days,lastDay});
+  const {  groubByDate = [],  groupByCountry = [],  groupByLegion = [],lastDay } = data
+  console.log('data',data)
   return (
     <>
       <input
@@ -91,6 +90,7 @@ const RepoList = () => {
       {
         lastDay&&groubByDate[lastDay].sort((a,b)=>Number(b[6])-Number(a[6])).map(([date,country,legion,deaths,cumulativeDeaths,confirmed,cumulativeConfirmed])=>(
           <div
+          onClick={()=>setSelectCountry(country)}
               key={country}
               className="btn cursor-pointer hover:shadow-lg m-2 ml-0 rounded p-2 flex flex-col justify-between leading-normal "
             >
@@ -185,4 +185,6 @@ const Covid = () => {
     />
   );
 };
-export default Covid;
+export default ()=>{
+  const [location] = useLocation()
+return <Namespace namespace={location}><Covid/></Namespace>};
