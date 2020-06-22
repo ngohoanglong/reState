@@ -17,6 +17,7 @@
     "react-scripts": "^3.4.1",
     "react-snap": "^1.23.0",
     "rmc-pull-to-refresh": "1.0.12",
+    "source-map-explorer": "^2.4.2",
     "tailwindcss": "^1.4.6"
   },
   "scripts": {
@@ -25,7 +26,8 @@
     "postbuild": "react-snap",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "deploy": "yarn build && firebase deploy"
+    "deploy": "yarn build && firebase deploy",    
+    "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "browserslist": [
     ">0.2%",

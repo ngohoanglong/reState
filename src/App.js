@@ -10,9 +10,9 @@ import useCache, { CacheProvider, useCacheSet } from "./modules/cache/useCache";
 import PullToRefresh from 'rmc-pull-to-refresh'
 import useLocationSubscriber, { LocationSubscriber } from "./modules/navigation/useLocation.Subscriber";
 import  useLocation from "./modules/navigation/useLocation";
-import Github from "./views/Github/Github";
-import Covid from "./views/Covid/Covid";
-import Home from "./views/Home/Home";
+import Github from "./views/Github/Github.lazy";
+import Covid from "./views/Covid/Covid.lazy";
+import Home from "./views/Home/Home.lazy";
 const Switch = ({children})=>{
   const [location] = useLocation()
   const element =  (children.find((child)=>{
