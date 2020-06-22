@@ -17,12 +17,16 @@ import Header from "../../layouts/Layout.Header";
 import useLocalStorage from "../../modules/storage/useLocalStorage";
 import { groupBy } from "../../helpers/array";
 import useLocation from "../../modules/navigation/useLocation";
+const namespace={
+  data:'data',
+  selectedCountry:'selectedCountry'
+}
 const Left = () => {
   return <RepoList />;
 };
 const RepoList = () => {
-  const repolistname = useNamespace("repolist");
-  const selectedCountryName = useNamespace("selectedCountry");
+  const repolistname = useNamespace(namespace.data);
+  const selectedCountryName = useNamespace(namespace.selectedCountry);
   const setSelectCountry = useCacheSet(selectedCountryName);
   const [loading, setLoading] = useCache(
     repolistname + "__async_loading",
@@ -96,21 +100,20 @@ const RepoList = () => {
       {
         lastDay&&groubByDate[lastDay].sort((a,b)=>Number(b[6])-Number(a[6])).map(([date,country,legion,deaths,cumulativeDeaths,confirmed,cumulativeConfirmed])=>(
           <div
-          onClick={()=>setSelectCountry(country)}
+          onClick={()=>{
+            setTimeout(()=>setSelectCountry(country),300)
+          }}
               key={country}
               className="btn cursor-pointer hover:shadow-lg m-2 ml-0 rounded p-2 flex flex-col justify-between leading-normal "
             >
-              <div className="text-xs  text-color-rich flex items-center truncate">
-                {legion}
-              </div>
-              <div className="text-color font-bold mb-2">{country}</div>
+              <div className="text-color font-bold">{country}</div>
               <div className=" text-color-rich flex items-center flex-wrap">
                 {[
                   // deaths,
-                `⚰️ ${cumulativeDeaths}`,
+                <span className="text-red-600 font-bold text-xs">{`⚰️ ${cumulativeDeaths}`}</span>,
                 // confirmed,
-                `🤢 ${cumulativeConfirmed}`].map((value,i)=>(
-                  <div key={i} className="background mt-2 mr-2 px-1 rounded">
+                <span className="text-gray-600 font-bold text-xs">{`🤢 ${cumulativeConfirmed}`}</span>].map((value,i)=>(
+                  <div key={i} className="background mb-2 mr-2 px-1 rounded">
                     {value}
                   </div>
                 ))}
