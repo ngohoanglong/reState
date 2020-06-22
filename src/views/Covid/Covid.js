@@ -28,7 +28,9 @@ const RepoList = () => {
     repolistname + "__async_loading",
     false
   );
-  const [dataLocalstorage, setDataLocalstorage] = useLocalStorage(repolistname);
+  const [dataLocalstorage, setDataLocalstorage] = useLocalStorage(repolistname,[],{
+    groubByDate  :[],  groupByCountry  :[],  groupByLegion:[]
+  });
   const [data, setData] = useCache(
     repolistname,
     dataLocalstorage && dataLocalstorage !== null
@@ -46,7 +48,6 @@ const RepoList = () => {
       })
       .then((data) => {
         const { 0: groubByDate = [], 1: groupByCountry = [], 2: groupByLegion = [] } = groupBy(data.rows, [0, 1, 2])
- 
         const days = Object.keys(groubByDate).sort((a,b)=>Number(a)-Number(b))
         const countries = Object.keys(groupByCountry)
         const legions = Object.keys(groupByLegion)
