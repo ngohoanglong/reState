@@ -26,7 +26,7 @@
     "postbuild": "react-snap",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "deploy": "yarn build && firebase deploy",    
+    "deploy": "yarn build && firebase deploy",
     "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "browserslist": [
