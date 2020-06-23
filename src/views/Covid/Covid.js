@@ -4,7 +4,7 @@ import React, {
   useLayoutEffect,
   cloneElement,
 } from "react";
-import Namespace from "../../modules/namespace/Namespace"
+import Namespace from "../../modules/namespace/Namespace";
 import useNamespace from "../../modules/namespace/useNamespace";
 import useCache, {
   CacheProvider,
@@ -17,10 +17,10 @@ import Header from "../../layouts/Layout.Header";
 import useLocalStorage from "../../modules/storage/useLocalStorage";
 import { groupBy } from "../../helpers/array";
 import useLocation from "../../modules/navigation/useLocation";
-const namespace={
-  data:'data',
-  selectedCountry:'selectedCountry'
-}
+const namespace = {
+  data: "data",
+  selectedCountry: "selectedCountry",
+};
 const Left = () => {
   return <RepoList />;
 };
@@ -32,16 +32,24 @@ const RepoList = () => {
     repolistname + "__async_loading",
     false
   );
-  const [dataLocalstorage, setDataLocalstorage] = useLocalStorage(repolistname,[],{
-    groubByDate  :[],  groupByCountry  :[],  groupByLegion:[]
-  });
+  const [dataLocalstorage, setDataLocalstorage] = useLocalStorage(
+    repolistname,
+    [],
+    {
+      groubByDate: [],
+      groupByCountry: [],
+      groupByLegion: [],
+    }
+  );
   const [data, setData] = useCache(
     repolistname,
     dataLocalstorage && dataLocalstorage !== null
       ? JSON.parse(dataLocalstorage)
       : {
-        groubByDate  :[],  groupByCountry  :[],  groupByLegion:[]
-      }
+          groubByDate: [],
+          groupByCountry: [],
+          groupByLegion: [],
+        }
   );
   const handleSearch = ({ keyword }) => {
     setLoading(true);
@@ -49,33 +57,47 @@ const RepoList = () => {
       `https://cors-anywhere.herokuapp.com/https://dashboards-dev.sprinklr.com/data/9043/global-covid19-who-gis.json`
     )
       .then((res) => {
-        
         return res.json();
       })
       .then((data) => {
-        setTimeout(()=>{
-          const { 0: groubByDate = [], 1: groupByCountry = [], 2: groupByLegion = [] } = groupBy(data.rows, [0, 1, 2])
-          const days = Object.keys(groubByDate).sort((a,b)=>Number(a)-Number(b))
-          const countries = Object.keys(groupByCountry)
-          const legions = Object.keys(groupByLegion)
-          const lastDay = days&&days.length&&days[days.length-1]
-          const save= {groubByDate,
+        setTimeout(() => {
+          const {
+            0: groubByDate = [],
+            1: groupByCountry = [],
+            2: groupByLegion = [],
+          } = groupBy(data.rows, [0, 1, 2]);
+          const days = Object.keys(groubByDate).sort(
+            (a, b) => Number(a) - Number(b)
+          );
+          const countries = Object.keys(groupByCountry);
+          const legions = Object.keys(groupByLegion);
+          const lastDay = days && days.length && days[days.length - 1];
+          const save = {
+            groubByDate,
             groupByCountry,
-            groupByLegion,days,
+            groupByLegion,
+            days,
             countries,
-            legions,lastDay}
+            legions,
+            lastDay,
+          };
           setDataLocalstorage(JSON.stringify(save));
           setData(save);
           setLoading(false);
-        })
+        });
       });
   };
 
   useEffect(() => {
     handleSearch({ keyword: "react" });
   }, []);
-  const {  groubByDate = [],  groupByCountry = [],  groupByLegion = [],lastDay } = data
-  console.log('data',data)
+  const {
+    groubByDate = [],
+    groupByCountry = [],
+    groupByLegion = [],
+    lastDay,
+  } = data;
+  console.log("data", data);
   return (
     <>
       <input
@@ -97,30 +119,42 @@ const RepoList = () => {
       {loading && (
         <div className="text-gray-500 text-center font-bold">loading</div>
       )}
-      {
-        lastDay&&groubByDate[lastDay].sort((a,b)=>Number(b[6])-Number(a[6])).map(([date,country,legion,deaths,cumulativeDeaths,confirmed,cumulativeConfirmed])=>(
-          <div
-          onClick={()=>{
-            setTimeout(()=>setSelectCountry(country),300)
-          }}
-              key={country}
-              className="btn cursor-pointer hover:shadow-lg m-2 ml-0 rounded p-2 flex flex-col justify-between leading-normal "
-            >
-              <div className="text-color font-bold">{country}</div>
-              <div className=" text-color-rich flex items-center flex-wrap">
-                {[
-                  // deaths,
-                <span className="text-red-600 font-bold text-xs">{`⚰️ ${cumulativeDeaths}`}</span>,
-                // confirmed,
-                <span className="text-gray-600 font-bold text-xs">{`🤢 ${cumulativeConfirmed}`}</span>].map((value,i)=>(
-                  <div key={i} className="background mb-2 mr-2 px-1 rounded">
-                    {value}
-                  </div>
-                ))}
+      {lastDay &&
+        groubByDate[lastDay]
+          .sort((a, b) => Number(b[6]) - Number(a[6]))
+          .map(
+            ([
+              date,
+              country,
+              legion,
+              deaths,
+              cumulativeDeaths,
+              confirmed,
+              cumulativeConfirmed,
+            ]) => (
+              <div
+                onClick={() => {
+                  setTimeout(() => setSelectCountry(country), 300);
+                }}
+                key={country}
+                className="btn cursor-pointer hover:shadow-lg m-2 ml-0 rounded p-2 flex flex-col justify-between leading-normal "
+              >
+                <div className="text-color font-bold">{country}</div>
+                <div className=" text-color-rich flex items-center flex-wrap">
+                  {[
+                    // deaths,
+                    <span className="text-red-600 font-bold text-xs">{`⚰️ ${cumulativeDeaths}`}</span>,
+                    // confirmed,
+                    <span className="text-gray-600 font-bold text-xs">{`🤢 ${cumulativeConfirmed}`}</span>,
+                  ].map((value, i) => (
+                    <div key={i} className="background mb-2 mr-2 px-1 rounded">
+                      {value}
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-        ))
-      }
+            )
+          )}
       {/* <div className="cursor-pointer m-2 hover:shadow rounded p-4 flex flex-col justify-between leading-normal">
         <div className="text-gray-500 text-center font-bold">
           {loading ? "LOADING" : "LOAD MORE"}
@@ -129,34 +163,27 @@ const RepoList = () => {
     </>
   );
 };
-const Repodetail = () => {
-  const currentReponame = useNamespace("currentRepo");
-  const allRepoesname = useNamespace("allRepoes");
-  const [currentRepo] = useCache(currentReponame);
-  const repoKey = `${allRepoesname}__${currentRepo && currentRepo.full_name}`;
-  const [content, setContent] = useCache(repoKey);
-  console.log({ currentReponame, currentRepo });
-  useEffect(() => {
-    if (currentRepo)
-      fetch(
-        `https://raw.Covidusercontent.com/${currentRepo.full_name}/master/README.md`
-      )
-        .then((res) => {
-          return res.text();
-        })
-        .then((res) => {
-          setContent(res);
-        });
-  }, [currentRepo, setContent]);
+const Content = () => {
+  const repolistname = useNamespace(namespace.data);
+  const selectedCountryName = useNamespace(namespace.selectedCountry);
+  const [selectCountry] = useCache(selectedCountryName);
+  const [data, setData] = useCache(repolistname);
   return (
-    (content && (
-      <ReactMarkdown
-        escapeHtml={false}
-        className="markdown-body max-w-lg mx-auto"
-        source={content}
-      />
-    )) ||
-    null
+    <div>
+      {(selectCountry && (
+        <ReactMarkdown
+          escapeHtml={false}
+          className="markdown-body max-w-lg mx-auto"
+          source={selectCountry}
+        />
+      )) ||
+        null}
+      <p>
+        {JSON.stringify(
+          data && data.groupByCountry && data.groupByCountry[selectCountry]
+        )}
+      </p>
+    </div>
   );
 };
 const Covid = () => {
@@ -164,7 +191,7 @@ const Covid = () => {
     <Layout
       {...{
         left: <Left />,
-        mid: <div className="p-4">COVID</div>,
+        mid: <Content />,
         right: (
           <div>
             <div className="w-full justify-center items-center overflow-hidden md:max-w-sm ">
@@ -194,6 +221,11 @@ const Covid = () => {
     />
   );
 };
-export default ()=>{
-  const [location] = useLocation()
-return <Namespace namespace={location}><Covid/></Namespace>};
+export default () => {
+  const [location] = useLocation();
+  return (
+    <Namespace namespace={location}>
+      <Covid />
+    </Namespace>
+  );
+};

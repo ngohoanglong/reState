@@ -90,9 +90,10 @@
   }
   &:hover:before {
     background: currentColor;
-    opacity: 0.3;
+    opacity: 0.2;
   }
   &:active:before {
+    transform: scale(1);
     animation: rubberBand; /* referring directly to the animation's @keyframe declaration */
     animation-duration: 0.5s;
   }
