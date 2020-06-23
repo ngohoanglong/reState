@@ -32,6 +32,7 @@ header {
 }
 .header > * {
   flex-shrink: 0;
+  
 }
 #openLeft:checked ~ .layout,
 #openRight:checked ~ .layout {
@@ -53,13 +54,15 @@ header {
   overflow: hidden;
   pointer-events: none;
 }
-
+.layout>*{
+  // padding-bottom: 50px;
+}
 .layout > *:first-child {
   width: var(--siderLeft-width);
   position: fixed;
   top: 0;
+  bottom: 0;
   left: var(--header-width);
-  height: 100%;
   background: inherit;
   visibility: hidden;
   z-index: 2;
@@ -93,7 +96,7 @@ header {
   position: fixed;
   top: 0;
   right: 0;
-  height: 100%;
+  bottom: 0;
   background: inherit;
   visibility: hidden;
   z-index: 2;
@@ -163,6 +166,7 @@ header {
   .layout {
   }
   .layout > * {
+    
   }
   .layout > *:first-child {
   }

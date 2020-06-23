@@ -47,33 +47,54 @@
 
 .btn {
   position: relative;
-  overflow: hidden;
-  transform: translate3d(0, 0, 0);
-  &:after {
-    content: '';
-    display: block;
+  color: var(--text-color-richer);
+  // overflow: hidden;
+  // transform: translate3d(0, 0, 0);
+  // &:after {
+  //   content: '';
+  //   display: block;
+  //   position: absolute;
+  //   width: 100%;
+  //   height: 100%;
+  //   top: 0;
+  //   left: 0;
+  //   pointer-events: none;
+  //   background-image: radial-gradient(
+  //     circle,
+  //     currentColor 10%,
+  //     transparent 10.01%
+  //   );
+  //   background-repeat: no-repeat;
+  //   background-position: 50%;
+  //   transform: scale3d(5, 5,5);
+  //   opacity: 0;
+  //   transition: transform 0.25s,
+  //     opacity 1s;
+  // }
+  // &:active:after {
+  //   transform: scale(0, 0);
+  //   opacity: 0.2;
+  //   transition: 0s;
+  // }
+  &:before {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    background-image: radial-gradient(
-      circle,
-      currentColor 10%,
-      transparent 10.01%
-    );
-    background-repeat: no-repeat;
-    background-position: 50%;
-    transform: scale(10, 10);
+    top: -0.2em;
+    left: -0.2em;
+    right: -0.2em;
+    bottom: -0.2em;
+    content: '';
+    background: currentColor;
     opacity: 0;
-    transition: transform 0.25s,
-      opacity 1s;
+    border-radius: inherit;
+    transition: opacity 0.15s ease-in;
   }
-  &:active:after {
-    transform: scale(0, 0);
-    opacity: 0.2;
-    transition: 0s;
+  &:hover:before {
+    background: currentColor;
+    opacity: 0.3;
+  }
+  &:active:before {
+    animation: rubberBand; /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 0.5s;
   }
 }
 
@@ -99,6 +120,9 @@
   border: 3px solid var(--background-rich);
 }
 
+
+.scrollable{
+}
 .scrollable::-webkit-scrollbar-thumb  {
   visibility: hidden;
   background-color: var(--background);

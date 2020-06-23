@@ -8,7 +8,12 @@ const useLocalStorage = ({ key = "", deps = emptyArray, initialValue }) => {
   });
   const handleSetdata = useCallback(
     (value) => {
-      localStorage.setItem(key, value);
+      try {
+        localStorage.setItem(key, value);
+      } catch (error) {
+        console.error(error)
+      }
+      
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [key, ...deps]
