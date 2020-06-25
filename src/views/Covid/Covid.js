@@ -67,12 +67,20 @@ const RepoList = () => {
             2: groupByLegion = [],
           } = groupBy(data.rows, [0, 1, 2]);
           const days = Object.keys(groubByDate).sort(
-            (a, b) => Number(a) - Number(b)
+            (a, b) => -(Number(a) - Number(b))
           );
+        
+          Object.keys(groupByCountry).forEach(key=>{
+      const      countryData = groupByCountry[key]
+      countryData.sort(
+        (a, b) => -(Number(a[0]) - Number(b[0]))
+      );
+          })
           const countries = Object.keys(groupByCountry);
           const legions = Object.keys(groupByLegion);
-          const lastDay = days && days.length && days[days.length - 1];
+          const lastDay = days[0];
           const save = {
+            update: Date.now(),
             groubByDate,
             groupByCountry,
             groupByLegion,
@@ -139,15 +147,21 @@ const RepoList = () => {
                 key={country}
                 className="btn cursor-pointer hover:shadow-lg m-2 ml-0 rounded p-2 flex flex-col justify-between leading-normal "
               >
-                <div className="text-color font-bold">{country}</div>
+                <div className="text-color font-bold flex items-center">
+                  <img
+                    className="w-6 mr-2"
+                    src={`https://www.countryflags.io/${country}/flat/64.png`}
+                  ></img>{" "}
+                  {country}
+                </div>
                 <div className=" text-color-rich flex items-center flex-wrap">
                   {[
                     // deaths,
-                    <span className="text-red-600 font-bold text-xs">{`⚰️ ${cumulativeDeaths}`}</span>,
-                    // confirmed,
-                    <span className="text-gray-600 font-bold text-xs">{`🤢 ${cumulativeConfirmed}`}</span>,
+                    <span className="bg-red-100 text-red-700  font-bold text-xs mb-2 mr-2 px-1 rounded">{`⚰️ ${cumulativeDeaths}`}</span>,
+                    // confirmed, rounded
+                    <span className="bg-gray-300 text-gray-700  font-bold text-xs mb-2 mr-2 px-1 rounded">{`🤢 ${cumulativeConfirmed}`}</span>,
                   ].map((value, i) => (
-                    <div key={i} className="background mb-2 mr-2 px-1 rounded">
+                    <div key={i} className="">
                       {value}
                     </div>
                   ))}
@@ -168,21 +182,30 @@ const Content = () => {
   const selectedCountryName = useNamespace(namespace.selectedCountry);
   const [selectCountry] = useCache(selectedCountryName);
   const [data, setData] = useCache(repolistname);
+  const [select,setSelected] = useState(0)
+  if (!data || !data.update) return null;
+  const selectDate=data.days[select]
+  const [datetime,country,legion,newDeaths,deaths,newCases,cases] = selectCountry
+    ? data.groupByCountry[selectCountry]
+        .find((item) => item[0] === Number(selectDate))||[]
+    : [];
   return (
-    <div>
-      {(selectCountry && (
-        <ReactMarkdown
-          escapeHtml={false}
-          className="markdown-body max-w-lg mx-auto"
-          source={selectCountry}
-        />
-      )) ||
-        null}
-      <p>
-        {JSON.stringify(
-          data && data.groupByCountry && data.groupByCountry[selectCountry]
-        )}
-      </p>
+    <div className="p-3">
+      <div>{selectCountry}</div>
+      <select value={select} onChange={e=>setSelected(e.target.value)}>
+        {
+          data.days.map((value,i)=><option value={i}>
+            {new Date(Number(data.days[i])).toLocaleDateString()}
+          </option>)
+        }
+      </select>
+      <input className="w-full" value={select} onChange={e=>setSelected(e.target.value)} type="range"  min="0" max={data.days.length}></input>
+      <div className="flex">
+        <div className="flex-1 text-right">{newCases}</div>
+        <div className="flex-1 text-right">{cases}</div>
+        <div className="flex-1 text-right">{deaths}</div>
+      </div>
+      
     </div>
   );
 };
