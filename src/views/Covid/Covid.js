@@ -3,6 +3,7 @@ import React, {
   useEffect,
   useLayoutEffect,
   cloneElement,
+  useRef,
 } from "react";
 import Namespace from "../../modules/namespace/Namespace";
 import useNamespace from "../../modules/namespace/useNamespace";
@@ -69,13 +70,11 @@ const RepoList = () => {
           const days = Object.keys(groubByDate).sort(
             (a, b) => -(Number(a) - Number(b))
           );
-        
-          Object.keys(groupByCountry).forEach(key=>{
-      const      countryData = groupByCountry[key]
-      countryData.sort(
-        (a, b) => -(Number(a[0]) - Number(b[0]))
-      );
-          })
+
+          Object.keys(groupByCountry).forEach((key) => {
+            const countryData = groupByCountry[key];
+            countryData.sort((a, b) => -(Number(a[0]) - Number(b[0])));
+          });
           const countries = Object.keys(groupByCountry);
           const legions = Object.keys(groupByLegion);
           const lastDay = days[0];
@@ -177,35 +176,79 @@ const RepoList = () => {
     </>
   );
 };
+
 const Content = () => {
+  const ref = useRef(Date.now());
   const repolistname = useNamespace(namespace.data);
   const selectedCountryName = useNamespace(namespace.selectedCountry);
   const [selectCountry] = useCache(selectedCountryName);
   const [data, setData] = useCache(repolistname);
-  const [select,setSelected] = useState(0)
+  const [select, setSelected] = useState(0);
   if (!data || !data.update) return null;
-  const selectDate=data.days[select]
-  const [datetime,country,legion,newDeaths,deaths,newCases,cases] = selectCountry
-    ? data.groupByCountry[selectCountry]
-        .find((item) => item[0] === Number(selectDate))||[]
+  const selectDate = data.days[select];
+  const [
+    datetime,
+    country,
+    legion,
+    newDeaths,
+    deaths,
+    newCases,
+    cases,
+  ] = selectCountry
+    ? data.groupByCountry[selectCountry].find(
+        (item) => item[0] === Number(selectDate)
+      ) || []
     : [];
   return (
     <div className="p-3">
       <div>{selectCountry}</div>
-      <select value={select} onChange={e=>setSelected(e.target.value)}>
-        {
-          data.days.map((value,i)=><option value={i}>
+      <select
+        value={select}
+        onChange={(e) => {
+          const value = e.target.value;
+          const now = Date.now();
+
+          ref.current = now;
+          setTimeout(() => {
+            if (now === ref.current) {
+              setSelected(value);
+            }
+          }, 0);
+        }}
+      >
+        {data.days.map((value, i) => (
+          <option value={i}>
             {new Date(Number(data.days[i])).toLocaleDateString()}
-          </option>)
-        }
+          </option>
+        ))}
       </select>
-      <input className="w-full" value={select} onChange={e=>setSelected(e.target.value)} type="range"  min="0" max={data.days.length}></input>
+      <input
+        className="block"
+        type="date"
+        value={new Date(data.days[select]).toDateString()}
+      ></input>
+      <input
+        className="w-full"
+        defaultValue={select}
+        onChange={(e) => {
+          const value = e.target.value;
+          const now = Date.now();
+          ref.current = now;
+          setTimeout(() => {
+            if (now === ref.current) {
+              setSelected(value);
+            }
+          }, 0);
+        }}
+        type="range"
+        min="0"
+        max={data.days.length}
+      ></input>
       <div className="flex">
         <div className="flex-1 text-right">{newCases}</div>
         <div className="flex-1 text-right">{cases}</div>
         <div className="flex-1 text-right">{deaths}</div>
       </div>
-      
     </div>
   );
 };
