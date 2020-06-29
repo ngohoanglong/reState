@@ -120,7 +120,7 @@ const RepoList = () => {
           }
           return true;
         }}
-        className="block w-full  m-2 py-2 border-b border-transparent border-b-4 focus:border-gray-300 outline-none bg-transparent"
+        className="sticky background-rich top-0 z-10 block w-full px-2 py-3 border-b border-transparent border-b-4 focus:border-gray-300 outline-none"
         placeholder="Search..."
       />
       {loading && (
@@ -185,7 +185,8 @@ const Content = () => {
   const [data, setData] = useCache(repolistname);
   const [select, setSelected] = useState(0);
   if (!data || !data.update) return null;
-  const selectDate = data.days[select];
+  const days = data.days.reverse();
+  const selectDate = days[select];
   const [
     datetime,
     country,
@@ -203,6 +204,7 @@ const Content = () => {
     <div className="p-3">
       <div>{selectCountry}</div>
       <select
+        className="rounded-tl-lg rounded-tr-lg ml-3 background-rich focus:outline-none focus:shadow-outline  bg-gray-300 px-2 appearance-none leading-normal"
         value={select}
         onChange={(e) => {
           const value = e.target.value;
@@ -216,20 +218,16 @@ const Content = () => {
           }, 0);
         }}
       >
-        {data.days.map((value, i) => (
+        {days.map((value, i) => (
           <option value={i}>
-            {new Date(Number(data.days[i])).toLocaleDateString()}
+            {new Date(Number(days[i])).toLocaleDateString()}
           </option>
         ))}
       </select>
       <input
-        className="block"
-        type="date"
-        value={new Date(data.days[select]).toDateString()}
-      ></input>
-      <input
-        className="w-full"
-        defaultValue={select}
+        style={{ border: "4px solid var(--background-rich)" }}
+        className="w-full bg-transparent focus:outline-none focus:shadow-outline rounded-lg block w-full appearance-none leading-normal"
+        value={select}
         onChange={(e) => {
           const value = e.target.value;
           const now = Date.now();
@@ -242,7 +240,7 @@ const Content = () => {
         }}
         type="range"
         min="0"
-        max={data.days.length}
+        max={days.length}
       ></input>
       <div className="flex">
         <div className="flex-1 text-right">{newCases}</div>
