@@ -19,6 +19,7 @@
     "react-markdown": "^4.3.1",
     "react-scripts": "^3.4.1",
     "react-snap": "^1.23.0",
+    "react-spring": "^8.0.27",
     "rmc-pull-to-refresh": "1.0.12",
     "source-map-explorer": "^2.4.2",
     "tailwindcss": "^1.4.6"
@@ -38,16 +39,16 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-    "husky": {
-        "hooks": {
-          "pre-commit": "lint-staged"
-        }
-      },
-       "lint-staged": {
-           "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
-             "prettier --write"
-           ]
-         },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write"
+    ]
+  },
   "eslintConfig": {
     "extends": "react-app"
   }

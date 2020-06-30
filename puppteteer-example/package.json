@@ -1,0 +1,14 @@
+{
+  "name": "puppteteer-example",
+  "version": "1.0.0",
+  "description": "con duong cach mang -con lam gian truan",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^3.3.0"
+  }
+}
