@@ -479,10 +479,11 @@ const Contact = ({}) => {
         <animated.h2
           style={{
             fontSize: "1em",
+            filter: "drop-shadow(#000 0px 1px 1px)",
             ...subStyles,
             letterSpacing: "0.24em",
           }}
-          className="mt-4 opacity-100 text-color  whitespace-pre-wrap"
+          className="mt-4 opacity-100 text-white  whitespace-pre-wrap"
         >
           I am interested in freelance opportunities – especially ambitious or
           large projects. However, if you have other request or question, don’t
@@ -738,7 +739,7 @@ const Loading = ({ children }) => {
       ),
       ({ style }) => children,
     ],
-    []
+    [children, props.width]
   );
   return transitions.map(({ item, props, key }) => {
     const Page = pages[item];
