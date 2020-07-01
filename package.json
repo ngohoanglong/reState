@@ -2,6 +2,7 @@
   "name": "react",
   "version": "1.0.0",
   "description": "React example starter project",
+  "homepage": "https://ngohoanglong.github.io/reState",
   "keywords": [
     "react",
     "starter"
@@ -31,6 +32,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "deploy": "yarn build && firebase deploy",
+    "deploy:github": "yarn build && gh-pages -d build",
     "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "browserslist": [
@@ -51,5 +53,8 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "devDependencies": {
+    "gh-pages": "^3.1.0"
   }
 }
