@@ -14,7 +14,7 @@
 /build_prod
 
 # production
-# /build
+/build
 
 /.idea
 
