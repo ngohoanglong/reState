@@ -20,6 +20,7 @@ import { groupBy } from "../../helpers/array";
 import useLocation from "../../modules/navigation/useLocation";
 const namespace = {
   data: "data",
+  data__async_loading: "data__async_loading",
   selectedCountry: "selectedCountry",
 };
 const Left = () => {
@@ -27,12 +28,10 @@ const Left = () => {
 };
 const RepoList = () => {
   const repolistname = useNamespace(namespace.data);
+  const data__async_loading = useNamespace(namespace.data__async_loading);
   const selectedCountryName = useNamespace(namespace.selectedCountry);
   const setSelectCountry = useCacheSet(selectedCountryName);
-  const [loading, setLoading] = useCache(
-    repolistname + "__async_loading",
-    false
-  );
+  const [loading, setLoading] = useCache(data__async_loading, false);
   const [dataLocalstorage, setDataLocalstorage] = useLocalStorage(
     repolistname,
     [],
@@ -42,16 +41,12 @@ const RepoList = () => {
       groupByLegion: [],
     }
   );
-  const [data, setData] = useCache(
-    repolistname,
-    dataLocalstorage && dataLocalstorage !== null
-      ? JSON.parse(dataLocalstorage)
-      : {
-          groubByDate: [],
-          groupByCountry: [],
-          groupByLegion: [],
-        }
-  );
+  const [data, setData] = useCache(repolistname);
+  useEffect(() => {
+    if (!data) {
+      setData(JSON.parse(dataLocalstorage));
+    }
+  }, []);
   const handleSearch = ({ keyword }) => {
     setLoading(true);
     fetch(
@@ -92,12 +87,15 @@ const RepoList = () => {
           setData(save);
           setLoading(false);
         });
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
   useEffect(() => {
     handleSearch({ keyword: "react" });
   }, []);
+
+  if (!data) return null;
   const {
     groubByDate = [],
     groupByCountry = [],
@@ -225,7 +223,7 @@ const Content = () => {
         ))}
       </select>
       <input
-        style={{ border: "4px solid var(--background-rich)" }}
+        style={{ border: "1px solid var(--background-rich)" }}
         className="w-full bg-transparent focus:outline-none focus:shadow-outline rounded-lg block w-full appearance-none leading-normal"
         value={select}
         onChange={(e) => {

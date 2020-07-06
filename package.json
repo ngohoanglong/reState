@@ -2,7 +2,6 @@
   "name": "react",
   "version": "1.0.0",
   "description": "React example starter project",
-  "homepage": "https://ngohoanglong.github.io/reState",
   "keywords": [
     "react",
     "starter"
@@ -11,8 +10,6 @@
   "dependencies": {
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
-    "nhl-layout": "^1.0.0",
-    "nhl-usecache": "^1.0.0",
     "node-sass": "^4.14.1",
     "prettier": "^2.0.5",
     "react": "^0.0.0-experimental-33c3af284",

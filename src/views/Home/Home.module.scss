@@ -30,8 +30,14 @@
   top: 0;
   left: 0;
   visibility: visible;
-  opacity: 1;
+  opacity: 0.3;
   transform: scale(1);
+}
+.child:focus ~ .pointer {
+  top: 0;
+  left: 0;
+  transform: scale(6);
+  opacity: 1;
 }
 .child:nth-child(1):hover ~ .pointer {
   top: 0;

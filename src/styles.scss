@@ -4,29 +4,29 @@
 @import "markdown";
 @import "animated";
 
-:root{
-  --header-width:60px;
-  --siderLeft-width:250px;
-  --siderRight-width:250px;
-
+:root {
+  --header-width: 60px;
+  --siderLeft-width: 250px;
+  --siderRight-width: 250px;
 }
-:root{
+:root {
   --text-color-normal: #0a244d;
   --text-color-light: #8cabd9;
   --text-color-rich: #536b8f;
   --text-color-richer: #2a4772;
 }
-:root{
+:root {
   --background: #fff;
   --background-rich: #f1f1f1;
   --background-richer: #cecece;
 }
-:root{
+:root {
   --max-size: 16;
   --min-size: 14;
   --diff: calc(var(--max-size) - var(--min-size));
-  --responsive: calc(var(--min-size)*1px + var(--diff)*(100vw - 360px)/1200);
-
+  --responsive: calc(
+    var(--min-size) * 1px + var(--diff) * (100vw - 360px) / 1200
+  );
 }
 #theme:checked + #root {
   --text-color-normal: hsl(0, 0%, 93%);
@@ -35,15 +35,14 @@
   --text-color-richer: hsl(210, 50%, 72%);
   --text-color-highlight: hsl(25, 70%, 45%);
 
-  --background: #18191A;
-  --background-rich: #303233 ;
+  --background: #18191a;
+  --background-rich: #303233;
   --background-richer: #000;
 }
-#root{
-  color:var(--text-color-richer);
+
+#root {
+  color: var(--text-color-rich);
 }
-
-
 
 .btn {
   position: relative;
@@ -82,7 +81,7 @@
     left: -0.2em;
     right: -0.2em;
     bottom: -0.2em;
-    content: '';
+    content: "";
     background: currentColor;
     opacity: 0;
     border-radius: inherit;
@@ -99,32 +98,30 @@
   }
 }
 
-.text-color{
-  color:var(--text-color-normal)
+.text-color {
+  color: var(--text-color-normal);
 }
-.text-color-rich{
-  color:var(--text-color-rich)
+.text-color-rich {
+  color: var(--text-color-rich);
 }
-.background{
-  background: var(--background)
+.background {
+  background: var(--background);
 }
-.background-rich{
-  background: var(--background-rich)
+.background-rich {
+  background: var(--background-rich);
 }
-.background-richer{
-  background: var(--background-richer)
+.background-richer {
+  background: var(--background-richer);
 }
 
-
-::-webkit-scrollbar-thumb  {
+::-webkit-scrollbar-thumb {
   background-color: var(--background);
   border: 3px solid var(--background-rich);
 }
 
-
-.scrollable{
+.scrollable {
 }
-.scrollable::-webkit-scrollbar-thumb  {
+.scrollable::-webkit-scrollbar-thumb {
   visibility: hidden;
   background-color: var(--background);
   // border: 3px solid var(--background-rich);
@@ -132,38 +129,37 @@
 .scrollable.small::-webkit-scrollbar {
   width: 10px;
 }
-.scrollable:hover::-webkit-scrollbar-thumb  {
+.scrollable:hover::-webkit-scrollbar-thumb {
   visibility: visible;
 }
 .scrollable::-webkit-scrollbar {
-
   background-color: transparent;
 }
-@media screen and (-webkit-min-device-pixel-ratio:0) { 
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
   .scrollable {
-      background-color: rgba(0,0,0,0);
-      -webkit-background-clip: text;
-      /* uncomment following line to see the trick in actions */
-      /* -webkit-text-fill-color: transparent; */
-      transition: background-color .8s;
+    background-color: rgba(0, 0, 0, 0);
+    -webkit-background-clip: text;
+    /* uncomment following line to see the trick in actions */
+    /* -webkit-text-fill-color: transparent; */
+    transition: background-color 0.8s;
   }
   .scrollable:hover {
-     background-color: rgba(0,0,0,0.18);  
+    background-color: rgba(0, 0, 0, 0.18);
   }
   .scrollable::-webkit-scrollbar {
-      width: 16px;
-      height: 16px;
+    width: 16px;
+    height: 16px;
   }
   .scrollable::-webkit-scrollbar-track {
-      display: none;
+    display: none;
   }
   .scrollable::-webkit-scrollbar-thumb {
-      border-radius: 10px;
-      background-color: inherit;
+    border-radius: 10px;
+    background-color: inherit;
   }
 
   .small.scrollable::-webkit-scrollbar {
     width: 8px;
     height: 8px;
-}
+  }
 }

@@ -8,6 +8,7 @@ import {
 } from "react-spring";
 import "./Portfolio.css";
 import { WordCloud } from "./WordCloud";
+import Link from "../../modules/navigation/Link";
 const CurrentContext = React.createContext(0);
 const ChangeCurrentContext = React.createContext(() => {
   console.error("ChangeCurrentContext not been set");
@@ -767,6 +768,24 @@ function Portfolio() {
         style={{ background: "var(--background-rich)" }}
         className=" w-full h-full relative flex items-start cursor-default"
       >
+        <div className="p-3 fixed z-20 top-0 right-0">
+          <Link
+            to="/"
+            className="h-12 w-12 flex justify-center items-center p-2 btn text-color"
+          >
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              strokeWidth={0}
+              viewBox="0 0 24 24"
+              height="100%"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+            </svg>
+          </Link>
+        </div>
         <Loading>
           <div className="flex-1 w-full relative">
             <div id="Home" />
