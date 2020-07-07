@@ -210,12 +210,12 @@ const Content = () => {
             <div>{selectCountry}</div>
           </div>
         ) : (
-          <div className="text-color font-bold text-3xl flex items-center">
-            <div>{selectCountry}</div>
+          <div className="text-color flex-1 font-bold text-3xl flex items-center">
+            <div>Global</div>
           </div>
         )}
         <select
-          class="block appearance-none background-rich  py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          class="block appearance-none background-rich  py-3 px-4 pr-8 rounded leading-tight  focus:shadow-lg"
           value={select}
           onChange={(e) => {
             const value = e.target.value;

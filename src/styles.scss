@@ -28,6 +28,9 @@
     var(--min-size) * 1px + var(--diff) * (100vw - 360px) / 1200
   );
 }
+html {
+  font-size: var(--responsive);
+}
 #theme:checked + #root {
   --text-color-normal: hsl(0, 0%, 93%);
   --text-color-light: hsl(210, 15%, 35%);
