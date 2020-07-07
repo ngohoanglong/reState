@@ -703,16 +703,15 @@ const Loading = ({ children }) => {
     width: open ? 100 : 0,
     config: { duration: 1500 },
   });
+  const [index, set] = useState(0);
   useEffect(() => {
     setTimeout(() => toggle(true), 200);
-    setTimeout(() => set(1), 1700);
+    setTimeout(() => set(1), 200);
   }, []);
-  const [index, set] = useState(0);
   const transitions = useTransition(index, (p) => p, {
     from: {
       opacity: 1,
     },
-
     leave: {
       opacity: 0,
     },
@@ -761,6 +760,9 @@ function Portfolio() {
       }
     });
   });
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [e, setE] = useState();
   useEffect(() => {
     setE(
@@ -768,24 +770,6 @@ function Portfolio() {
         style={{ background: "var(--background-rich)" }}
         className=" w-full h-full relative flex items-start cursor-default"
       >
-        <div className="p-3 fixed z-20 top-0 right-0">
-          <Link
-            to="/"
-            className="h-12 w-12 flex justify-center items-center p-2 btn text-color"
-          >
-            <svg
-              stroke="currentColor"
-              fill="currentColor"
-              strokeWidth={0}
-              viewBox="0 0 24 24"
-              height="100%"
-              width="100%"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-            </svg>
-          </Link>
-        </div>
         <Loading>
           <div className="flex-1 w-full relative">
             <div id="Home" />
@@ -850,7 +834,29 @@ function Portfolio() {
     );
   }, []);
   if (!e) return null;
-  return <NavigationProvider>{e}</NavigationProvider>;
+  return (
+    <>
+      <div className="p-3 fixed z-20 top-0 right-0">
+        <Link
+          to="/"
+          className="h-12 w-12 flex justify-center items-center p-2 btn text-color"
+        >
+          <svg
+            stroke="currentColor"
+            fill="currentColor"
+            strokeWidth={0}
+            viewBox="0 0 24 24"
+            height="100%"
+            width="100%"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+          </svg>
+        </Link>
+      </div>
+      <NavigationProvider>{e}</NavigationProvider>
+    </>
+  );
 }
 
 export default Portfolio;

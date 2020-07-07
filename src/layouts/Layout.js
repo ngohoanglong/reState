@@ -1,25 +1,36 @@
 import React, { useRef, useState, useMemo } from "react";
 import "./Layout.scss";
-import PullToRefresh from 'rmc-pull-to-refresh'
-import 'rmc-pull-to-refresh/assets/index.css'
+import PullToRefresh from "rmc-pull-to-refresh";
+import "rmc-pull-to-refresh/assets/index.css";
 import Header from "./Layout.Header";
 export function Layout({ left, mid, right, header }) {
-  const layoutRef = useRef()
-  const [refreshing,setrefreshing] = useState()
-  const pullProps = useMemo(()=>({
-    getScrollContainer: () => layoutRef.current ,
-    distanceToRefresh:50,
-    indicator:{ activate: 'release', deactivate: 'pull', release: 'loading', finish: 'finish' },
-    damping:150,direction:'down'
-  }),[])
+  const layoutRef = useRef();
+  const [refreshing, setrefreshing] = useState();
+  const pullProps = useMemo(
+    () => ({
+      getScrollContainer: () => layoutRef.current,
+      distanceToRefresh: 50,
+      indicator: {
+        activate: "release",
+        deactivate: "pull",
+        release: "loading",
+        finish: "finish",
+      },
+      damping: 150,
+      direction: "down",
+    }),
+    []
+  );
   return (
     <>
       <input hidden id="openRight" type="checkbox" />
       <input hidden id="openLeft" type="checkbox" />
-      <div   className={"layout"}>
-        <div onTouchStart={e=>{
-          e.stopPropagation()
-        }}>
+      <div className={"layout"}>
+        <div
+          onTouchStart={(e) => {
+            e.stopPropagation();
+          }}
+        >
           <label
             htmlFor="openLeft"
             className="flex items-center justify-center text-xl btn"
@@ -40,21 +51,10 @@ export function Layout({ left, mid, right, header }) {
             {left}
           </div>
         </div>
-        <div ref={layoutRef} >
-        <PullToRefresh
-        {...pullProps}
-        refreshing={refreshing}
-        onRefresh={() => {
-          setrefreshing(true);
-          setTimeout(() => {
-            setrefreshing(false);
-          }, 1000);
-        }}
-      >
-        <div className="min-h-screen">{mid}</div>
-       </PullToRefresh>
+        <div ref={layoutRef}>
+          <div className="min-h-screen">{mid}</div>
         </div>
-        <div >
+        <div>
           <label
             htmlFor="openRight"
             className="flex items-center justify-center text-xl btn"
@@ -84,5 +84,5 @@ export function Layout({ left, mid, right, header }) {
     </>
   );
 }
-Layout.Header = Header
-export default Layout
+Layout.Header = Header;
+export default Layout;

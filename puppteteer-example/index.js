@@ -8,8 +8,14 @@ const puppeteer = require('puppeteer')
     }
   )
   const page = await browser.newPage()
+  const pages = [
+    {
+      filename:'home',
+      path:'http://localhost:3001/'
+    },
+  ]
   await page.goto(
-    'https://awesomevietnam-270208.web.app/periodic-table'
+    'http://localhost:3001/periodic-table'
   )
   await page.screenshot({
     path: 'covid.png',

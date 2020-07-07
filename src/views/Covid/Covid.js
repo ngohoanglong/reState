@@ -43,7 +43,7 @@ const RepoList = () => {
   );
   const [data, setData] = useCache(repolistname);
   useEffect(() => {
-    if (!data) {
+    if (!data && dataLocalstorage) {
       setData(JSON.parse(dataLocalstorage));
     }
   }, []);
@@ -199,52 +199,76 @@ const Content = () => {
       ) || []
     : [];
   return (
-    <div className="p-3">
-      <div>{selectCountry}</div>
-      <select
-        className="rounded-tl-lg rounded-tr-lg ml-3 background-rich focus:outline-none focus:shadow-outline  bg-gray-300 px-2 appearance-none leading-normal"
-        value={select}
-        onChange={(e) => {
-          const value = e.target.value;
-          const now = Date.now();
+    <div className="p-3 space-y-3">
+      <div className="py-3 w-full z-10 flex items-center sticky top-0 background">
+        {selectCountry ? (
+          <div className="text-color text-3xl font-bold flex items-center flex-1">
+            <img
+              className="w-6 mr-2"
+              src={`https://www.countryflags.io/${selectCountry}/flat/64.png`}
+            ></img>{" "}
+            <div>{selectCountry}</div>
+          </div>
+        ) : (
+          <div className="text-color font-bold text-3xl flex items-center">
+            <div>{selectCountry}</div>
+          </div>
+        )}
+        <select
+          class="block appearance-none background-rich  py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          value={select}
+          onChange={(e) => {
+            const value = e.target.value;
+            const now = Date.now();
 
-          ref.current = now;
-          setTimeout(() => {
-            if (now === ref.current) {
-              setSelected(value);
-            }
-          }, 0);
-        }}
-      >
-        {days.map((value, i) => (
-          <option value={i}>
-            {new Date(Number(days[i])).toLocaleDateString()}
-          </option>
-        ))}
-      </select>
-      <input
-        style={{ border: "1px solid var(--background-rich)" }}
-        className="w-full bg-transparent focus:outline-none focus:shadow-outline rounded-lg block w-full appearance-none leading-normal"
-        value={select}
-        onChange={(e) => {
-          const value = e.target.value;
-          const now = Date.now();
-          ref.current = now;
-          setTimeout(() => {
-            if (now === ref.current) {
-              setSelected(value);
-            }
-          }, 0);
-        }}
-        type="range"
-        min="0"
-        max={days.length}
-      ></input>
-      <div className="flex">
-        <div className="flex-1 text-right">{newCases}</div>
-        <div className="flex-1 text-right">{cases}</div>
-        <div className="flex-1 text-right">{deaths}</div>
+            ref.current = now;
+            setTimeout(() => {
+              if (now === ref.current) {
+                setSelected(value);
+              }
+            }, 0);
+          }}
+        >
+          {days.map((value, i) => (
+            <option value={i}>
+              {new Date(Number(days[i])).toDateString()}
+            </option>
+          ))}
+        </select>
       </div>
+      <section className="body-font">
+        <div className="container p-3 mx-auto">
+          <div className="flex flex-wrap -m-4 text-center">
+            <div className="p-1 w-1/3">
+              <div className="shadow background-rich p-3 rounded-lg">
+                <div className="text-4xl">🤢</div>
+                <h2 className="title-font text-lg font-medium md:text-3xl ">
+                  {Number(newCases || 0).toLocaleString()}
+                </h2>
+                <p className="leading-relaxed">new cases</p>
+              </div>
+            </div>
+            <div className="p-1 w-1/3">
+              <div className="shadow background-rich p-3 rounded-lg">
+                <div className="text-4xl">🤢</div>
+                <h2 className="title-font text-lg font-medium md:text-3xl ">
+                  {Number(cases || 0).toLocaleString()}
+                </h2>
+                <p className="leading-relaxed">cases</p>
+              </div>
+            </div>
+            <div className="p-1 w-1/3">
+              <div className="shadow background-rich p-3 rounded-lg">
+                <div className="text-4xl">⚰️</div>
+                <h2 className="title-font text-lg font-medium md:text-3xl ">
+                  {Number(deaths || 0).toLocaleString()}
+                </h2>
+                <p className="leading-relaxed">deaths</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

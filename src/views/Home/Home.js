@@ -25,13 +25,13 @@ const Home = () => (
         </div>
       </div>,
       <div className="background col-span-2 sm:col-span-1 order-first md:order-none flex justify-center items-center">
-        <div className="px-6 flex flex-col justify-center ">
+        <div className="p-2 md:p-6 flex flex-col justify-center h-full text-center">
           <div className="uppercase font-bold">About</div>
-          <p className="mt-3 whitespace-pre-wrap">
+          <p className="mt-2 whitespace-pre-wrap overflow-auto">
             Whatever tattooed stumptown art party sriracha gentrify hashtag
             intelligentsia readymade schlitz brooklyn disrupt.
           </p>
-          <div className="flex items-center mt-4">
+          <div className="flex items-center justify-center mt-2">
             {[
               <a
                 className=" background mr-2 rounded-full w-8 h-8 flex justify-center items-center text-gray-700"
