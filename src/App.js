@@ -1,23 +1,13 @@
-import React, {
-  useState,
-  useEffect,
-  useLayoutEffect,
-  cloneElement,
-} from "react";
-
-import useNamespace from "./modules/namespace/useNamespace";
-import useCache, { CacheProvider, useCacheSet } from "./modules/cache/useCache";
-import PullToRefresh from "rmc-pull-to-refresh";
-import useLocationSubscriber, {
-  LocationSubscriber,
-} from "./modules/navigation/useLocation.Subscriber";
+import LocalStringsProvider from "modules/localstrings";
+import React from "react";
+import { CacheProvider } from "./modules/cache/useCache";
 import useLocation from "./modules/navigation/useLocation";
-import Github from "./views/Github/Github.lazy";
+import { LocationSubscriber } from "./modules/navigation/useLocation.Subscriber";
 import Covid from "./views/Covid/Covid.lazy";
+import Github from "./views/Github/Github.lazy";
 import Home from "./views/Home/Home.lazy";
-import Portfolio from "./views/Portfolio/Portfolio.lazy";
 import PeriodicTable from "./views/PeriodicTable/PeriodicTable.lazy";
-
+import Portfolio from "./views/Portfolio/Portfolio.lazy";
 const Switch = ({ children }) => {
   const [location] = useLocation();
   const element = children.find((child) => {
@@ -28,7 +18,7 @@ const Switch = ({ children }) => {
   return element;
 };
 const app = (
-  <>
+  <LocalStringsProvider>
     <LocationSubscriber />
     <Switch>
       <Covid path="/covid" />
@@ -39,7 +29,7 @@ const app = (
       {/* default */}
       <Home path="/" />
     </Switch>
-  </>
+  </LocalStringsProvider>
 );
 export default function App() {
   return <CacheProvider>{app}</CacheProvider>;

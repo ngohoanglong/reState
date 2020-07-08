@@ -1,3 +1,4 @@
+import { Transition } from "modules/localstrings";
 import React from "react";
 import Link from "../../modules/navigation/Link";
 import styles from "./Home.module.scss";
@@ -5,17 +6,25 @@ const Home = () => (
   <div
     className={
       styles.Home +
-      " fixed bg-white w-full min-h-full h-64 grid grid-cols-2 grid-rows-7 md:grid-cols-4 md:grid-rows-3 grid-flow-row"
+      " fixed bg-white overflow-auto md:overflow-hidden w-full min-h-full h-64 grid grid-cols-2 grid-rows-7 md:grid-cols-4 md:grid-rows-3 grid-flow-row"
     }
   >
     {[
-      <Link to="/github" className="background-rich"></Link>,
-      <Link to="/covid" className="background-rich"></Link>,
-      <Link to="/periodic-table" className="background-rich"></Link>,
-      <Link to="/portfolio" className="background-rich"></Link>,
+      <Link to="/github" className="background-rich">
+        Github
+      </Link>,
+      <Link to="/covid" className="background-rich">
+        covid visualizer
+      </Link>,
+      <Link to="/periodic-table" className="background-rich">
+        Periodic Table
+      </Link>,
+      <Link to="/portfolio" className="background-rich">
+        portfolio
+      </Link>,
       <div className="background-rich"></div>,
-      <div className="background col-span-2 sm:col-span-1 order-first md:order-none flex justify-center items-center">
-        <div className="flex flex-col justify-center items-center px-6">
+      <div className="background p-6 col-span-2 sm:col-span-1 order-first md:order-none flex justify-center items-center">
+        <div className="flex flex-col justify-center items-center">
           <img
             className="w-24 h-24 rounded-full object-cover"
             src="https://i.imgflip.com/1124um.jpg"
@@ -24,12 +33,16 @@ const Home = () => (
           <div className="text-gray-600 uppercase tsha">UI/UX DEVELOPER</div>
         </div>
       </div>,
-      <div className="background col-span-2 sm:col-span-1 order-first md:order-none flex justify-center items-center">
-        <div className="p-2 md:p-6 flex flex-col justify-center h-full text-center">
-          <div className="uppercase font-bold">About</div>
+      <div className="background p-6 col-span-2 sm:col-span-1 order-first md:order-none flex justify-center items-center">
+        <div className="md:p-6 flex flex-col justify-center h-full text-center">
+          <div className="uppercase font-bold">
+            <Transition>about me</Transition>
+          </div>
           <p className="mt-2 whitespace-pre-wrap overflow-auto">
-            Whatever tattooed stumptown art party sriracha gentrify hashtag
-            intelligentsia readymade schlitz brooklyn disrupt.
+            <Transition>
+              My favourite is Reactjs , but can work with plan html,css,vanilla
+              javascript and other frameworks as well
+            </Transition>
           </p>
           <div className="flex items-center justify-center mt-2">
             {[
