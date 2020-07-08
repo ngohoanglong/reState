@@ -17,20 +17,26 @@ const Switch = ({ children }) => {
   if (!element) return null;
   return element;
 };
-const app = (
-  <LocalStringsProvider>
-    <LocationSubscriber />
-    <Switch>
-      <Covid path="/covid" />
-      <Github path="/github" />
-      <PeriodicTable path="/periodic-table" />
-      <Portfolio path="/portfolio" />
+const routes = (
+  <Switch>
+    <Covid path="/covid" />
+    <Github path="/github" />
+    <PeriodicTable path="/periodic-table" />
+    <Portfolio path="/portfolio" />
+    <Home path="/home" />
 
-      {/* default */}
-      <Home path="/" />
-    </Switch>
-  </LocalStringsProvider>
+    {/* default */}
+    <Home path="/" />
+  </Switch>
 );
+
 export default function App() {
-  return <CacheProvider>{app}</CacheProvider>;
+  return (
+    <CacheProvider>
+      <LocalStringsProvider>
+        <LocationSubscriber />
+        {routes}
+      </LocalStringsProvider>
+    </CacheProvider>
+  );
 }
