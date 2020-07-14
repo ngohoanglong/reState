@@ -254,7 +254,7 @@ const Content = () => {
         {selectCountry ? (
           <div className="text-color text-3xl font-bold flex items-center flex-1">
             <img
-              className="w-6 mr-2"
+              className="w-12 mr-2"
               src={`https://www.countryflags.io/${selectCountry}/flat/64.png`}
             ></img>{" "}
             <div>{selectCountry}</div>
@@ -297,7 +297,7 @@ const Content = () => {
                   {Number(cases || 0).toLocaleString()}
                 </h2>
 
-                <p className="leading-relaxed">
+                <p className="leading-relaxed text-sm">
                   🔺 {Number(newCases || 0).toLocaleString()}
                 </p>
               </div>
@@ -322,14 +322,16 @@ const Content = () => {
               >
                 {({ width }) => {
                   return (
-                    <div className="col-span-2 overflow-auto w-full shadow background-rich p-3 rounded-lg">
+                    <div className="col-span-2 overflow-auto w-full shadow background-rich rounded-lg flex justify-center py-3">
                       <BarChart
-                        width={width - 20}
+                        width={width - 30}
                         height={300}
-                        data={countryData.map((row) => ({
-                          name: new Date(Number(row[0])).toLocaleDateString(),
-                          newCases: row[5],
-                        }))}
+                        data={countryData
+                          .map((row) => ({
+                            name: new Date(Number(row[0])).toLocaleDateString(),
+                            newCases: row[5],
+                          }))
+                          .reverse()}
                         margin={{
                           top: 5,
                           right: 30,
@@ -339,7 +341,7 @@ const Content = () => {
                       >
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="name" tick={false} />
-                        <YAxis />
+                        <YAxis width={30} mirror={true} />
                         <Tooltip />
                         <Legend
                           verticalAlign="top"

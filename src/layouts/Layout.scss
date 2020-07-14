@@ -32,7 +32,6 @@ header {
 }
 .header > * {
   flex-shrink: 0;
-  
 }
 #openLeft:checked ~ .layout,
 #openRight:checked ~ .layout {
@@ -54,7 +53,7 @@ header {
   overflow: hidden;
   pointer-events: none;
 }
-.layout>*{
+.layout > * {
   // padding-bottom: 50px;
 }
 .layout > *:first-child {
@@ -134,7 +133,7 @@ header {
   .layout > *:nth-child(2) {
     left: calc(var(--siderLeft-width));
     width: calc(100vw - var(--header-width) - var(--siderLeft-width));
-    padding-left: 10px;
+    // padding-left: 10px;
   }
   .layout > *:nth-child(3) {
   }
@@ -144,7 +143,7 @@ header {
     overflow: auto;
     pointer-events: auto;
   }
-  #openRight:checked ~ .layout > *:nth-child(2){
+  #openRight:checked ~ .layout > *:nth-child(2) {
     filter: blur(0.2rem) contrast(0.5);
     overflow: hidden;
     pointer-events: none;
@@ -155,10 +154,10 @@ header {
     pointer-events: auto;
   }
   #openRight:checked ~ .layout > *:nth-child(2) {
-  filter: blur(0.2rem) contrast(0.5);
-  overflow: hidden;
-  pointer-events: none;
-}
+    filter: blur(0.2rem) contrast(0.5);
+    overflow: hidden;
+    pointer-events: none;
+  }
 }
 
 @media only screen and (min-width: 1224px) {
@@ -166,7 +165,6 @@ header {
   .layout {
   }
   .layout > * {
-    
   }
   .layout > *:first-child {
   }
