@@ -8,6 +8,7 @@
   ],
   "main": "src/index.js",
   "dependencies": {
+    "ahooks": "^2.2.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
     "node-sass": "^4.14.1",
@@ -18,6 +19,7 @@
     "react-scripts": "^3.4.1",
     "react-snap": "^1.23.0",
     "react-spring": "^8.0.27",
+    "recharts": "^1.8.5",
     "rmc-pull-to-refresh": "1.0.12",
     "source-map-explorer": "^2.4.2",
     "tailwindcss": "^1.4.6"

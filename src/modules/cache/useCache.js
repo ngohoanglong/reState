@@ -1,5 +1,10 @@
-import { useState, useEffect, useContext, useRef, useCallback } from "react";
-import React from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 const CacheContext = React.createContext({});
 const ListennerContext = React.createContext({});
 const UpdateCachesContext = React.createContext(() => {
@@ -10,7 +15,7 @@ export const CacheProvider = ({ initialVale = {}, children }) => {
   const listennersRef = useRef({});
   const cachesRef = useRef(initialVale);
   const [update, setUpdate] = useState(initialVale);
-  const handleListenner = useCallback(cb => {
+  const handleListenner = useCallback((cb) => {
     uIdRef.current = uIdRef.current + 1;
     listennersRef.current[uIdRef.current] = cb;
     cb(cachesRef.current);
@@ -21,9 +26,12 @@ export const CacheProvider = ({ initialVale = {}, children }) => {
     setUpdate(Date.now());
   }, []);
   useEffect(() => {
-    Object.values(listennersRef.current).map(cb => cb(cachesRef.current));
+    Object.values(listennersRef.current).map((cb) => cb(cachesRef.current));
   }, [update]);
-  console.log({ update, caches: cachesRef.current });
+  console.log({
+    update,
+    caches: cachesRef.current,
+  });
   return (
     <CacheContext.Provider value={cachesRef.current}>
       <ListennerContext.Provider value={handleListenner}>
@@ -42,19 +50,22 @@ const useCache = (key = "", initialValue) => {
   const listenner = useContext(ListennerContext);
   const updateCaches = useContext(UpdateCachesContext);
   useEffect(() => {
-    const cb = caches => setValue(caches[key]);
+    const cb = (caches) => setValue(caches[key]);
     const unLisenner = listenner(cb);
     return () => {
       unLisenner();
     };
   }, [setValue, key, listenner]);
-  return [value|| initialValue, value => updateCaches(key, value)];
+  return [
+    value || initialValue,
+    useCallback((value) => updateCaches(key, value), [key, updateCaches]),
+  ];
 };
-export const useCacheSet = key => {
+export const useCacheSet = (key) => {
   const handleUpdate = useContext(UpdateCachesContext);
-  return React.useCallback(value => handleUpdate(key, value), [
+  return React.useCallback((value) => handleUpdate(key, value), [
     key,
-    handleUpdate
+    handleUpdate,
   ]);
 };
 export default useCache;

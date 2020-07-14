@@ -11,19 +11,19 @@ const Home = () => (
       }
     >
       {[
-        <Link to="/github" className="background-rich">
+        <Link to="/github" className="background-rich ">
           Github
         </Link>,
-        <Link to="/covid" className="background-rich">
+        <Link to="/covid" className="background-rich ">
           covid visualizer
         </Link>,
-        <Link to="/periodic-table" className="background-rich">
+        <Link to="/periodic-table" className="background-rich ">
           Periodic Table
         </Link>,
-        <Link to="/portfolio" className="background-rich">
+        <Link to="/portfolio" className="background-rich ">
           portfolio
         </Link>,
-        <div className="background-rich"></div>,
+        <div className="background-rich "></div>,
         <div className="background p-6 col-span-2 sm:col-span-1 order-first md:order-none flex justify-center items-center">
           <div className="flex flex-col justify-center items-center">
             <img
@@ -110,11 +110,11 @@ const Home = () => (
             </div>
           </div>
         </div>,
-        <div className="background-rich"></div>,
-        <div className="background-rich"></div>,
-        <div className="background-rich"></div>,
-        <div className="background-rich"></div>,
-        <div className="background-rich"></div>,
+        <div className="background-rich "></div>,
+        <div className="background-rich "></div>,
+        <div className="background-rich "></div>,
+        <div className="background-rich "></div>,
+        <div className="background-rich "></div>,
       ].map((e, i) =>
         React.cloneElement(e, {
           ...e.props,

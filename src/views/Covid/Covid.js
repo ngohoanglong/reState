@@ -1,23 +1,67 @@
-import React, {
-  useState,
-  useEffect,
-  useLayoutEffect,
-  cloneElement,
-  useRef,
-} from "react";
+import { useSize } from "ahooks";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import {
+  Bar,
+  BarChart,
+  Brush,
+  CartesianGrid,
+  Legend,
+  ReferenceLine,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
+import { groupBy } from "../../helpers/array";
+import { Layout } from "../../layouts/Layout";
+import useCache, { useCacheSet } from "../../modules/cache/useCache";
+import UseHook from "../../modules/hook";
 import Namespace from "../../modules/namespace/Namespace";
 import useNamespace from "../../modules/namespace/useNamespace";
-import useCache, {
-  CacheProvider,
-  useCacheSet,
-} from "../../modules/cache/useCache";
-import { Layout } from "../../layouts/Layout";
-import PullToRefresh from "rmc-pull-to-refresh";
-import ReactMarkdown from "react-markdown";
-import Header from "../../layouts/Layout.Header";
-import useLocalStorage from "../../modules/storage/useLocalStorage";
-import { groupBy } from "../../helpers/array";
 import useLocation from "../../modules/navigation/useLocation";
+import useLocalStorage from "../../modules/storage/useLocalStorage";
+
+const dataChart = [
+  { name: "1", uv: 300, pv: 456 },
+  { name: "2", uv: -145, pv: 230 },
+  { name: "3", uv: -100, pv: 345 },
+  { name: "4", uv: -8, pv: 450 },
+  { name: "5", uv: 100, pv: 321 },
+  { name: "6", uv: 9, pv: 235 },
+  { name: "7", uv: 53, pv: 267 },
+  { name: "8", uv: 252, pv: -378 },
+  { name: "9", uv: 79, pv: -210 },
+  { name: "10", uv: 294, pv: -23 },
+  { name: "12", uv: 43, pv: 45 },
+  { name: "13", uv: -74, pv: 90 },
+  { name: "14", uv: -71, pv: 130 },
+  { name: "15", uv: -117, pv: 11 },
+  { name: "16", uv: -186, pv: 107 },
+  { name: "17", uv: -16, pv: 926 },
+  { name: "18", uv: -125, pv: 653 },
+  { name: "19", uv: 222, pv: 366 },
+  { name: "20", uv: 372, pv: 486 },
+  { name: "21", uv: 182, pv: 512 },
+  { name: "22", uv: 164, pv: 302 },
+  { name: "23", uv: 316, pv: 425 },
+  { name: "24", uv: 131, pv: 467 },
+  { name: "25", uv: 291, pv: -190 },
+  { name: "26", uv: -47, pv: 194 },
+  { name: "27", uv: -415, pv: 371 },
+  { name: "28", uv: -182, pv: 376 },
+  { name: "29", uv: -93, pv: 295 },
+  { name: "30", uv: -99, pv: 322 },
+  { name: "31", uv: -52, pv: 246 },
+  { name: "32", uv: 154, pv: 33 },
+  { name: "33", uv: 205, pv: 354 },
+  { name: "34", uv: 70, pv: 258 },
+  { name: "35", uv: -25, pv: 359 },
+  { name: "36", uv: -59, pv: 192 },
+  { name: "37", uv: -63, pv: 464 },
+  { name: "38", uv: -91, pv: -2 },
+  { name: "39", uv: -66, pv: 154 },
+  { name: "40", uv: -50, pv: 186 },
+];
+
 const namespace = {
   data: "data",
   data__async_loading: "data__async_loading",
@@ -46,54 +90,57 @@ const RepoList = () => {
     if (!data && dataLocalstorage) {
       setData(JSON.parse(dataLocalstorage));
     }
-  }, []);
-  const handleSearch = ({ keyword }) => {
-    setLoading(true);
-    fetch(
-      `https://cors-anywhere.herokuapp.com/https://dashboards-dev.sprinklr.com/data/9043/global-covid19-who-gis.json`
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setTimeout(() => {
-          const {
-            0: groubByDate = [],
-            1: groupByCountry = [],
-            2: groupByLegion = [],
-          } = groupBy(data.rows, [0, 1, 2]);
-          const days = Object.keys(groubByDate).sort(
-            (a, b) => -(Number(a) - Number(b))
-          );
+  }, [data, dataLocalstorage, setData]);
+  const handleSearch = useCallback(
+    ({ keyword }) => {
+      setLoading(true);
+      fetch(
+        `https://cors-anywhere.herokuapp.com/https://dashboards-dev.sprinklr.com/data/9043/global-covid19-who-gis.json`
+      )
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          setTimeout(() => {
+            const {
+              0: groubByDate = [],
+              1: groupByCountry = [],
+              2: groupByLegion = [],
+            } = groupBy(data.rows, [0, 1, 2]);
+            const days = Object.keys(groubByDate).sort(
+              (a, b) => -(Number(a) - Number(b))
+            );
 
-          Object.keys(groupByCountry).forEach((key) => {
-            const countryData = groupByCountry[key];
-            countryData.sort((a, b) => -(Number(a[0]) - Number(b[0])));
+            Object.keys(groupByCountry).forEach((key) => {
+              const countryData = groupByCountry[key];
+              countryData.sort((a, b) => -(Number(a[0]) - Number(b[0])));
+            });
+            const countries = Object.keys(groupByCountry);
+            const legions = Object.keys(groupByLegion);
+            const lastDay = days[0];
+            const save = {
+              update: Date.now(),
+              groubByDate,
+              groupByCountry,
+              groupByLegion,
+              days,
+              countries,
+              legions,
+              lastDay,
+            };
+            setDataLocalstorage(JSON.stringify(save));
+            setData(save);
+            setLoading(false);
           });
-          const countries = Object.keys(groupByCountry);
-          const legions = Object.keys(groupByLegion);
-          const lastDay = days[0];
-          const save = {
-            update: Date.now(),
-            groubByDate,
-            groupByCountry,
-            groupByLegion,
-            days,
-            countries,
-            legions,
-            lastDay,
-          };
-          setDataLocalstorage(JSON.stringify(save));
-          setData(save);
-          setLoading(false);
-        });
-      })
-      .finally(() => setLoading(false));
-  };
+        })
+        .finally(() => setLoading(false));
+    },
+    [setData, setDataLocalstorage, setLoading]
+  );
 
   useEffect(() => {
     handleSearch({ keyword: "react" });
-  }, []);
+  }, [handleSearch]);
 
   if (!data) return null;
   const {
@@ -113,7 +160,9 @@ const RepoList = () => {
             event.key === "Enter"
           ) {
             //code to execute here
-            handleSearch({ keyword: event.target.value });
+            handleSearch({
+              keyword: event.target.value,
+            });
             return false;
           }
           return true;
@@ -185,6 +234,9 @@ const Content = () => {
   if (!data || !data.update) return null;
   const days = data.days.reverse();
   const selectDate = days[select];
+  const countryData = selectCountry
+    ? data.groupByCountry[selectCountry]
+    : selectCountry;
   const [
     datetime,
     country,
@@ -193,10 +245,8 @@ const Content = () => {
     deaths,
     newCases,
     cases,
-  ] = selectCountry
-    ? data.groupByCountry[selectCountry].find(
-        (item) => item[0] === Number(selectDate)
-      ) || []
+  ] = countryData
+    ? countryData.find((item) => item[0] === Number(selectDate)) || []
     : [];
   return (
     <div className="p-3 space-y-3">
@@ -237,35 +287,75 @@ const Content = () => {
         </select>
       </div>
       <section className="body-font">
-        <div className="container p-3 mx-auto">
-          <div className="flex flex-wrap -m-4 text-center">
-            <div className="p-1 w-1/3">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-2 gap-2 text-center">
+            <div className="col-span-1 ">
               <div className="shadow background-rich p-3 rounded-lg">
                 <div className="text-4xl">🤢</div>
-                <h2 className="title-font text-lg font-medium md:text-3xl ">
-                  {Number(newCases || 0).toLocaleString()}
-                </h2>
-                <p className="leading-relaxed">new cases</p>
-              </div>
-            </div>
-            <div className="p-1 w-1/3">
-              <div className="shadow background-rich p-3 rounded-lg">
-                <div className="text-4xl">🤢</div>
+                <p className="leading-relaxed">cases</p>
                 <h2 className="title-font text-lg font-medium md:text-3xl ">
                   {Number(cases || 0).toLocaleString()}
                 </h2>
-                <p className="leading-relaxed">cases</p>
+
+                <p className="leading-relaxed">
+                  🔺 {Number(newCases || 0).toLocaleString()}
+                </p>
               </div>
             </div>
-            <div className="p-1 w-1/3">
+            <div className="col-span-1 ">
               <div className="shadow background-rich p-3 rounded-lg">
                 <div className="text-4xl">⚰️</div>
+                <p className="leading-relaxed">deaths</p>
                 <h2 className="title-font text-lg font-medium md:text-3xl ">
                   {Number(deaths || 0).toLocaleString()}
                 </h2>
-                <p className="leading-relaxed">deaths</p>
+
+                <p className="leading-relaxed text-sm">
+                  🔺 {Number(newDeaths || 0).toLocaleString()}
+                </p>
               </div>
             </div>
+            {countryData && (
+              <UseHook
+                hook={useSize}
+                deps={[document.querySelector("#layout-content")]}
+              >
+                {({ width }) => {
+                  return (
+                    <div className="col-span-2 overflow-auto w-full shadow background-rich p-3 rounded-lg">
+                      <BarChart
+                        width={width - 20}
+                        height={300}
+                        data={countryData.map((row) => ({
+                          name: new Date(Number(row[0])).toLocaleDateString(),
+                          newCases: row[5],
+                        }))}
+                        margin={{
+                          top: 5,
+                          right: 30,
+                          left: 20,
+                          bottom: 5,
+                        }}
+                      >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="name" tick={false} />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend
+                          verticalAlign="top"
+                          wrapperStyle={{
+                            lineHeight: "40px",
+                          }}
+                        />
+                        <ReferenceLine y={0} stroke="#000" />
+                        <Brush dataKey="name" height={30} stroke="#8884d8" />
+                        <Bar dataKey="newCases" fill="#8884d8" />
+                      </BarChart>
+                    </div>
+                  );
+                }}
+              </UseHook>
+            )}
           </div>
         </div>
       </section>

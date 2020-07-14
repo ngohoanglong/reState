@@ -1,26 +1,10 @@
-import React, { useRef, useState, useMemo } from "react";
-import "./Layout.scss";
-import PullToRefresh from "rmc-pull-to-refresh";
+import React, { useRef } from "react";
 import "rmc-pull-to-refresh/assets/index.css";
 import Header from "./Layout.Header";
+import "./Layout.scss";
 export function Layout({ left, mid, right, header }) {
   const layoutRef = useRef();
-  const [refreshing, setrefreshing] = useState();
-  const pullProps = useMemo(
-    () => ({
-      getScrollContainer: () => layoutRef.current,
-      distanceToRefresh: 50,
-      indicator: {
-        activate: "release",
-        deactivate: "pull",
-        release: "loading",
-        finish: "finish",
-      },
-      damping: 150,
-      direction: "down",
-    }),
-    []
-  );
+
   return (
     <>
       <input hidden id="openRight" type="checkbox" />
@@ -51,7 +35,7 @@ export function Layout({ left, mid, right, header }) {
             {left}
           </div>
         </div>
-        <div ref={layoutRef}>
+        <div id="layout-content" ref={layoutRef}>
           <div className="min-h-screen">{mid}</div>
         </div>
         <div>
