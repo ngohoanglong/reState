@@ -1,16 +1,8 @@
-import React, {
-  useState,
-  useEffect,
-  useLayoutEffect,
-  cloneElement
-} from "react";
-
-import useNamespace from "../../modules/namespace/useNamespace";
-import useCache, { CacheProvider, useCacheSet } from "../../modules/cache/useCache";
+import React, { useEffect } from "react";
+import ReactMarkdown from "react-markdown";
 import { Layout } from "../../layouts/Layout";
-import PullToRefresh from 'rmc-pull-to-refresh'
-import ReactMarkdown from 'react-markdown'
-import Header from "../../layouts/Layout.Header";
+import useCache, { useCacheSet } from "../../modules/cache/useCache";
+import useNamespace from "../../modules/namespace/useNamespace";
 
 const Left = () => {
   return <RepoList />;
@@ -19,6 +11,11 @@ const RepoList = () => {
   const repolistname = useNamespace("repolist");
   const currentReponame = useNamespace("currentRepo");
   const setCurrentRepo = useCacheSet(currentReponame);
+  useEffect(() => {
+    setCurrentRepo({
+      full_name: "beyonderVN/beyonderVN",
+    });
+  }, [setCurrentRepo]);
   const [loading, setLoading] = useCache(
     repolistname + "__async_loading",
     false
@@ -26,34 +23,48 @@ const RepoList = () => {
   const [data, setData] = useCache(repolistname, {
     incomplete_results: false,
     items: [],
-    total_count: 0
+    total_count: 0,
   });
-  const handleSearch = ({ keyword }) => {
-    setLoading(true);
-    fetch(
-      `https://api.github.com/search/repositories?q=${keyword}+language:javascript&sort=stars&order=desc`
-    )
-      .then(res => {
-        setLoading(false);
-        return res.json();
-      })
-      .then(setData);
-  };
+
   useEffect(() => {
+    const handleSearch = ({ keyword }) => {
+      setLoading(true);
+      fetch(
+        `https://api.github.com/search/repositories?q=${keyword}+language:javascript&sort=stars&order=desc`
+      )
+        .then((res) => {
+          setLoading(false);
+          return res.json();
+        })
+        .then(setData);
+    };
     handleSearch({ keyword: "react" });
-  }, []);
+  }, [setData, setLoading]);
 
   return (
     <>
       <input
-        onKeyDown={event => {
+        onKeyDown={(event) => {
           if (
             event.which === 13 ||
             event.keyCode === 13 ||
             event.key === "Enter"
           ) {
             //code to execute here
-            handleSearch({ keyword: event.target.value });
+            const handleSearch = ({ keyword }) => {
+              setLoading(true);
+              fetch(
+                `https://api.github.com/search/repositories?q=${keyword}+language:javascript&sort=stars&order=desc`
+              )
+                .then((res) => {
+                  setLoading(false);
+                  return res.json();
+                })
+                .then(setData);
+            };
+            handleSearch({
+              keyword: event.target.value,
+            });
             return false;
           }
           return true;
@@ -97,30 +108,61 @@ const Repodetail = () => {
   const [currentRepo] = useCache(currentReponame);
   const repoKey = `${allRepoesname}__${currentRepo && currentRepo.full_name}`;
   const [content, setContent] = useCache(repoKey);
-  console.log({ currentReponame, currentRepo });
+  console.log({
+    currentReponame,
+    currentRepo,
+  });
   useEffect(() => {
-    if (currentRepo)
+    if (currentRepo) {
       fetch(
-        `https://raw.githubusercontent.com/${
-          currentRepo.full_name
-        }/master/README.md`
+        `https://raw.githubusercontent.com/${currentRepo.full_name}/master/README.md`
       )
-        .then(res => {
+        .then((res) => {
           return res.text();
         })
-        .then(res => {
+        .then((res) => {
           setContent(res);
         });
+    } else {
+      fetch(
+        `https://raw.githubusercontent.com/beyonderVN/beyonderVN/master/README.md`
+      )
+        .then((res) => {
+          return res.text();
+        })
+        .then((res) => {
+          setContent(res);
+        });
+    }
   }, [currentRepo, setContent]);
   return (
-    (content && (
-      <ReactMarkdown
-        escapeHtml={false}
-        className="markdown-body max-w-lg mx-auto"
-        source={content}
-      />
-    )) ||
-    null
+    <>
+      <nav className="bg-grey-light p-3 py-6 rounded font-sans">
+        <ol className="list-reset flex text-grey-dark">
+          <li>
+            <a href="#" className="text-gray-500 font-bold">
+              Github
+            </a>
+          </li>
+          <li>
+            <span className="mx-2 text-gray-400">/</span>
+          </li>
+          <li>
+            <a href="#" className="text-gray-500 font-bold">
+              {currentRepo ? currentRepo.full_name : "Me"}
+            </a>
+          </li>
+        </ol>
+      </nav>
+      {(content && (
+        <ReactMarkdown
+          escapeHtml={false}
+          className="markdown-body max-w-lg mx-auto"
+          source={content}
+        />
+      )) ||
+        null}
+    </>
   );
 };
 const Github = () => {
@@ -129,11 +171,9 @@ const Github = () => {
       {...{
         left: <Left />,
         mid: (
- 
-            <div className="p-4">
-              <Repodetail />
-            </div>
- 
+          <div className="p-4">
+            <Repodetail />
+          </div>
         ),
         right: (
           <div>
@@ -159,11 +199,9 @@ const Github = () => {
             </div>
           </div>
         ),
-        header: (
-          <Layout.Header/>
-        )
+        header: <Layout.Header />,
       }}
     />
   );
 };
-export default Github
+export default Github;

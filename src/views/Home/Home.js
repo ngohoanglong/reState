@@ -11,19 +11,31 @@ const Home = () => (
       }
     >
       {[
-        <Link to="/github" className="background-rich ">
+        <Link
+          to="/github"
+          className="background-rich text-2xl font-bold text-center uppercase text-gray-500"
+        >
           Github
         </Link>,
-        <Link to="/covid" className="background-rich ">
+        <Link
+          to="/covid"
+          className="background-rich text-2xl font-bold text-center uppercase text-gray-500"
+        >
           covid visualizer
         </Link>,
-        <Link to="/periodic-table" className="background-rich ">
+        <Link
+          to="/periodic-table"
+          className="background-rich text-2xl font-bold text-center uppercase text-gray-500"
+        >
           Periodic Table
         </Link>,
-        <Link to="/portfolio" className="background-rich ">
+        <Link
+          to="/portfolio"
+          className="background-rich text-2xl font-bold text-center uppercase text-gray-500"
+        >
           portfolio
         </Link>,
-        <div className="background-rich "></div>,
+        <div className="background-rich text-2xl font-bold text-center uppercase text-gray-500"></div>,
         <div className="background p-6 col-span-2 sm:col-span-1 order-first md:order-none flex justify-center items-center">
           <div className="flex flex-col justify-center items-center">
             <img
@@ -35,14 +47,13 @@ const Home = () => (
           </div>
         </div>,
         <div className="background p-6 col-span-2 sm:col-span-1 order-first md:order-none flex justify-center items-center">
-          <div className="md:p-6 flex flex-col justify-center h-full text-center">
+          <div className="flex flex-col justify-center h-full text-center">
             <div className="uppercase font-bold">
               <Transition>about me</Transition>
             </div>
             <p className="mt-2 whitespace-pre-wrap overflow-auto">
               <Transition>
-                My favourite is Reactjs , but can work with plan
-                html,css,vanilla javascript and other frameworks as well
+                My favourite is Reactjs, html, css and vanilla javascript
               </Transition>
             </p>
             <div className="flex items-center justify-center mt-2">
@@ -104,17 +115,17 @@ const Home = () => (
               ].map((e, i) =>
                 React.cloneElement(e, {
                   ...e.props,
-                  className: `${styles.cta} ${e.props.className}`,
+                  className: `btn ${styles.cta} ${e.props.className}`,
                 })
               )}
             </div>
           </div>
         </div>,
-        <div className="background-rich "></div>,
-        <div className="background-rich "></div>,
-        <div className="background-rich "></div>,
-        <div className="background-rich "></div>,
-        <div className="background-rich "></div>,
+        <div className="background-rich text-2xl font-bold text-center uppercase text-gray-500"></div>,
+        <div className="background-rich text-2xl font-bold text-center uppercase text-gray-500"></div>,
+        <div className="background-rich text-2xl font-bold text-center uppercase text-gray-500"></div>,
+        <div className="background-rich text-2xl font-bold text-center uppercase text-gray-500"></div>,
+        <div className="background-rich text-2xl font-bold text-center uppercase text-gray-500"></div>,
       ].map((e, i) =>
         React.cloneElement(e, {
           ...e.props,

@@ -1,11 +1,16 @@
 import { useSize } from "ahooks";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import {
   Bar,
   BarChart,
   Brush,
   CartesianGrid,
-  Legend,
   ReferenceLine,
   Tooltip,
   XAxis,
@@ -121,6 +126,20 @@ const RepoList = () => {
             const save = {
               update: Date.now(),
               groubByDate,
+              world: Object.keys(groubByDate)
+                .map((key) =>
+                  groubByDate[key].reduce(
+                    (res, row) => {
+                      res[3] = res[3] + row[3];
+                      res[4] = res[4] + row[4];
+                      res[5] = res[5] + row[5];
+                      res[6] = res[6] + row[6];
+                      return res;
+                    },
+                    [key, "WORLD", "WORLD", 0, 0, 0, 0]
+                  )
+                )
+                .sort((a, b) => -(Number(a[0]) - Number(b[0]))),
               groupByCountry,
               groupByLegion,
               days,
@@ -148,7 +167,9 @@ const RepoList = () => {
     groupByCountry = [],
     groupByLegion = [],
     lastDay,
+    world = [],
   } = data;
+  const lastDayWorld = world.find((row) => row[0] === lastDay) || [];
   console.log("data", data);
   return (
     <>
@@ -173,6 +194,32 @@ const RepoList = () => {
       {loading && (
         <div className="text-gray-500 text-center font-bold">loading</div>
       )}
+      <div
+        onClick={() => {
+          setTimeout(() => setSelectCountry(undefined), 300);
+        }}
+        className="btn cursor-pointer hover:shadow-lg m-2 ml-0 rounded p-2 flex flex-col justify-between leading-normal "
+      >
+        <div className="text-color font-bold flex items-center">
+          <img
+            className="w-6 mr-2"
+            src={`https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Flag_of_the_United_Nations.svg/225px-Flag_of_the_United_Nations.svg.png`}
+          ></img>{" "}
+          World
+        </div>
+        <div className=" text-color-rich flex items-center flex-wrap">
+          {[
+            // deaths,
+            <span className="bg-red-100 text-red-700  font-bold text-xs mb-2 mr-2 px-1 rounded">{`⚰️ ${lastDayWorld[4]}`}</span>,
+            // confirmed, rounded
+            <span className="bg-gray-300 text-gray-700  font-bold text-xs mb-2 mr-2 px-1 rounded">{`🤢 ${lastDayWorld[6]}`}</span>,
+          ].map((value, i) => (
+            <div key={i} className="">
+              {value}
+            </div>
+          ))}
+        </div>
+      </div>
       {lastDay &&
         groubByDate[lastDay]
           .sort((a, b) => Number(b[6]) - Number(a[6]))
@@ -236,18 +283,9 @@ const Content = () => {
   const selectDate = days[select];
   const countryData = selectCountry
     ? data.groupByCountry[selectCountry]
-    : selectCountry;
-  const [
-    datetime,
-    country,
-    legion,
-    newDeaths,
-    deaths,
-    newCases,
-    cases,
-  ] = countryData
-    ? countryData.find((item) => item[0] === Number(selectDate)) || []
-    : [];
+    : data.world;
+  const [datetime, country, legion, newDeaths, deaths, newCases, cases] =
+    countryData.find((item) => Number(item[0]) === Number(selectDate)) || [];
   return (
     <div className="p-3 space-y-3">
       <div className="py-3 w-full z-10 flex items-center sticky top-0 background">
@@ -261,7 +299,11 @@ const Content = () => {
           </div>
         ) : (
           <div className="text-color flex-1 font-bold text-3xl flex items-center">
-            <div>Global</div>
+            <img
+              className="w-12 mr-2"
+              src={`https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Flag_of_the_United_Nations.svg/225px-Flag_of_the_United_Nations.svg.png`}
+            ></img>{" "}
+            <div>World</div>
           </div>
         )}
         <select
@@ -297,9 +339,9 @@ const Content = () => {
                   {Number(cases || 0).toLocaleString()}
                 </h2>
 
-                <p className="leading-relaxed text-sm">
+                <div className="leading-relaxed text-sm">
                   🔺 {Number(newCases || 0).toLocaleString()}
-                </p>
+                </div>
               </div>
             </div>
             <div className="col-span-1 ">
@@ -310,52 +352,137 @@ const Content = () => {
                   {Number(deaths || 0).toLocaleString()}
                 </h2>
 
-                <p className="leading-relaxed text-sm">
+                <div className="leading-relaxed text-sm">
                   🔺 {Number(newDeaths || 0).toLocaleString()}
-                </p>
+                </div>
               </div>
             </div>
             {countryData && (
               <UseHook
-                hook={useSize}
-                deps={[document.querySelector("#layout-content")]}
+                hook={useMemo}
+                deps={[
+                  () => (
+                    <UseHook hook={useState} deps={["new cases"]}>
+                      {([currentTab, setCurrentTab]) => {
+                        return (
+                          <UseHook hook={useRef}>
+                            {(ref) => (
+                              <UseHook hook={useSize} deps={[ref.current]}>
+                                {({ width }) => {
+                                  return (
+                                    <div
+                                      ref={ref}
+                                      style={{
+                                        padding: "12px",
+                                      }}
+                                      className="col-span-2 overflow-auto w-full shadow background-rich rounded-lg flex flex-col item-center py-3 "
+                                    >
+                                      <style>
+                                        {`.recharts-text.recharts-cartesian-axis-tick-value,.recharts-layer.recharts-brush-texts {font-size:0.7rem;font-weight:bold}`}
+                                      </style>
+                                      <div className="pt-1 pb-3 space-x-3 w-full flex justify-start">
+                                        <button
+                                          onClick={() =>
+                                            setCurrentTab("new cases")
+                                          }
+                                          className="px-3 btn text-white bg-gray-500 py-1 rounded-lg font-bold text-sm"
+                                        >
+                                          new cases
+                                        </button>
+                                        <button
+                                          onClick={() =>
+                                            setCurrentTab("current cases")
+                                          }
+                                          className="px-3 btn text-white bg-blue-500 py-1 rounded-lg font-bold text-sm"
+                                        >
+                                          current cases
+                                        </button>
+                                        <button
+                                          onClick={() =>
+                                            setCurrentTab("new deaths")
+                                          }
+                                          className="px-3 btn  text-white bg-green-500 py-1 rounded-lg font-bold text-sm"
+                                        >
+                                          new deaths
+                                        </button>
+                                        <button
+                                          onClick={() =>
+                                            setCurrentTab("current deaths")
+                                          }
+                                          className="px-3 btn text-white bg-orange-500 py-1 rounded-lg font-bold text-sm"
+                                        >
+                                          current deaths
+                                        </button>
+                                      </div>
+                                      <BarChart
+                                        className={((currentTab) => {
+                                          switch (currentTab) {
+                                            case "new cases":
+                                              return "text-gray-500";
+                                            case "current cases":
+                                              return "text-blue-500";
+                                            case "new deaths":
+                                              return "text-green-500";
+                                            case "current deaths":
+                                              return "text-orange-500";
+                                            default:
+                                              break;
+                                          }
+                                        })(currentTab)}
+                                        width={width - 24}
+                                        height={300}
+                                        data={countryData
+                                          .map((row) => ({
+                                            name: new Date(
+                                              Number(row[0])
+                                            ).toLocaleDateString(),
+                                            "new cases": row[5],
+                                            "current cases": row[6],
+                                            "new deaths": row[3],
+                                            "current deaths": row[4],
+                                          }))
+                                          .reverse()}
+                                        margin={{
+                                          top: 5,
+                                          right: 30,
+                                          left: 20,
+                                          bottom: 5,
+                                        }}
+                                      >
+                                        <CartesianGrid strokeDasharray="3 3" />
+                                        <XAxis
+                                          dataKey="name"
+                                          // tick={
+                                          //   false
+                                          // }
+                                        />
+                                        <YAxis width={30} />
+                                        <Tooltip />
+                                        <ReferenceLine y={0} stroke="#000" />
+                                        <Brush
+                                          dataKey="name"
+                                          height={30}
+                                          stroke="currentColor"
+                                        />
+                                        <Bar
+                                          dataKey={currentTab}
+                                          fill="currentColor"
+                                        />
+                                      </BarChart>
+                                    </div>
+                                  );
+                                }}
+                              </UseHook>
+                            )}
+                          </UseHook>
+                        );
+                      }}
+                    </UseHook>
+                  ),
+                  [countryData],
+                ]}
               >
-                {({ width }) => {
-                  return (
-                    <div className="col-span-2 overflow-auto w-full shadow background-rich rounded-lg flex justify-center py-3">
-                      <BarChart
-                        width={width - 30}
-                        height={300}
-                        data={countryData
-                          .map((row) => ({
-                            name: new Date(Number(row[0])).toLocaleDateString(),
-                            newCases: row[5],
-                          }))
-                          .reverse()}
-                        margin={{
-                          top: 5,
-                          right: 30,
-                          left: 20,
-                          bottom: 5,
-                        }}
-                      >
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" tick={false} />
-                        <YAxis width={30} mirror={true} />
-                        <Tooltip />
-                        <Legend
-                          verticalAlign="top"
-                          wrapperStyle={{
-                            lineHeight: "40px",
-                          }}
-                        />
-                        <ReferenceLine y={0} stroke="#000" />
-                        <Brush dataKey="name" height={30} stroke="#8884d8" />
-                        <Bar dataKey="newCases" fill="#8884d8" />
-                      </BarChart>
-                    </div>
-                  );
-                }}
+                {(e) => e}
               </UseHook>
             )}
           </div>

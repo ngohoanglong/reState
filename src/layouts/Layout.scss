@@ -13,7 +13,7 @@ body {
   // height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
   overflow: hidden;
   background: var(--background-rich);
-  position: fixed;
+  // position: fixed;
   top: 0;
   bottom: 0;
 }
@@ -32,6 +32,7 @@ header {
 }
 .header > * {
   flex-shrink: 0;
+  z-index: 99;
 }
 #openLeft:checked ~ .layout,
 #openRight:checked ~ .layout {
@@ -53,6 +54,7 @@ header {
   overflow: hidden;
   pointer-events: none;
 }
+
 .layout > * {
   // padding-bottom: 50px;
 }
@@ -80,10 +82,10 @@ header {
   position: sticky;
   right: 0;
   width: 100%;
-  height: 100%;
-  height: -moz-available; /* WebKit-based browsers will ignore this. */
-  height: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
-  overflow-y: auto;
+  min-height: 100%;
+  // height: -moz-available; /* WebKit-based browsers will ignore this. */
+  // height: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+  // overflow-y: auto;
   // padding-right: 250px;
   scroll-snap-align: start;
   z-index: 1;
