@@ -462,6 +462,7 @@ const Content = () => {
                                         <Brush
                                           dataKey="name"
                                           height={30}
+                                          gap={7}
                                           stroke="currentColor"
                                         />
                                         <Bar
