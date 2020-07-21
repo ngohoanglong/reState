@@ -1,0 +1,36 @@
+#map {
+  width: 100vw;
+  height: 100vh;
+}
+
+.control-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  max-width: 320px;
+  background: #1f1f1fcf;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  font-size: 13px;
+  color: #fdfdfd;
+  outline: none;
+}
+
+label {
+  display: inline-block;
+  width: 100px;
+}
+
+input {
+  width: 100%;
+}
+
+.tooltip {
+  position: absolute;
+  margin: 8px;
+  padding: 0.4em 0.8em;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  max-width: 300px;
+  z-index: 9;
+  pointer-events: none;
+}

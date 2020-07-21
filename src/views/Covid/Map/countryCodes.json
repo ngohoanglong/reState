@@ -1,0 +1,1696 @@
+{
+  "AW": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "AW",
+    "ADM0_NAME": "ARUBA",
+    "ISO_3_CODE": "ABW"
+  },
+  "AF": {
+    "id": null,
+    "WHO_REGION": "EMRO",
+    "ISO_2_CODE": "AF",
+    "ADM0_NAME": "AFGHANISTAN",
+    "ISO_3_CODE": "AFG"
+  },
+  "AO": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "AO",
+    "ADM0_NAME": "ANGOLA",
+    "ISO_3_CODE": "AGO"
+  },
+  "AI": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "AI",
+    "ADM0_NAME": "ANGUILLA",
+    "ISO_3_CODE": "AIA"
+  },
+  "AL": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "AL",
+    "ADM0_NAME": "ALBANIA",
+    "ISO_3_CODE": "ALB"
+  },
+  "AD": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "AD",
+    "ADM0_NAME": "ANDORRA",
+    "ISO_3_CODE": "AND"
+  },
+  "AE": {
+    "id": null,
+    "WHO_REGION": "EMRO",
+    "ISO_2_CODE": "AE",
+    "ADM0_NAME": "UNITED ARAB EMIRATES",
+    "ISO_3_CODE": "ARE"
+  },
+  "AR": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "AR",
+    "ADM0_NAME": "ARGENTINA",
+    "ISO_3_CODE": "ARG"
+  },
+  "AM": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "AM",
+    "ADM0_NAME": "ARMENIA",
+    "ISO_3_CODE": "ARM"
+  },
+  "AS": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "AS",
+    "ADM0_NAME": "AMERICAN SAMOA",
+    "ISO_3_CODE": "ASM"
+  },
+  "AG": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "AG",
+    "ADM0_NAME": "ANTIGUA AND BARBUDA",
+    "ISO_3_CODE": "ATG"
+  },
+  "AU": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "AU",
+    "ADM0_NAME": "AUSTRALIA",
+    "ISO_3_CODE": "AUS"
+  },
+  "AT": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "AT",
+    "ADM0_NAME": "AUSTRIA",
+    "ISO_3_CODE": "AUT"
+  },
+  "AZ": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "AZ",
+    "ADM0_NAME": "AZERBAIJAN",
+    "ISO_3_CODE": "AZE"
+  },
+  "BI": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "BI",
+    "ADM0_NAME": "BURUNDI",
+    "ISO_3_CODE": "BDI"
+  },
+  "BE": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "BE",
+    "ADM0_NAME": "BELGIUM",
+    "ISO_3_CODE": "BEL"
+  },
+  "BJ": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "BJ",
+    "ADM0_NAME": "BENIN",
+    "ISO_3_CODE": "BEN"
+  },
+  "BQ": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "BQ",
+    "ADM0_NAME": "BONAIRE, SINT EUSTATIUS AND SABA",
+    "ISO_3_CODE": "BES"
+  },
+  "BF": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "BF",
+    "ADM0_NAME": "BURKINA FASO",
+    "ISO_3_CODE": "BFA"
+  },
+  "BD": {
+    "id": null,
+    "WHO_REGION": "SEARO",
+    "ISO_2_CODE": "BD",
+    "ADM0_NAME": "BANGLADESH",
+    "ISO_3_CODE": "BGD"
+  },
+  "BG": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "BG",
+    "ADM0_NAME": "BULGARIA",
+    "ISO_3_CODE": "BGR"
+  },
+  "BH": {
+    "id": null,
+    "WHO_REGION": "EMRO",
+    "ISO_2_CODE": "BH",
+    "ADM0_NAME": "BAHRAIN",
+    "ISO_3_CODE": "BHR"
+  },
+  "BS": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "BS",
+    "ADM0_NAME": "BAHAMAS",
+    "ISO_3_CODE": "BHS"
+  },
+  "BA": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "BA",
+    "ADM0_NAME": "BOSNIA AND HERZEGOVINA",
+    "ISO_3_CODE": "BIH"
+  },
+  "BL": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "BL",
+    "ADM0_NAME": "SAINT BARTHELEMY",
+    "ISO_3_CODE": "BLM"
+  },
+  "BY": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "BY",
+    "ADM0_NAME": "BELARUS",
+    "ISO_3_CODE": "BLR"
+  },
+  "BZ": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "BZ",
+    "ADM0_NAME": "BELIZE",
+    "ISO_3_CODE": "BLZ"
+  },
+  "BM": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "BM",
+    "ADM0_NAME": "BERMUDA",
+    "ISO_3_CODE": "BMU"
+  },
+  "BO": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "BO",
+    "ADM0_NAME": "PLURINATIONAL STATE OF BOLIVIA",
+    "ISO_3_CODE": "BOL"
+  },
+  "BR": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "BR",
+    "ADM0_NAME": "BRAZIL",
+    "ISO_3_CODE": "BRA"
+  },
+  "BB": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "BB",
+    "ADM0_NAME": "BARBADOS",
+    "ISO_3_CODE": "BRB"
+  },
+  "BN": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "BN",
+    "ADM0_NAME": "BRUNEI DARUSSALAM",
+    "ISO_3_CODE": "BRN"
+  },
+  "BT": {
+    "id": null,
+    "WHO_REGION": "SEARO",
+    "ISO_2_CODE": "BT",
+    "ADM0_NAME": "BHUTAN",
+    "ISO_3_CODE": "BTN"
+  },
+  "BW": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "BW",
+    "ADM0_NAME": "BOTSWANA",
+    "ISO_3_CODE": "BWA"
+  },
+  "CF": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "CF",
+    "ADM0_NAME": "CENTRAL AFRICAN REPUBLIC",
+    "ISO_3_CODE": "CAF"
+  },
+  "CA": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "CA",
+    "ADM0_NAME": "CANADA",
+    "ISO_3_CODE": "CAN"
+  },
+  "CC": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "CC",
+    "ADM0_NAME": "COCOS (KEELING) ISLANDS",
+    "ISO_3_CODE": "CCK"
+  },
+  "CH": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "CH",
+    "ADM0_NAME": "SWITZERLAND",
+    "ISO_3_CODE": "CHE"
+  },
+  "CL": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "CL",
+    "ADM0_NAME": "CHILE",
+    "ISO_3_CODE": "CHL"
+  },
+  "CN": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "CN",
+    "ADM0_NAME": "CHINA",
+    "ISO_3_CODE": "CHN"
+  },
+  "CM": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "CM",
+    "ADM0_NAME": "CAMEROON",
+    "ISO_3_CODE": "CMR"
+  },
+  "CK": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "CK",
+    "ADM0_NAME": "COOK ISLANDS",
+    "ISO_3_CODE": "COK"
+  },
+  "CO": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "CO",
+    "ADM0_NAME": "COLOMBIA",
+    "ISO_3_CODE": "COL"
+  },
+  "KM": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "KM",
+    "ADM0_NAME": "COMOROS",
+    "ISO_3_CODE": "COM"
+  },
+  "CV": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "CV",
+    "ADM0_NAME": "CABO VERDE",
+    "ISO_3_CODE": "CPV"
+  },
+  "CR": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "CR",
+    "ADM0_NAME": "COSTA RICA",
+    "ISO_3_CODE": "CRI"
+  },
+  "CU": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "CU",
+    "ADM0_NAME": "CUBA",
+    "ISO_3_CODE": "CUB"
+  },
+  "CW": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "CW",
+    "ADM0_NAME": "CURACAO",
+    "ISO_3_CODE": "CUW"
+  },
+  "CX": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "CX",
+    "ADM0_NAME": "CHRISTMAS ISLAND",
+    "ISO_3_CODE": "CXR"
+  },
+  "KY": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "KY",
+    "ADM0_NAME": "CAYMAN ISLANDS",
+    "ISO_3_CODE": "CYM"
+  },
+  "CY": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "CY",
+    "ADM0_NAME": "CYPRUS",
+    "ISO_3_CODE": "CYP"
+  },
+  "CZ": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "CZ",
+    "ADM0_NAME": "CZECH REPUBLIC",
+    "ISO_3_CODE": "CZE"
+  },
+  "DE": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "DE",
+    "ADM0_NAME": "GERMANY",
+    "ISO_3_CODE": "DEU"
+  },
+  "DJ": {
+    "id": null,
+    "WHO_REGION": "EMRO",
+    "ISO_2_CODE": "DJ",
+    "ADM0_NAME": "DJIBOUTI",
+    "ISO_3_CODE": "DJI"
+  },
+  "DM": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "DM",
+    "ADM0_NAME": "DOMINICA",
+    "ISO_3_CODE": "DMA"
+  },
+  "DK": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "DK",
+    "ADM0_NAME": "DENMARK",
+    "ISO_3_CODE": "DNK"
+  },
+  "DO": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "DO",
+    "ADM0_NAME": "DOMINICAN REPUBLIC",
+    "ISO_3_CODE": "DOM"
+  },
+  "DZ": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "DZ",
+    "ADM0_NAME": "ALGERIA",
+    "ISO_3_CODE": "DZA"
+  },
+  "EC": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "EC",
+    "ADM0_NAME": "ECUADOR",
+    "ISO_3_CODE": "ECU"
+  },
+  "EG": {
+    "id": null,
+    "WHO_REGION": "EMRO",
+    "ISO_2_CODE": "EG",
+    "ADM0_NAME": "EGYPT",
+    "ISO_3_CODE": "EGY"
+  },
+  "ER": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "ER",
+    "ADM0_NAME": "ERITREA",
+    "ISO_3_CODE": "ERI"
+  },
+  "EH": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "EH",
+    "ADM0_NAME": "WESTERN SAHARA",
+    "ISO_3_CODE": "ESH"
+  },
+  "ES": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "ES",
+    "ADM0_NAME": "SPAIN",
+    "ISO_3_CODE": "ESP"
+  },
+  "EE": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "EE",
+    "ADM0_NAME": "ESTONIA",
+    "ISO_3_CODE": "EST"
+  },
+  "ET": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "ET",
+    "ADM0_NAME": "ETHIOPIA",
+    "ISO_3_CODE": "ETH"
+  },
+  "FI": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "FI",
+    "ADM0_NAME": "FINLAND",
+    "ISO_3_CODE": "FIN"
+  },
+  "FJ": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "FJ",
+    "ADM0_NAME": "FIJI",
+    "ISO_3_CODE": "FJI"
+  },
+  "FK": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "FK",
+    "ADM0_NAME": "FALKLAND ISLANDS (MALVINAS)",
+    "ISO_3_CODE": "FLK"
+  },
+  "FR": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "FR",
+    "ADM0_NAME": "FRANCE",
+    "ISO_3_CODE": "FRA"
+  },
+  "FO": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "FO",
+    "ADM0_NAME": "FAROE ISLANDS",
+    "ISO_3_CODE": "FRO"
+  },
+  "FM": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "FM",
+    "ADM0_NAME": "FEDERATED STATES OF MICRONESIA",
+    "ISO_3_CODE": "FSM"
+  },
+  "GA": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "GA",
+    "ADM0_NAME": "GABON",
+    "ISO_3_CODE": "GAB"
+  },
+  "GB": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "GB",
+    "ADM0_NAME": "UNITED KINGDOM OF GREAT BRITAIN AND NORTHERN IRELAND",
+    "ISO_3_CODE": "GBR"
+  },
+  "GE": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "GE",
+    "ADM0_NAME": "GEORGIA",
+    "ISO_3_CODE": "GEO"
+  },
+  "GG": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "GG",
+    "ADM0_NAME": "GUERNSEY",
+    "ISO_3_CODE": "GGY"
+  },
+  "GH": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "GH",
+    "ADM0_NAME": "GHANA",
+    "ISO_3_CODE": "GHA"
+  },
+  "GI": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "GI",
+    "ADM0_NAME": "GIBRALTAR",
+    "ISO_3_CODE": "GIB"
+  },
+  "GN": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "GN",
+    "ADM0_NAME": "GUINEA",
+    "ISO_3_CODE": "GIN"
+  },
+  "GP": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "GP",
+    "ADM0_NAME": "GUADELOUPE",
+    "ISO_3_CODE": "GLP"
+  },
+  "GM": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "GM",
+    "ADM0_NAME": "GAMBIA",
+    "ISO_3_CODE": "GMB"
+  },
+  "GW": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "GW",
+    "ADM0_NAME": "GUINEA-BISSAU",
+    "ISO_3_CODE": "GNB"
+  },
+  "GQ": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "GQ",
+    "ADM0_NAME": "EQUATORIAL GUINEA",
+    "ISO_3_CODE": "GNQ"
+  },
+  "GR": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "GR",
+    "ADM0_NAME": "GREECE",
+    "ISO_3_CODE": "GRC"
+  },
+  "GD": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "GD",
+    "ADM0_NAME": "GRENADA",
+    "ISO_3_CODE": "GRD"
+  },
+  "GL": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "GL",
+    "ADM0_NAME": "GREENLAND",
+    "ISO_3_CODE": "GRL"
+  },
+  "GT": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "GT",
+    "ADM0_NAME": "GUATEMALA",
+    "ISO_3_CODE": "GTM"
+  },
+  "GF": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "GF",
+    "ADM0_NAME": "FRENCH GUIANA",
+    "ISO_3_CODE": "GUF"
+  },
+  "GU": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "GU",
+    "ADM0_NAME": "GUAM",
+    "ISO_3_CODE": "GUM"
+  },
+  "GY": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "GY",
+    "ADM0_NAME": "GUYANA",
+    "ISO_3_CODE": "GUY"
+  },
+  "HN": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "HN",
+    "ADM0_NAME": "HONDURAS",
+    "ISO_3_CODE": "HND"
+  },
+  "HR": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "HR",
+    "ADM0_NAME": "CROATIA",
+    "ISO_3_CODE": "HRV"
+  },
+  "HT": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "HT",
+    "ADM0_NAME": "HAITI",
+    "ISO_3_CODE": "HTI"
+  },
+  "HU": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "HU",
+    "ADM0_NAME": "HUNGARY",
+    "ISO_3_CODE": "HUN"
+  },
+  "ID": {
+    "id": null,
+    "WHO_REGION": "SEARO",
+    "ISO_2_CODE": "ID",
+    "ADM0_NAME": "INDONESIA",
+    "ISO_3_CODE": "IDN"
+  },
+  "IM": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "IM",
+    "ADM0_NAME": "ISLE OF MAN",
+    "ISO_3_CODE": "IMN"
+  },
+  "IN": {
+    "id": null,
+    "WHO_REGION": "SEARO",
+    "ISO_2_CODE": "IN",
+    "ADM0_NAME": "INDIA",
+    "ISO_3_CODE": "IND"
+  },
+  "IE": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "IE",
+    "ADM0_NAME": "IRELAND",
+    "ISO_3_CODE": "IRL"
+  },
+  "IR": {
+    "id": null,
+    "WHO_REGION": "EMRO",
+    "ISO_2_CODE": "IR",
+    "ADM0_NAME": "ISLAMIC REPUBLIC OF IRAN",
+    "ISO_3_CODE": "IRN"
+  },
+  "IQ": {
+    "id": null,
+    "WHO_REGION": "EMRO",
+    "ISO_2_CODE": "IQ",
+    "ADM0_NAME": "IRAQ",
+    "ISO_3_CODE": "IRQ"
+  },
+  "IS": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "IS",
+    "ADM0_NAME": "ICELAND",
+    "ISO_3_CODE": "ISL"
+  },
+  "IL": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "IL",
+    "ADM0_NAME": "ISRAEL",
+    "ISO_3_CODE": "ISR"
+  },
+  "IT": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "IT",
+    "ADM0_NAME": "ITALY",
+    "ISO_3_CODE": "ITA"
+  },
+  "JM": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "JM",
+    "ADM0_NAME": "JAMAICA",
+    "ISO_3_CODE": "JAM"
+  },
+  "JE": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "JE",
+    "ADM0_NAME": "JERSEY",
+    "ISO_3_CODE": "JEY"
+  },
+  "JO": {
+    "id": null,
+    "WHO_REGION": "EMRO",
+    "ISO_2_CODE": "JO",
+    "ADM0_NAME": "JORDAN",
+    "ISO_3_CODE": "JOR"
+  },
+  "JP": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "JP",
+    "ADM0_NAME": "JAPAN",
+    "ISO_3_CODE": "JPN"
+  },
+  "KZ": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "KZ",
+    "ADM0_NAME": "KAZAKHSTAN",
+    "ISO_3_CODE": "KAZ"
+  },
+  "KE": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "KE",
+    "ADM0_NAME": "KENYA",
+    "ISO_3_CODE": "KEN"
+  },
+  "KG": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "KG",
+    "ADM0_NAME": "KYRGYZSTAN",
+    "ISO_3_CODE": "KGZ"
+  },
+  "KH": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "KH",
+    "ADM0_NAME": "CAMBODIA",
+    "ISO_3_CODE": "KHM"
+  },
+  "KI": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "KI",
+    "ADM0_NAME": "KIRIBATI",
+    "ISO_3_CODE": "KIR"
+  },
+  "KN": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "KN",
+    "ADM0_NAME": "SAINT KITTS AND NEVIS",
+    "ISO_3_CODE": "KNA"
+  },
+  "KR": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "KR",
+    "ADM0_NAME": "REPUBLIC OF KOREA",
+    "ISO_3_CODE": "KOR"
+  },
+  "KW": {
+    "id": null,
+    "WHO_REGION": "EMRO",
+    "ISO_2_CODE": "KW",
+    "ADM0_NAME": "KUWAIT",
+    "ISO_3_CODE": "KWT"
+  },
+  "LA": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "LA",
+    "ADM0_NAME": "LAO PEOPLE'S DEMOCRATIC REPUBLIC",
+    "ISO_3_CODE": "LAO"
+  },
+  "LB": {
+    "id": null,
+    "WHO_REGION": "EMRO",
+    "ISO_2_CODE": "LB",
+    "ADM0_NAME": "LEBANON",
+    "ISO_3_CODE": "LBN"
+  },
+  "LR": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "LR",
+    "ADM0_NAME": "LIBERIA",
+    "ISO_3_CODE": "LBR"
+  },
+  "LY": {
+    "id": null,
+    "WHO_REGION": "EMRO",
+    "ISO_2_CODE": "LY",
+    "ADM0_NAME": "LIBYA",
+    "ISO_3_CODE": "LBY"
+  },
+  "LC": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "LC",
+    "ADM0_NAME": "SAINT LUCIA",
+    "ISO_3_CODE": "LCA"
+  },
+  "LI": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "LI",
+    "ADM0_NAME": "LIECHTENSTEIN",
+    "ISO_3_CODE": "LIE"
+  },
+  "LK": {
+    "id": null,
+    "WHO_REGION": "SEARO",
+    "ISO_2_CODE": "LK",
+    "ADM0_NAME": "SRI LANKA",
+    "ISO_3_CODE": "LKA"
+  },
+  "LS": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "LS",
+    "ADM0_NAME": "LESOTHO",
+    "ISO_3_CODE": "LSO"
+  },
+  "LT": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "LT",
+    "ADM0_NAME": "LITHUANIA",
+    "ISO_3_CODE": "LTU"
+  },
+  "LU": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "LU",
+    "ADM0_NAME": "LUXEMBOURG",
+    "ISO_3_CODE": "LUX"
+  },
+  "LV": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "LV",
+    "ADM0_NAME": "LATVIA",
+    "ISO_3_CODE": "LVA"
+  },
+  "MF": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "MF",
+    "ADM0_NAME": "SAINT MARTIN",
+    "ISO_3_CODE": "MAF"
+  },
+  "MA": {
+    "id": null,
+    "WHO_REGION": "EMRO",
+    "ISO_2_CODE": "MA",
+    "ADM0_NAME": "MOROCCO",
+    "ISO_3_CODE": "MAR"
+  },
+  "MC": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "MC",
+    "ADM0_NAME": "MONACO",
+    "ISO_3_CODE": "MCO"
+  },
+  "MD": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "MD",
+    "ADM0_NAME": "REPUBLIC OF MOLDOVA",
+    "ISO_3_CODE": "MDA"
+  },
+  "MG": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "MG",
+    "ADM0_NAME": "MADAGASCAR",
+    "ISO_3_CODE": "MDG"
+  },
+  "MV": {
+    "id": null,
+    "WHO_REGION": "SEARO",
+    "ISO_2_CODE": "MV",
+    "ADM0_NAME": "MALDIVES",
+    "ISO_3_CODE": "MDV"
+  },
+  "MX": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "MX",
+    "ADM0_NAME": "MEXICO",
+    "ISO_3_CODE": "MEX"
+  },
+  "MH": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "MH",
+    "ADM0_NAME": "MARSHALL ISLANDS",
+    "ISO_3_CODE": "MHL"
+  },
+  "MK": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "MK",
+    "ADM0_NAME": "NORTH MACEDONIA",
+    "ISO_3_CODE": "MKD"
+  },
+  "ML": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "ML",
+    "ADM0_NAME": "MALI",
+    "ISO_3_CODE": "MLI"
+  },
+  "MT": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "MT",
+    "ADM0_NAME": "MALTA",
+    "ISO_3_CODE": "MLT"
+  },
+  "MM": {
+    "id": null,
+    "WHO_REGION": "SEARO",
+    "ISO_2_CODE": "MM",
+    "ADM0_NAME": "MYANMAR",
+    "ISO_3_CODE": "MMR"
+  },
+  "ME": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "ME",
+    "ADM0_NAME": "MONTENEGRO",
+    "ISO_3_CODE": "MNE"
+  },
+  "MN": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "MN",
+    "ADM0_NAME": "MONGOLIA",
+    "ISO_3_CODE": "MNG"
+  },
+  "MP": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "MP",
+    "ADM0_NAME": "NORTHERN MARIANA ISLANDS, COMMONWEALTH OF THE",
+    "ISO_3_CODE": "MNP"
+  },
+  "MZ": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "MZ",
+    "ADM0_NAME": "MOZAMBIQUE",
+    "ISO_3_CODE": "MOZ"
+  },
+  "MR": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "MR",
+    "ADM0_NAME": "MAURITANIA",
+    "ISO_3_CODE": "MRT"
+  },
+  "MS": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "MS",
+    "ADM0_NAME": "MONTSERRAT",
+    "ISO_3_CODE": "MSR"
+  },
+  "MQ": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "MQ",
+    "ADM0_NAME": "MARTINIQUE",
+    "ISO_3_CODE": "MTQ"
+  },
+  "MU": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "MU",
+    "ADM0_NAME": "MAURITIUS",
+    "ISO_3_CODE": "MUS"
+  },
+  "MW": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "MW",
+    "ADM0_NAME": "MALAWI",
+    "ISO_3_CODE": "MWI"
+  },
+  "MY": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "MY",
+    "ADM0_NAME": "MALAYSIA",
+    "ISO_3_CODE": "MYS"
+  },
+  "YT": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "YT",
+    "ADM0_NAME": "MAYOTTE",
+    "ISO_3_CODE": "MYT"
+  },
+  "NA": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "NA",
+    "ADM0_NAME": "NAMIBIA",
+    "ISO_3_CODE": "NAM"
+  },
+  "NC": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "NC",
+    "ADM0_NAME": "NEW CALEDONIA",
+    "ISO_3_CODE": "NCL"
+  },
+  "NE": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "NE",
+    "ADM0_NAME": "NIGER",
+    "ISO_3_CODE": "NER"
+  },
+  "NF": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "NF",
+    "ADM0_NAME": "NORFOLK ISLAND",
+    "ISO_3_CODE": "NFK"
+  },
+  "NG": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "NG",
+    "ADM0_NAME": "NIGERIA",
+    "ISO_3_CODE": "NGA"
+  },
+  "NI": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "NI",
+    "ADM0_NAME": "NICARAGUA",
+    "ISO_3_CODE": "NIC"
+  },
+  "NU": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "NU",
+    "ADM0_NAME": "NIUE",
+    "ISO_3_CODE": "NIU"
+  },
+  "NL": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "NL",
+    "ADM0_NAME": "NETHERLANDS",
+    "ISO_3_CODE": "NLD"
+  },
+  "NO": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "NO",
+    "ADM0_NAME": "NORWAY",
+    "ISO_3_CODE": "NOR"
+  },
+  "NP": {
+    "id": null,
+    "WHO_REGION": "SEARO",
+    "ISO_2_CODE": "NP",
+    "ADM0_NAME": "NEPAL",
+    "ISO_3_CODE": "NPL"
+  },
+  "NR": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "NR",
+    "ADM0_NAME": "NAURU",
+    "ISO_3_CODE": "NRU"
+  },
+  "NZ": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "NZ",
+    "ADM0_NAME": "NEW ZEALAND",
+    "ISO_3_CODE": "NZL"
+  },
+  "OM": {
+    "id": null,
+    "WHO_REGION": "EMRO",
+    "ISO_2_CODE": "OM",
+    "ADM0_NAME": "OMAN",
+    "ISO_3_CODE": "OMN"
+  },
+  "PK": {
+    "id": null,
+    "WHO_REGION": "EMRO",
+    "ISO_2_CODE": "PK",
+    "ADM0_NAME": "PAKISTAN",
+    "ISO_3_CODE": "PAK"
+  },
+  "PA": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "PA",
+    "ADM0_NAME": "PANAMA",
+    "ISO_3_CODE": "PAN"
+  },
+  "PN": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "PN",
+    "ADM0_NAME": "PITCAIRN ISLANDS",
+    "ISO_3_CODE": "PCN"
+  },
+  "PE": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "PE",
+    "ADM0_NAME": "PERU",
+    "ISO_3_CODE": "PER"
+  },
+  "PH": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "PH",
+    "ADM0_NAME": "PHILIPPINES",
+    "ISO_3_CODE": "PHL"
+  },
+  "PW": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "PW",
+    "ADM0_NAME": "PALAU",
+    "ISO_3_CODE": "PLW"
+  },
+  "PL": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "PL",
+    "ADM0_NAME": "POLAND",
+    "ISO_3_CODE": "POL"
+  },
+  "PR": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "PR",
+    "ADM0_NAME": "PUERTO RICO",
+    "ISO_3_CODE": "PRI"
+  },
+  "KP": {
+    "id": null,
+    "WHO_REGION": "SEARO",
+    "ISO_2_CODE": "KP",
+    "ADM0_NAME": "DEMOCRATIC PEOPLE'S REPUBLIC OF KOREA",
+    "ISO_3_CODE": "PRK"
+  },
+  "PT": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "PT",
+    "ADM0_NAME": "PORTUGAL",
+    "ISO_3_CODE": "PRT"
+  },
+  "PY": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "PY",
+    "ADM0_NAME": "PARAGUAY",
+    "ISO_3_CODE": "PRY"
+  },
+  "PS": {
+    "id": null,
+    "WHO_REGION": "EMRO",
+    "ISO_2_CODE": "PS",
+    "ADM0_NAME": "OCCUPIED PALESTINIAN TERRITORY",
+    "ISO_3_CODE": "PSE"
+  },
+  "PF": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "PF",
+    "ADM0_NAME": "FRENCH POLYNESIA",
+    "ISO_3_CODE": "PYF"
+  },
+  "QA": {
+    "id": null,
+    "WHO_REGION": "EMRO",
+    "ISO_2_CODE": "QA",
+    "ADM0_NAME": "QATAR",
+    "ISO_3_CODE": "QAT"
+  },
+  "RE": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "RE",
+    "ADM0_NAME": "RÉUNION",
+    "ISO_3_CODE": "REU"
+  },
+  "RO": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "RO",
+    "ADM0_NAME": "ROMANIA",
+    "ISO_3_CODE": "ROU"
+  },
+  "RU": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "RU",
+    "ADM0_NAME": "RUSSIAN FEDERATION",
+    "ISO_3_CODE": "RUS"
+  },
+  "RW": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "RW",
+    "ADM0_NAME": "RWANDA",
+    "ISO_3_CODE": "RWA"
+  },
+  "SA": {
+    "id": null,
+    "WHO_REGION": "EMRO",
+    "ISO_2_CODE": "SA",
+    "ADM0_NAME": "SAUDI ARABIA",
+    "ISO_3_CODE": "SAU"
+  },
+  "SD": {
+    "id": null,
+    "WHO_REGION": "EMRO",
+    "ISO_2_CODE": "SD",
+    "ADM0_NAME": "SUDAN",
+    "ISO_3_CODE": "SDN"
+  },
+  "SN": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "SN",
+    "ADM0_NAME": "SENEGAL",
+    "ISO_3_CODE": "SEN"
+  },
+  "SG": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "SG",
+    "ADM0_NAME": "SINGAPORE",
+    "ISO_3_CODE": "SGP"
+  },
+  "SH": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "SH",
+    "ADM0_NAME": "SAINT HELENA",
+    "ISO_3_CODE": "SHN"
+  },
+  "SJ": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "SJ",
+    "ADM0_NAME": "SVALBARD AND JAN MAYEN ISLANDS",
+    "ISO_3_CODE": "SJM"
+  },
+  "SB": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "SB",
+    "ADM0_NAME": "SOLOMON ISLANDS",
+    "ISO_3_CODE": "SLB"
+  },
+  "SL": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "SL",
+    "ADM0_NAME": "SIERRA LEONE",
+    "ISO_3_CODE": "SLE"
+  },
+  "SV": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "SV",
+    "ADM0_NAME": "EL SALVADOR",
+    "ISO_3_CODE": "SLV"
+  },
+  "SM": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "SM",
+    "ADM0_NAME": "SAN MARINO",
+    "ISO_3_CODE": "SMR"
+  },
+  "SO": {
+    "id": null,
+    "WHO_REGION": "EMRO",
+    "ISO_2_CODE": "SO",
+    "ADM0_NAME": "SOMALIA",
+    "ISO_3_CODE": "SOM"
+  },
+  "PM": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "PM",
+    "ADM0_NAME": "SAINT PIERRE AND MIQUELON",
+    "ISO_3_CODE": "SPM"
+  },
+  "RS": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "RS",
+    "ADM0_NAME": "SERBIA",
+    "ISO_3_CODE": "SRB"
+  },
+  "SS": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "SS",
+    "ADM0_NAME": "SOUTH SUDAN",
+    "ISO_3_CODE": "SSD"
+  },
+  "ST": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "ST",
+    "ADM0_NAME": "SAO TOME AND PRINCIPE",
+    "ISO_3_CODE": "STP"
+  },
+  "SR": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "SR",
+    "ADM0_NAME": "SURINAME",
+    "ISO_3_CODE": "SUR"
+  },
+  "SK": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "SK",
+    "ADM0_NAME": "SLOVAKIA",
+    "ISO_3_CODE": "SVK"
+  },
+  "SI": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "SI",
+    "ADM0_NAME": "SLOVENIA",
+    "ISO_3_CODE": "SVN"
+  },
+  "SE": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "SE",
+    "ADM0_NAME": "SWEDEN",
+    "ISO_3_CODE": "SWE"
+  },
+  "SZ": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "SZ",
+    "ADM0_NAME": "ESWATINI",
+    "ISO_3_CODE": "SWZ"
+  },
+  "SX": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "SX",
+    "ADM0_NAME": "SINT MAARTEN",
+    "ISO_3_CODE": "SXM"
+  },
+  "SC": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "SC",
+    "ADM0_NAME": "SEYCHELLES",
+    "ISO_3_CODE": "SYC"
+  },
+  "SY": {
+    "id": null,
+    "WHO_REGION": "EMRO",
+    "ISO_2_CODE": "SY",
+    "ADM0_NAME": "SYRIAN ARAB REPUBLIC",
+    "ISO_3_CODE": "SYR"
+  },
+  "TC": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "TC",
+    "ADM0_NAME": "TURKS AND CAICOS ISLANDS",
+    "ISO_3_CODE": "TCA"
+  },
+  "TD": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "TD",
+    "ADM0_NAME": "CHAD",
+    "ISO_3_CODE": "TCD"
+  },
+  "TG": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "TG",
+    "ADM0_NAME": "TOGO",
+    "ISO_3_CODE": "TGO"
+  },
+  "TH": {
+    "id": null,
+    "WHO_REGION": "SEARO",
+    "ISO_2_CODE": "TH",
+    "ADM0_NAME": "THAILAND",
+    "ISO_3_CODE": "THA"
+  },
+  "TJ": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "TJ",
+    "ADM0_NAME": "TAJIKISTAN",
+    "ISO_3_CODE": "TJK"
+  },
+  "TK": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "TK",
+    "ADM0_NAME": "TOKELAU",
+    "ISO_3_CODE": "TKL"
+  },
+  "TM": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "TM",
+    "ADM0_NAME": "TURKMENISTAN",
+    "ISO_3_CODE": "TKM"
+  },
+  "TL": {
+    "id": null,
+    "WHO_REGION": "SEARO",
+    "ISO_2_CODE": "TL",
+    "ADM0_NAME": "TIMOR-LESTE",
+    "ISO_3_CODE": "TLS"
+  },
+  "TO": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "TO",
+    "ADM0_NAME": "TONGA",
+    "ISO_3_CODE": "TON"
+  },
+  "TT": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "TT",
+    "ADM0_NAME": "TRINIDAD AND TOBAGO",
+    "ISO_3_CODE": "TTO"
+  },
+  "TN": {
+    "id": null,
+    "WHO_REGION": "EMRO",
+    "ISO_2_CODE": "TN",
+    "ADM0_NAME": "TUNISIA",
+    "ISO_3_CODE": "TUN"
+  },
+  "TR": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "TR",
+    "ADM0_NAME": "TURKEY",
+    "ISO_3_CODE": "TUR"
+  },
+  "TV": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "TV",
+    "ADM0_NAME": "TUVALU",
+    "ISO_3_CODE": "TUV"
+  },
+  "TZ": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "TZ",
+    "ADM0_NAME": "UNITED REPUBLIC OF TANZANIA",
+    "ISO_3_CODE": "TZA"
+  },
+  "UG": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "UG",
+    "ADM0_NAME": "UGANDA",
+    "ISO_3_CODE": "UGA"
+  },
+  "UA": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "UA",
+    "ADM0_NAME": "UKRAINE",
+    "ISO_3_CODE": "UKR"
+  },
+  "UY": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "UY",
+    "ADM0_NAME": "URUGUAY",
+    "ISO_3_CODE": "URY"
+  },
+  "US": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "US",
+    "ADM0_NAME": "UNITED STATES OF AMERICA",
+    "ISO_3_CODE": "USA"
+  },
+  "UZ": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "UZ",
+    "ADM0_NAME": "UZBEKISTAN",
+    "ISO_3_CODE": "UZB"
+  },
+  "VA": {
+    "id": null,
+    "WHO_REGION": "EURO",
+    "ISO_2_CODE": "VA",
+    "ADM0_NAME": "HOLY SEE",
+    "ISO_3_CODE": "VAT"
+  },
+  "VC": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "VC",
+    "ADM0_NAME": "SAINT VINCENT AND THE GRENADINES",
+    "ISO_3_CODE": "VCT"
+  },
+  "VE": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "VE",
+    "ADM0_NAME": "BOLIVARIAN REPUBLIC OF VENEZUELA",
+    "ISO_3_CODE": "VEN"
+  },
+  "VG": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "VG",
+    "ADM0_NAME": "BRITISH VIRGIN ISLANDS",
+    "ISO_3_CODE": "VGB"
+  },
+  "VI": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "VI",
+    "ADM0_NAME": "UNITED STATES VIRGIN ISLANDS",
+    "ISO_3_CODE": "VIR"
+  },
+  "VN": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "VN",
+    "ADM0_NAME": "VIET NAM",
+    "ISO_3_CODE": "VNM"
+  },
+  "VU": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "VU",
+    "ADM0_NAME": "VANUATU",
+    "ISO_3_CODE": "VUT"
+  },
+  "WF": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "WF",
+    "ADM0_NAME": "WALLIS AND FUTUNA",
+    "ISO_3_CODE": "WLF"
+  },
+  "WS": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "WS",
+    "ADM0_NAME": "SAMOA",
+    "ISO_3_CODE": "WSM"
+  },
+  "YE": {
+    "id": null,
+    "WHO_REGION": "EMRO",
+    "ISO_2_CODE": "YE",
+    "ADM0_NAME": "YEMEN",
+    "ISO_3_CODE": "YEM"
+  },
+  "ZA": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "ZA",
+    "ADM0_NAME": "SOUTH AFRICA",
+    "ISO_3_CODE": "ZAF"
+  },
+  "ZM": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "ZM",
+    "ADM0_NAME": "ZAMBIA",
+    "ISO_3_CODE": "ZMB"
+  },
+  "ZW": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "ZW",
+    "ADM0_NAME": "ZIMBABWE",
+    "ISO_3_CODE": "ZWE"
+  },
+  "CD": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "CD",
+    "ADM0_NAME": "DEMOCRATIC REPUBLIC OF THE CONGO",
+    "ISO_3_CODE": "COD"
+  },
+  "CG": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "CG",
+    "ADM0_NAME": "CONGO",
+    "ISO_3_CODE": "COG"
+  },
+  "PG": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "PG",
+    "ADM0_NAME": "PAPUA NEW GUINEA",
+    "ISO_3_CODE": "PNG"
+  },
+  "AN": {
+    "id": null,
+    "WHO_REGION": "AMRO",
+    "ISO_2_CODE": "AN",
+    "ADM0_NAME": "NETHERLANDS ANTILLES",
+    "ISO_3_CODE": "ANT"
+  },
+  "JT": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "JT",
+    "ADM0_NAME": "JOHNSTON ATOLL",
+    "ISO_3_CODE": "JTN"
+  },
+  "UM": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "UM",
+    "ADM0_NAME": "MIDWAY ISLANDS",
+    "ISO_3_CODE": "MID"
+  },
+  "WK": {
+    "id": null,
+    "WHO_REGION": "WPRO",
+    "ISO_2_CODE": "WK",
+    "ADM0_NAME": "WAKE ISLAND",
+    "ISO_3_CODE": "WAK"
+  },
+  "CI": {
+    "id": null,
+    "WHO_REGION": "AFRO",
+    "ISO_2_CODE": "CI",
+    "ADM0_NAME": "COTE D IVOIRE",
+    "ISO_3_CODE": "CIV"
+  }
+}

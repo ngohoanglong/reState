@@ -6,6 +6,7 @@
     "react",
     "starter"
   ],
+  "license": "MIT",
   "main": "src/index.js",
   "dependencies": {
     "ahooks": "^2.2.0",

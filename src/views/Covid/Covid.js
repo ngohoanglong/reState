@@ -24,48 +24,7 @@ import Namespace from "../../modules/namespace/Namespace";
 import useNamespace from "../../modules/namespace/useNamespace";
 import useLocation from "../../modules/navigation/useLocation";
 import useLocalStorage from "../../modules/storage/useLocalStorage";
-
-const dataChart = [
-  { name: "1", uv: 300, pv: 456 },
-  { name: "2", uv: -145, pv: 230 },
-  { name: "3", uv: -100, pv: 345 },
-  { name: "4", uv: -8, pv: 450 },
-  { name: "5", uv: 100, pv: 321 },
-  { name: "6", uv: 9, pv: 235 },
-  { name: "7", uv: 53, pv: 267 },
-  { name: "8", uv: 252, pv: -378 },
-  { name: "9", uv: 79, pv: -210 },
-  { name: "10", uv: 294, pv: -23 },
-  { name: "12", uv: 43, pv: 45 },
-  { name: "13", uv: -74, pv: 90 },
-  { name: "14", uv: -71, pv: 130 },
-  { name: "15", uv: -117, pv: 11 },
-  { name: "16", uv: -186, pv: 107 },
-  { name: "17", uv: -16, pv: 926 },
-  { name: "18", uv: -125, pv: 653 },
-  { name: "19", uv: 222, pv: 366 },
-  { name: "20", uv: 372, pv: 486 },
-  { name: "21", uv: 182, pv: 512 },
-  { name: "22", uv: 164, pv: 302 },
-  { name: "23", uv: 316, pv: 425 },
-  { name: "24", uv: 131, pv: 467 },
-  { name: "25", uv: 291, pv: -190 },
-  { name: "26", uv: -47, pv: 194 },
-  { name: "27", uv: -415, pv: 371 },
-  { name: "28", uv: -182, pv: 376 },
-  { name: "29", uv: -93, pv: 295 },
-  { name: "30", uv: -99, pv: 322 },
-  { name: "31", uv: -52, pv: 246 },
-  { name: "32", uv: 154, pv: 33 },
-  { name: "33", uv: 205, pv: 354 },
-  { name: "34", uv: 70, pv: 258 },
-  { name: "35", uv: -25, pv: 359 },
-  { name: "36", uv: -59, pv: 192 },
-  { name: "37", uv: -63, pv: 464 },
-  { name: "38", uv: -91, pv: -2 },
-  { name: "39", uv: -66, pv: 154 },
-  { name: "40", uv: -50, pv: 186 },
-];
+import Map from "./Map.lazy";
 
 const namespace = {
   data: "data",
@@ -210,9 +169,19 @@ const RepoList = () => {
         <div className=" text-color-rich flex items-center flex-wrap">
           {[
             // deaths,
-            <span className="bg-red-100 text-red-700  font-bold text-xs mb-2 mr-2 px-1 rounded">{`⚰️ ${lastDayWorld[4]}`}</span>,
+            <span className="bg-red-100 text-red-700  font-bold text-xs mb-2 mr-2 px-1 rounded">
+              <span aria-label="death" role="img">
+                ⚰️
+              </span>
+              {` ${lastDayWorld[4]}`}
+            </span>,
             // confirmed, rounded
-            <span className="bg-gray-300 text-gray-700  font-bold text-xs mb-2 mr-2 px-1 rounded">{`🤢 ${lastDayWorld[6]}`}</span>,
+            <span className="bg-gray-300 text-gray-700  font-bold text-xs mb-2 mr-2 px-1 rounded">
+              <span aria-label="sick" role="img">
+                🤢
+              </span>
+              {` ${lastDayWorld[6]}`}
+            </span>,
           ].map((value, i) => (
             <div key={i} className="">
               {value}
@@ -250,9 +219,19 @@ const RepoList = () => {
                 <div className=" text-color-rich flex items-center flex-wrap">
                   {[
                     // deaths,
-                    <span className="bg-red-100 text-red-700  font-bold text-xs mb-2 mr-2 px-1 rounded">{`⚰️ ${cumulativeDeaths}`}</span>,
+                    <span className="bg-red-100 text-red-700  font-bold text-xs mb-2 mr-2 px-1 rounded">
+                      <span aria-label="death" role="img">
+                        ⚰️
+                      </span>
+                      {` ${cumulativeDeaths}`}
+                    </span>,
                     // confirmed, rounded
-                    <span className="bg-gray-300 text-gray-700  font-bold text-xs mb-2 mr-2 px-1 rounded">{`🤢 ${cumulativeConfirmed}`}</span>,
+                    <span className="bg-gray-300 text-gray-700  font-bold text-xs mb-2 mr-2 px-1 rounded">
+                      <span aria-label="sick" role="img">
+                        🤢
+                      </span>
+                      {` ${cumulativeConfirmed}`}
+                    </span>,
                   ].map((value, i) => (
                     <div key={i} className="">
                       {value}
@@ -270,7 +249,6 @@ const RepoList = () => {
     </>
   );
 };
-
 const Content = () => {
   const ref = useRef(Date.now());
   const repolistname = useNamespace(namespace.data);
@@ -287,209 +265,233 @@ const Content = () => {
   const [datetime, country, legion, newDeaths, deaths, newCases, cases] =
     countryData.find((item) => Number(item[0]) === Number(selectDate)) || [];
   return (
-    <div className="p-3 space-y-3">
-      <div className="py-3 w-full z-10 flex items-center sticky top-0 background">
-        {selectCountry ? (
-          <div className="text-color text-3xl font-bold flex items-center flex-1">
-            <img
-              className="w-12 mr-2"
-              src={`https://www.countryflags.io/${selectCountry}/flat/64.png`}
-            ></img>{" "}
-            <div>{selectCountry}</div>
-          </div>
-        ) : (
-          <div className="text-color flex-1 font-bold text-3xl flex items-center">
-            <img
-              className="w-12 mr-2"
-              src={`https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Flag_of_the_United_Nations.svg/225px-Flag_of_the_United_Nations.svg.png`}
-            ></img>{" "}
-            <div>World</div>
-          </div>
-        )}
-        <select
-          class="block appearance-none background-rich  py-3 px-4 pr-8 rounded leading-tight  focus:shadow-lg"
-          value={select}
-          onChange={(e) => {
-            const value = e.target.value;
-            const now = Date.now();
-
-            ref.current = now;
-            setTimeout(() => {
-              if (now === ref.current) {
-                setSelected(value);
-              }
-            }, 0);
-          }}
-        >
-          {days.map((value, i) => (
-            <option value={i}>
-              {new Date(Number(days[i])).toDateString()}
-            </option>
-          ))}
-        </select>
-      </div>
-      <section className="body-font">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-2 gap-2 text-center">
-            <div className="col-span-1 ">
-              <div className="shadow background-rich p-3 rounded-lg">
-                <div className="text-4xl">🤢</div>
-                <p className="leading-relaxed">cases</p>
-                <h2 className="title-font text-lg font-medium md:text-3xl ">
-                  {Number(cases || 0).toLocaleString()}
-                </h2>
-
-                <div className="leading-relaxed text-sm">
-                  🔺 {Number(newCases || 0).toLocaleString()}
-                </div>
-              </div>
+    <>
+      <div className="p-3 w-full  max-w-md lg:w-1/2 space-y-3 relative z-10 pointer-events-none">
+        <div className="p-3 w-full z-10 flex items-center sticky top-0 background pointer-events-auto">
+          {selectCountry ? (
+            <div className="text-color text-3xl font-bold flex items-center flex-1">
+              <img
+                className="w-12 mr-2"
+                src={`https://www.countryflags.io/${selectCountry}/flat/64.png`}
+              ></img>{" "}
+              <div>{selectCountry}</div>
             </div>
-            <div className="col-span-1 ">
-              <div className="shadow background-rich p-3 rounded-lg">
-                <div className="text-4xl">⚰️</div>
-                <p className="leading-relaxed">deaths</p>
-                <h2 className="title-font text-lg font-medium md:text-3xl ">
-                  {Number(deaths || 0).toLocaleString()}
-                </h2>
-
-                <div className="leading-relaxed text-sm">
-                  🔺 {Number(newDeaths || 0).toLocaleString()}
-                </div>
-              </div>
+          ) : (
+            <div className="text-color flex-1 font-bold text-3xl flex items-center">
+              <img
+                className="w-12 mr-2"
+                src={`https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Flag_of_the_United_Nations.svg/225px-Flag_of_the_United_Nations.svg.png`}
+              ></img>{" "}
+              <div>World</div>
             </div>
-            {countryData && (
-              <UseHook
-                hook={useMemo}
-                deps={[
-                  () => (
-                    <UseHook hook={useState} deps={["new cases"]}>
-                      {([currentTab, setCurrentTab]) => {
-                        return (
-                          <UseHook hook={useRef}>
-                            {(ref) => (
-                              <UseHook hook={useSize} deps={[ref.current]}>
-                                {({ width }) => {
-                                  return (
-                                    <div
-                                      ref={ref}
-                                      style={{
-                                        padding: "12px",
-                                      }}
-                                      className="col-span-2 overflow-auto w-full shadow background-rich rounded-lg flex flex-col item-center py-3 "
-                                    >
-                                      <style>
-                                        {`.recharts-text.recharts-cartesian-axis-tick-value,.recharts-layer.recharts-brush-texts {font-size:0.7rem;font-weight:bold}`}
-                                      </style>
-                                      <div className="pt-1 pb-3 space-x-3 w-full flex justify-start">
-                                        <button
-                                          onClick={() =>
-                                            setCurrentTab("new cases")
-                                          }
-                                          className="px-3 btn text-white bg-gray-500 py-1 rounded-lg font-bold text-sm"
-                                        >
-                                          new cases
-                                        </button>
-                                        <button
-                                          onClick={() =>
-                                            setCurrentTab("current cases")
-                                          }
-                                          className="px-3 btn text-white bg-blue-500 py-1 rounded-lg font-bold text-sm"
-                                        >
-                                          current cases
-                                        </button>
-                                        <button
-                                          onClick={() =>
-                                            setCurrentTab("new deaths")
-                                          }
-                                          className="px-3 btn  text-white bg-green-500 py-1 rounded-lg font-bold text-sm"
-                                        >
-                                          new deaths
-                                        </button>
-                                        <button
-                                          onClick={() =>
-                                            setCurrentTab("current deaths")
-                                          }
-                                          className="px-3 btn text-white bg-orange-500 py-1 rounded-lg font-bold text-sm"
-                                        >
-                                          current deaths
-                                        </button>
-                                      </div>
-                                      <BarChart
-                                        className={((currentTab) => {
-                                          switch (currentTab) {
-                                            case "new cases":
-                                              return "text-gray-500";
-                                            case "current cases":
-                                              return "text-blue-500";
-                                            case "new deaths":
-                                              return "text-green-500";
-                                            case "current deaths":
-                                              return "text-orange-500";
-                                            default:
-                                              break;
-                                          }
-                                        })(currentTab)}
-                                        width={width - 24}
-                                        height={300}
-                                        data={countryData
-                                          .map((row) => ({
-                                            name: new Date(
-                                              Number(row[0])
-                                            ).toLocaleDateString(),
-                                            "new cases": row[5],
-                                            "current cases": row[6],
-                                            "new deaths": row[3],
-                                            "current deaths": row[4],
-                                          }))
-                                          .reverse()}
-                                        margin={{
-                                          top: 5,
-                                          right: 30,
-                                          left: 20,
-                                          bottom: 5,
-                                        }}
-                                      >
-                                        <CartesianGrid strokeDasharray="3 3" />
-                                        <XAxis
-                                          dataKey="name"
-                                          // tick={
-                                          //   false
-                                          // }
-                                        />
-                                        <YAxis width={30} />
-                                        <Tooltip />
-                                        <ReferenceLine y={0} stroke="#000" />
-                                        <Brush
-                                          dataKey="name"
-                                          height={30}
-                                          gap={7}
-                                          stroke="currentColor"
-                                        />
-                                        <Bar
-                                          dataKey={currentTab}
-                                          fill="currentColor"
-                                        />
-                                      </BarChart>
-                                    </div>
-                                  );
-                                }}
-                              </UseHook>
-                            )}
-                          </UseHook>
-                        );
-                      }}
-                    </UseHook>
-                  ),
-                  [countryData],
-                ]}
-              >
-                {(e) => e}
-              </UseHook>
-            )}
-          </div>
+          )}
+          <select
+            class="block appearance-none background-rich  py-3 px-4 pr-8 rounded leading-tight  focus:shadow-lg"
+            value={select}
+            onChange={(e) => {
+              const value = e.target.value;
+              const now = Date.now();
+
+              ref.current = now;
+              setTimeout(() => {
+                if (now === ref.current) {
+                  setSelected(value);
+                }
+              }, 0);
+            }}
+          >
+            {days.map((value, i) => (
+              <option value={i}>
+                {new Date(Number(days[i])).toDateString()}
+              </option>
+            ))}
+          </select>
         </div>
-      </section>
-    </div>
+        <section className="body-font pointer-events-auto">
+          <div className="container mx-auto">
+            <div className="grid grid-cols-2 gap-2 text-center">
+              <div className="col-span-1 ">
+                <div className="shadow background-rich p-3 rounded-lg">
+                  <div className="text-4xl">
+                    <span aria-label="death" role="img">
+                      ⚰️
+                    </span>
+                  </div>
+                  <p className="leading-relaxed">cases</p>
+                  <h2 className="title-font text-lg font-medium md:text-3xl ">
+                    {Number(cases || 0).toLocaleString()}
+                  </h2>
+
+                  <div className="leading-relaxed text-sm">
+                    <span aria-label="sick" role="img">
+                      🔺
+                    </span>{" "}
+                    {Number(newCases || 0).toLocaleString()}
+                  </div>
+                </div>
+              </div>
+              <div className="col-span-1 ">
+                <div className="shadow background-rich p-3 rounded-lg">
+                  <div className="text-4xl">
+                    <span aria-label="sick" role="img">
+                      🤢
+                    </span>
+                  </div>
+                  <p className="leading-relaxed">deaths</p>
+                  <h2 className="title-font text-lg font-medium md:text-3xl ">
+                    {Number(deaths || 0).toLocaleString()}
+                  </h2>
+
+                  <div className="leading-relaxed text-sm">
+                    <span aria-label="sick" role="img">
+                      🔺
+                    </span>{" "}
+                    {Number(newDeaths || 0).toLocaleString()}
+                  </div>
+                </div>
+              </div>
+              {countryData && (
+                <UseHook
+                  hook={useMemo}
+                  deps={[
+                    () => (
+                      <UseHook hook={useState} deps={["new cases"]}>
+                        {([currentTab, setCurrentTab]) => {
+                          return (
+                            <UseHook hook={useRef}>
+                              {(ref) => (
+                                <UseHook hook={useSize} deps={[ref.current]}>
+                                  {({ width }) => {
+                                    return (
+                                      <div
+                                        ref={ref}
+                                        style={{
+                                          padding: "12px",
+                                        }}
+                                        className="col-span-2 overflow-auto w-full shadow background-rich rounded-lg flex flex-col item-center py-3 "
+                                      >
+                                        <style>
+                                          {`.recharts-text.recharts-cartesian-axis-tick-value,.recharts-layer.recharts-brush-texts {font-size:0.7rem;font-weight:bold}`}
+                                        </style>
+                                        <div className="pt-1 pb-3 space-x-3 w-full flex justify-start">
+                                          <button
+                                            onClick={() =>
+                                              setCurrentTab("new cases")
+                                            }
+                                            className="px-3 btn text-white bg-gray-500 py-1 rounded-lg font-bold text-sm"
+                                          >
+                                            new cases
+                                          </button>
+                                          <button
+                                            onClick={() =>
+                                              setCurrentTab("current cases")
+                                            }
+                                            className="px-3 btn text-white bg-blue-500 py-1 rounded-lg font-bold text-sm"
+                                          >
+                                            current cases
+                                          </button>
+                                          <button
+                                            onClick={() =>
+                                              setCurrentTab("new deaths")
+                                            }
+                                            className="px-3 btn  text-white bg-green-500 py-1 rounded-lg font-bold text-sm"
+                                          >
+                                            new deaths
+                                          </button>
+                                          <button
+                                            onClick={() =>
+                                              setCurrentTab("current deaths")
+                                            }
+                                            className="px-3 btn text-white bg-orange-500 py-1 rounded-lg font-bold text-sm"
+                                          >
+                                            current deaths
+                                          </button>
+                                        </div>
+                                        <BarChart
+                                          className={((currentTab) => {
+                                            switch (currentTab) {
+                                              case "new cases":
+                                                return "text-gray-500";
+                                              case "current cases":
+                                                return "text-blue-500";
+                                              case "new deaths":
+                                                return "text-green-500";
+                                              case "current deaths":
+                                                return "text-orange-500";
+                                              default:
+                                                break;
+                                            }
+                                          })(currentTab)}
+                                          width={width - 24}
+                                          height={300}
+                                          data={countryData
+                                            .map((row) => ({
+                                              name: new Date(
+                                                Number(row[0])
+                                              ).toLocaleDateString(),
+                                              "new cases": row[5],
+                                              "current cases": row[6],
+                                              "new deaths": row[3],
+                                              "current deaths": row[4],
+                                            }))
+                                            .reverse()}
+                                          margin={{
+                                            top: 5,
+                                            right: 30,
+                                            left: 20,
+                                            bottom: 5,
+                                          }}
+                                        >
+                                          <CartesianGrid strokeDasharray="3 3" />
+                                          <XAxis
+                                            dataKey="name"
+                                            // tick={
+                                            //   false
+                                            // }
+                                          />
+                                          <YAxis width={30} />
+                                          <Tooltip />
+                                          <ReferenceLine y={0} stroke="#000" />
+                                          <Brush
+                                            dataKey="name"
+                                            height={30}
+                                            gap={7}
+                                            stroke="currentColor"
+                                          />
+                                          <Bar
+                                            dataKey={currentTab}
+                                            fill="currentColor"
+                                          />
+                                        </BarChart>
+                                      </div>
+                                    );
+                                  }}
+                                </UseHook>
+                              )}
+                            </UseHook>
+                          );
+                        }}
+                      </UseHook>
+                    ),
+                    [countryData],
+                  ]}
+                >
+                  {(e) => e}
+                </UseHook>
+              )}
+            </div>
+          </div>
+        </section>
+      </div>
+      <div className="col-span-2 hidden lg:block absolute top-0 left-0 h-screen overflow-auto w-full overflow-hidden">
+        <Map
+          {...{
+            selectDate,
+            data,
+          }}
+        />
+      </div>
+    </>
   );
 };
 const Covid = () => {
