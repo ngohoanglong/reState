@@ -6,9 +6,9 @@ import {
   useTrail,
   useTransition,
 } from "react-spring";
+import Link from "../../modules/navigation/Link";
 import "./Portfolio.css";
 import { WordCloud } from "./WordCloud";
-import Link from "../../modules/navigation/Link";
 const CurrentContext = React.createContext(0);
 const ChangeCurrentContext = React.createContext(() => {
   console.error("ChangeCurrentContext not been set");
@@ -28,7 +28,7 @@ const useScroll = (element = window, handler) => {
     window.addEventListener("scroll", handler);
 
     return () => window.removeEventListener("scroll", handler);
-  }, []);
+  }, [handler]);
 };
 const Skills = () => {
   const title = "Skills & /Experience";
@@ -228,7 +228,7 @@ const useIntersection = (ref, options) => {
       };
     }
     return () => {};
-  }, [ref, options.threshold, options.root, options.rootMargin]);
+  }, [ref, options.threshold, options.root, options.rootMargin, options]);
 
   return intersectionObserverEntry;
 };
@@ -397,7 +397,7 @@ const Contact = ({}) => {
     if (!showMap) {
       setTimeout(() => setShowMap(true), 2000);
     }
-  }, [showMap || visible]);
+  }, [showMap]);
   return (
     <>
       {showMap && (
@@ -607,7 +607,7 @@ const PageWrap = ({ title, index, children }) => {
   useEffect(() => {
     const visible = intersection && intersection.intersectionRatio >= 1;
     if (visible) setCurrent(index);
-  }, [intersection]);
+  }, [index, intersection, setCurrent]);
   return (
     <div
       ref={intersectionRef}
@@ -706,7 +706,7 @@ const Loading = ({ children }) => {
   const [index, set] = useState(0);
   useEffect(() => {
     setTimeout(() => toggle(true), 200);
-    setTimeout(() => set(1), 200);
+    setTimeout(() => set(1), 1000);
   }, []);
   const transitions = useTransition(index, (p) => p, {
     from: {
@@ -767,7 +767,9 @@ function Portfolio() {
   useEffect(() => {
     setE(
       <div
-        style={{ background: "var(--background-rich)" }}
+        style={{
+          background: "var(--background-rich)",
+        }}
         className=" w-full h-full relative flex items-start cursor-default"
       >
         <Loading>
