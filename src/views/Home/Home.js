@@ -1,5 +1,8 @@
+import useCache from "modules/cache/useCache";
+import UseHook from "modules/hook";
 import { Transition } from "modules/localstrings";
 import React from "react";
+import * as serviceWorker from "serviceWorker";
 import Link from "../../modules/navigation/Link";
 import styles from "./Home.module.scss";
 const Home = () => (
@@ -28,29 +31,29 @@ const Home = () => (
       {[
         <Link
           to="/github"
-          className="background-rich text-2xl font-bold text-center uppercase text-gray-500"
+          className="background-rich text-2xl font-bold text-center uppercase text-gray-500 col-span-2 sm:col-span-1"
         >
           Github
         </Link>,
         <Link
           to="/covid"
-          className="background-rich text-2xl font-bold text-center uppercase text-gray-500"
+          className="background-rich text-2xl font-bold text-center uppercase text-gray-500 col-span-2 sm:col-span-1"
         >
           covid visualizer
         </Link>,
         <Link
           to="/periodic-table"
-          className="background-rich text-2xl font-bold text-center uppercase text-gray-500"
+          className="background-rich text-2xl font-bold text-center uppercase text-gray-500 col-span-2 sm:col-span-1"
         >
           Periodic Table
         </Link>,
         <Link
           to="/portfolio"
-          className="background-rich text-2xl font-bold text-center uppercase text-gray-500"
+          className="background-rich text-2xl font-bold text-center uppercase text-gray-500 col-span-2 sm:col-span-1"
         >
           portfolio
         </Link>,
-        <div className="background-rich text-2xl font-bold text-center uppercase text-gray-500"></div>,
+        <div className="background-rich text-2xl font-bold text-center uppercase text-gray-500 col-span-2 sm:col-span-1"></div>,
         <div className="background p-6 col-span-2 sm:col-span-1 order-first md:order-none flex justify-center items-center">
           <div className="flex flex-col justify-center items-center">
             <img
@@ -130,18 +133,55 @@ const Home = () => (
               ].map((e, i) =>
                 React.cloneElement(e, {
                   ...e.props,
+                  key: i,
                   className: `btn ${styles.cta} ${e.props.className}`,
                 })
               )}
             </div>
           </div>
         </div>,
-        <div className="background-rich text-2xl font-bold text-center uppercase text-gray-500"></div>,
-        <div className="background-rich text-2xl font-bold text-center uppercase text-gray-500"></div>,
-        <div className="background-rich text-2xl font-bold text-center uppercase text-gray-500"></div>,
+        <div className="background-rich text-2xl font-bold text-center uppercase text-gray-500 col-span-2 sm:col-span-1"></div>,
+        <div className="background-rich text-2xl font-bold text-center uppercase text-gray-500 col-span-2 sm:col-span-1"></div>,
+        <div className="background-rich text-2xl font-bold text-center uppercase text-gray-500 col-span-2 sm:col-span-1">
+          <UseHook
+            hook={useCache}
+            deps={[
+              "app",
+              {
+                lastedVersion: "xxxxxx",
+                currentVersion: "xxxxxx",
+              },
+            ]}
+          >
+            {([value]) => (
+              <div className="flex flex-col items-center justify-center">
+                <div className="text-lg">build number:</div>
+                {value.currentVersion}
+                {value.lastedVersion &&
+                  "" + value.currentVersion !== "" + value.lastedVersion && (
+                    <div
+                      onClick={() => {
+                        serviceWorker.unregister();
+                        window.location.reload();
+                      }}
+                      className="text-lg text-blue-500 underline cursor-pointer"
+                    >
+                      update ({value.lastedVersion})
+                    </div>
+                  )}
+                <label
+                  htmlFor="pageMark"
+                  className="text-lg text-blue-500 underline cursor-pointer"
+                >
+                  detail
+                </label>
+              </div>
+            )}
+          </UseHook>
+        </div>,
         <label
           htmlFor="theme"
-          className="background-rich  text-2xl font-bold text-center uppercase text-gray-500"
+          className="background-rich text-2xl font-bold text-center uppercase text-gray-500 col-span-2 sm:col-span-1"
         >
           <svg
             stroke="currentColor"
@@ -157,14 +197,15 @@ const Home = () => (
         </label>,
         <label
           htmlFor="home2"
-          className="background-rich text-2xl font-bold text-center uppercase text-gray-500"
+          className="background-rich text-2xl font-bold text-center uppercase text-gray-500 col-span-2 sm:col-span-1"
         >
           home layout 2
         </label>,
       ].map((e, i) =>
         React.cloneElement(e, {
           ...e.props,
-          className: `${styles.child} ${e.props.className}`,
+          key: i,
+          className: `${styles.child} p-6 ${e.props.className}`,
           children: e.props.children || i,
         })
       )}

@@ -132,6 +132,17 @@ header {
       display: none;
     }
   }
+  .layout > *:first-child {
+    left: var(--header-width);
+    visibility: visible;
+    & > *:first-child {
+      display: none;
+    }
+  }
+
+  [for="openLeft"] {
+    display: none;
+  }
   #openLeft:checked ~ .layout > *:nth-child(2),
   .layout > *:nth-child(2) {
     margin-left: calc(var(--siderLeft-width));
@@ -189,5 +200,6 @@ header {
     filter: none;
     overflow: auto;
     pointer-events: auto;
+    margin-right: calc(var(--siderLeft-width));
   }
 }

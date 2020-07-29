@@ -5,64 +5,71 @@ import React, {
   useRef,
   useState,
 } from "react";
-const CacheContext = React.createContext({});
-const ListennerContext = React.createContext({});
-const UpdateCachesContext = React.createContext(() => {
-  console.error("not set func!");
+export const CacheContext = React.createContext({});
+
+export const createStore = ({ initialValue = {} }) => {
+  const state = initialValue;
+  const getState = (store) => store.state;
+  const addListenner = (listenner, store) => {
+    const id = store.lastedId++;
+    store.listenners[id] = listenner;
+    return () => delete store.listenners[id];
+  };
+  const handleUpdate = (key, value, store) => {
+    store.state.update = Date.now();
+    store.state[key] = value;
+    Object.values(store.listenners).map((cb) => {
+      return cb(store);
+    });
+  };
+  const store = {
+    lastedId: 0,
+    state,
+    listenners: {},
+  };
+  store.getState = () => getState(store);
+  store.addListenner = (listenner) => addListenner(listenner, store);
+  store.handleUpdate = (key, value) => {
+    handleUpdate(key, value, store);
+  };
+
+  return store;
+};
+const defaultStore = createStore({});
+defaultStore.addListenner(() => {
+  console.log("defaultStore", defaultStore);
 });
-export const CacheProvider = ({ initialVale = {}, children }) => {
-  const uIdRef = useRef(0);
-  const listennersRef = useRef({});
-  const cachesRef = useRef(initialVale);
-  const [update, setUpdate] = useState(initialVale);
-  const handleListenner = useCallback((cb) => {
-    uIdRef.current = uIdRef.current + 1;
-    listennersRef.current[uIdRef.current] = cb;
-    cb(cachesRef.current);
-    return () => delete listennersRef.current[uIdRef.current];
-  }, []);
-  const handleUpdate = useCallback((key, value) => {
-    cachesRef.current[key] = value;
-    setUpdate(Date.now());
-  }, []);
-  useEffect(() => {
-    Object.values(listennersRef.current).map((cb) => cb(cachesRef.current));
-  }, [update]);
-  console.log({
-    update,
-    caches: cachesRef.current,
-  });
-  return (
-    <CacheContext.Provider value={cachesRef.current}>
-      <ListennerContext.Provider value={handleListenner}>
-        <UpdateCachesContext.Provider value={handleUpdate}>
-          {children}
-        </UpdateCachesContext.Provider>
-      </ListennerContext.Provider>
-    </CacheContext.Provider>
-  );
+window.store = defaultStore;
+export const CacheProvider = ({
+  initialStore,
+  initialValue = {},
+  Context = CacheContext,
+  children,
+}) => {
+  const store = useRef(initialStore || defaultStore);
+  return <Context.Provider value={store.current}>{children}</Context.Provider>;
 };
 export const CacheConsumer = CacheContext.Consumer;
-// const caches = {};
 const useCache = (key = "", initialValue) => {
-  const caches = useContext(CacheContext);
-  const [value, setValue] = useState(caches[key] || initialValue);
-  const listenner = useContext(ListennerContext);
-  const updateCaches = useContext(UpdateCachesContext);
+  const store = useContext(CacheContext);
+  const [value, setValue] = useState(store.state[key] || initialValue);
   useEffect(() => {
-    const cb = (caches) => setValue(caches[key]);
-    const unLisenner = listenner(cb);
-    return () => {
-      unLisenner();
+    const cb = (store) => {
+      setValue(store.state[key]);
     };
-  }, [setValue, key, listenner]);
-  return [
-    value || initialValue,
-    useCallback((value) => updateCaches(key, value), [key, updateCaches]),
-  ];
+    return store.addListenner(cb);
+  }, [store, key, setValue]);
+  const handleSetValue = useCallback(
+    (value) => {
+      store.handleUpdate(key, value);
+    },
+    [store, key]
+  );
+  return [value, handleSetValue];
 };
 export const useCacheSet = (key) => {
-  const handleUpdate = useContext(UpdateCachesContext);
+  const store = useContext(CacheContext);
+  const { handleUpdate } = store;
   return React.useCallback((value) => handleUpdate(key, value), [
     key,
     handleUpdate,

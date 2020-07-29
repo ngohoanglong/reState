@@ -1,3 +1,4 @@
+import ServiceWorker from "components/ServiceWorker";
 import LocalStringsProvider from "modules/localstrings";
 import React from "react";
 import { CacheProvider } from "./modules/cache/useCache";
@@ -10,10 +11,10 @@ import PeriodicTable from "./views/PeriodicTable/PeriodicTable.lazy";
 import Portfolio from "./views/Portfolio/Portfolio.lazy";
 const Switch = ({ children }) => {
   const [location] = useLocation();
+  console.log({ location });
   const element = children.find((child) => {
     return location && location.includes(child.props.path);
   });
-  console.log(location, element);
   if (!element) return null;
   return element;
 };
@@ -30,13 +31,13 @@ const routes = (
   </Switch>
 );
 
-export default function App() {
+export default function App({ store }) {
   return (
-    <CacheProvider>
+    <CacheProvider initialStore={store}>
       <LocalStringsProvider>
-        <LocationSubscriber />
-        {routes}
+        <LocationSubscriber>{routes}</LocationSubscriber>
       </LocalStringsProvider>
+      <ServiceWorker />
     </CacheProvider>
   );
 }

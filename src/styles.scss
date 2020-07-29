@@ -29,7 +29,7 @@
 html {
   font-size: var(--responsive);
 }
-#theme:checked + #root {
+#theme:checked ~ #root {
   --text-color-normal: hsl(0, 0%, 93%);
   --text-color-light: hsl(210, 15%, 35%);
   --text-color-rich: hsl(209, 55%, 83%);

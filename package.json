@@ -27,13 +27,13 @@
     "tailwindcss": "^1.4.6"
   },
   "scripts": {
+    "prebuild": "node generate-build-id.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "postbuild": "react-snap",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "deploy": "yarn build && firebase deploy",
-    "deploy:github": "yarn build && gh-pages -d build",
+    "deploy": "yarn build && react-snap && firebase deploy",
+    "deploy:github": "yarn build && &&  gh-pages -d build",
     "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "browserslist": [
