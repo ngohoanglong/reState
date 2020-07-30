@@ -256,8 +256,10 @@ const Content = () => {
   const [selectCountry] = useCache(selectedCountryName);
   const [data, setData] = useCache(repolistname);
   const [select, setSelected] = useState(0);
+  const days = React.useMemo(() => {
+    return [...(data || { days: [] }).days].reverse();
+  }, [data]);
   if (!data || !data.update) return null;
-  const days = data.days.reverse();
   const selectDate = days[select];
   const countryData = selectCountry
     ? data.groupByCountry[selectCountry]

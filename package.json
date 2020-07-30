@@ -34,7 +34,7 @@
     "eject": "react-scripts eject",
     "deploy": "yarn build && react-snap && firebase deploy",
     "deploy:github": "yarn build && &&  gh-pages -d build",
-    "analyze": "source-map-explorer 'build/static/js/*.js'"
+    "analyze": "source-map-explorer 'build/static/js/*.js' --html build/result.html"
   },
   "browserslist": [
     ">0.2%",
