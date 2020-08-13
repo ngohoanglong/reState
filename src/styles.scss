@@ -47,35 +47,6 @@ html {
 
 .btn {
   position: relative;
-  // color: var(--text-color-richer);
-  // overflow: hidden;
-  // transform: translate3d(0, 0, 0);
-  // &:after {
-  //   content: '';
-  //   display: block;
-  //   position: absolute;
-  //   width: 100%;
-  //   height: 100%;
-  //   top: 0;
-  //   left: 0;
-  //   pointer-events: none;
-  //   background-image: radial-gradient(
-  //     circle,
-  //     currentColor 10%,
-  //     transparent 10.01%
-  //   );
-  //   background-repeat: no-repeat;
-  //   background-position: 50%;
-  //   transform: scale3d(5, 5,5);
-  //   opacity: 0;
-  //   transition: transform 0.25s,
-  //     opacity 1s;
-  // }
-  // &:active:after {
-  //   transform: scale(0, 0);
-  //   opacity: 0.2;
-  //   transition: 0s;
-  // }
   &:before {
     position: absolute;
     top: -0.2em;
@@ -90,7 +61,7 @@ html {
   }
   &:hover:before {
     background: currentColor;
-    opacity: 0.05;
+    opacity: 0.2;
   }
   &:active:before {
     transform: scale(1);
@@ -98,7 +69,9 @@ html {
     animation-duration: 0.5s;
   }
 }
-
+.btn:focus {
+  outline: none;
+}
 .text-color {
   color: var(--text-color-normal);
 }

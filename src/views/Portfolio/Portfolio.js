@@ -424,7 +424,8 @@ const Contact = ({}) => {
             overflow: "hidden",
             width: "100%",
             height: "100%",
-            backdropFilter: "grayscale(1)",
+            // backdropFilter:
+            //   'grayscale(1)',
             background: "#0000008c",
             boxShadow: "inset 0 0 10px #000000",
           }}
@@ -616,84 +617,88 @@ const PageWrap = ({ title, index, children }) => {
       }}
       className="w-full  h-full flex-col flex px-4 absolute top-0 left-0"
     >
-      <div
-        style={{
-          paddingTop: 50,
-        }}
-        className="relative "
-      >
-        <div className="flex absolute top-0 left-0 justify-center right-0 z-50">
-          {array.map((value, y) => (
-            <div
-              style={{
-                height: 50,
-                width: 80,
-              }}
-              className="font-bold flex justify-center items-center"
-              key={value}
-            >
-              {y === index ? (
-                <a
-                  href={`#${value}`}
-                  className="jsCode"
-                  style={{
-                    fontSize: "1.2em",
-                    fontWeight: "bold",
-                    opacity: 1,
-                  }}
-                >
-                  {value}
-                  <span className="jsCode">.js</span>
-                </a>
-              ) : (
-                <a
-                  href={`#${value}`}
-                  className="jsCode"
-                  style={{
-                    fontSize: "1.2em",
-                    fontWeight: "bold",
-                  }}
-                >
-                  {value}
-                  <span className="jsCode">.js</span>
-                </a>
-              )}
-            </div>
-          ))}
-        </div>
-        <div className="jsCode ">const</div>
-        <div className="pl-4">
-          <span
+      {index === current && (
+        <>
+          <div
             style={{
-              opacity: 1,
-              fontSize: "1em",
+              paddingTop: 50,
             }}
-            className="font-bold jsCode capitalize"
+            className="relative "
           >
-            {title}{" "}
-          </span>
-          <span className="jsCode ">( )</span>
-        </div>
-      </div>
-      {
-        <div className="flex-1 flex flex-col justify-center">
-          <div className="jsCode ">{"{"}</div>
-          <div className="jsCode pl-4">return</div>
-          {current === index && children}
-          <div className="jsCode ">{"}"}</div>
-        </div>
-      }
-      <div className="">
-        <span className="jsCode">export default </span>
-        <span
-          className="jsCode capitalize"
-          style={{
-            opacity: 1,
-          }}
-        >
-          {title}
-        </span>
-      </div>
+            <div className="flex absolute top-0 left-0 justify-center right-0 z-50">
+              {array.map((value, y) => (
+                <div
+                  style={{
+                    height: 50,
+                    width: 80,
+                  }}
+                  className="font-bold flex justify-center items-center"
+                  key={value}
+                >
+                  {y === index ? (
+                    <a
+                      href={`#${value}`}
+                      className="jsCode"
+                      style={{
+                        fontSize: "1.2em",
+                        fontWeight: "bold",
+                        opacity: 1,
+                      }}
+                    >
+                      {value}
+                      <span className="jsCode">.js</span>
+                    </a>
+                  ) : (
+                    <a
+                      href={`#${value}`}
+                      className="jsCode"
+                      style={{
+                        fontSize: "1.2em",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {value}
+                      <span className="jsCode">.js</span>
+                    </a>
+                  )}
+                </div>
+              ))}
+            </div>
+            <div className="jsCode ">const</div>
+            <div className="pl-4">
+              <span
+                style={{
+                  opacity: 1,
+                  fontSize: "1em",
+                }}
+                className="font-bold jsCode capitalize"
+              >
+                {title}{" "}
+              </span>
+              <span className="jsCode ">( )</span>
+            </div>
+          </div>
+          {
+            <div className="flex-1 flex flex-col justify-center">
+              <div className="jsCode ">{"{"}</div>
+              <div className="jsCode pl-4">return</div>
+              {current === index && children}
+              <div className="jsCode ">{"}"}</div>
+            </div>
+          }
+          <div className="">
+            <span className="jsCode">export default </span>
+            <span
+              className="jsCode capitalize"
+              style={{
+                opacity: 1,
+              }}
+            >
+              {title}
+            </span>
+          </div>
+        </>
+      )}
     </div>
   );
 };
@@ -706,7 +711,7 @@ const Loading = ({ children }) => {
   const [index, set] = useState(0);
   useEffect(() => {
     setTimeout(() => toggle(true), 200);
-    setTimeout(() => set(1), 1000);
+    setTimeout(() => set(1), 1400);
   }, []);
   const transitions = useTransition(index, (p) => p, {
     from: {
@@ -729,7 +734,7 @@ const Loading = ({ children }) => {
             <animated.div
               style={{
                 width: props.width.interpolate((x) => `${100 - x.toFixed(0)}%`),
-                backdropFilter: `grayscale(1)`,
+                // backdropFilter: `grayscale(1)`,
               }}
               class="absolute z-10 top-0 right-0 font-bold  h-full flex justify-center items-center text-color"
             ></animated.div>
@@ -749,20 +754,6 @@ const Loading = ({ children }) => {
 
 function Portfolio() {
   const horizontalScrollerRef = useRef();
-  useScroll(window, (e) => {
-    requestAnimationFrame(() => {
-      if (horizontalScrollerRef.current) {
-        const percent =
-          e.srcElement.scrollingElement.scrollTop /
-          e.srcElement.scrollingElement.scrollHeight;
-        horizontalScrollerRef.current.scrollLeft =
-          percent * horizontalScrollerRef.current.scrollWidth;
-      }
-    });
-  });
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
   const [e, setE] = useState();
   useEffect(() => {
     setE(

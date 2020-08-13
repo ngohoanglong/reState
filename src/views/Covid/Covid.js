@@ -380,7 +380,7 @@ const Content = () => {
                                             onClick={() =>
                                               setCurrentTab("new cases")
                                             }
-                                            className="px-3 btn text-white bg-gray-500 py-1 rounded-lg font-bold text-sm"
+                                            className="px-3 btn bg-white text-gray-500 py-1 rounded-lg font-bold text-sm"
                                           >
                                             new cases
                                           </button>
@@ -388,7 +388,7 @@ const Content = () => {
                                             onClick={() =>
                                               setCurrentTab("current cases")
                                             }
-                                            className="px-3 btn text-white bg-blue-500 py-1 rounded-lg font-bold text-sm"
+                                            className="px-3 btn bg-white text-blue-500 py-1 rounded-lg font-bold text-sm"
                                           >
                                             current cases
                                           </button>
@@ -396,7 +396,7 @@ const Content = () => {
                                             onClick={() =>
                                               setCurrentTab("new deaths")
                                             }
-                                            className="px-3 btn  text-white bg-green-500 py-1 rounded-lg font-bold text-sm"
+                                            className="px-3 btn bg-white  text-green-500 py-1 rounded-lg font-bold text-sm"
                                           >
                                             new deaths
                                           </button>
@@ -404,7 +404,7 @@ const Content = () => {
                                             onClick={() =>
                                               setCurrentTab("current deaths")
                                             }
-                                            className="px-3 btn text-white bg-orange-500 py-1 rounded-lg font-bold text-sm"
+                                            className="px-3 btn bg-white  text-orange-500 py-1 rounded-lg font-bold text-sm"
                                           >
                                             current deaths
                                           </button>
@@ -426,8 +426,8 @@ const Content = () => {
                                           })(currentTab)}
                                           width={width - 24}
                                           height={300}
-                                          data={countryData
-                                            .map((row) => ({
+                                          data={[
+                                            ...countryData.map((row) => ({
                                               name: new Date(
                                                 Number(row[0])
                                               ).toLocaleDateString(),
@@ -435,8 +435,8 @@ const Content = () => {
                                               "current cases": row[6],
                                               "new deaths": row[3],
                                               "current deaths": row[4],
-                                            }))
-                                            .reverse()}
+                                            })),
+                                          ].reverse()}
                                           margin={{
                                             top: 5,
                                             right: 30,

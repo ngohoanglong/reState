@@ -70,7 +70,7 @@ const RepoList = () => {
           return true;
         }}
         className="block w-full  m-2 py-2 border-b border-transparent border-b-4 focus:border-gray-300 outline-none bg-transparent"
-        placeholder="Search..."
+        placeholder="Search...(press ENTER)"
       />
       {loading && (
         <div className="text-gray-500 text-center font-bold">loading</div>
@@ -137,27 +137,32 @@ const Repodetail = () => {
   }, [currentRepo, setContent]);
   return (
     <>
-      <nav className="bg-grey-light p-3 py-6 rounded font-sans">
-        <ol className="list-reset flex text-grey-dark">
-          <li>
-            <a href="#" className="text-gray-500 font-bold">
-              Github
-            </a>
-          </li>
-          <li>
-            <span className="mx-2 text-gray-400">/</span>
-          </li>
-          <li>
-            <a href="#" className="text-gray-500 font-bold">
-              {currentRepo ? currentRepo.full_name : "Me"}
-            </a>
-          </li>
-        </ol>
+      <nav className="bg-grey-light rounded font-sans">
+        <div className="list-reset pb-3 text-sm flex text-gray-500 space-x-3">
+          <a href="#" className=" font-bold">
+            {currentRepo ? currentRepo.full_name : "Me"}
+          </a>
+          <span className="text-xl btn rounded-full cursor-pointer">
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              version="1.2"
+              baseProfile="tiny"
+              viewBox="0 0 24 24"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M9.362 9.158l-5.268.584c-.19.023-.358.15-.421.343s0 .394.14.521c1.566 1.429 3.919 3.569 3.919 3.569-.002 0-.646 3.113-1.074 5.19-.036.188.032.387.196.506.163.119.373.121.538.028 1.844-1.048 4.606-2.624 4.606-2.624l4.604 2.625c.168.092.378.09.541-.029.164-.119.232-.318.195-.505l-1.071-5.191 3.919-3.566c.14-.131.202-.332.14-.524s-.23-.319-.42-.341c-2.108-.236-5.269-.586-5.269-.586l-2.183-4.83c-.082-.173-.254-.294-.456-.294s-.375.122-.453.294l-2.183 4.83z"></path>
+            </svg>
+          </span>
+        </div>
       </nav>
       {(content && (
         <ReactMarkdown
           escapeHtml={false}
-          className="markdown-body max-w-lg mx-auto"
+          className="markdown-body max-w-lg "
           source={content}
         />
       )) ||

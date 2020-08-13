@@ -35,3 +35,7 @@ yarn-error.log*
 /package-lock.json
 
 /src/envs/buildId.js
+
+#firebase
+/.firebase
+.firebaserc

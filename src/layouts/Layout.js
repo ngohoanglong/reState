@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import "rmc-pull-to-refresh/assets/index.css";
 import Header from "./Layout.Header";
 import "./Layout.scss";
 export function Layout({ left, mid, right, header }) {
