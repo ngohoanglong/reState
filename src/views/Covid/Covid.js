@@ -9,7 +9,6 @@ import React, {
 import {
   Bar,
   BarChart,
-  Brush,
   CartesianGrid,
   ReferenceLine,
   Tooltip,
@@ -268,7 +267,7 @@ const Content = () => {
     countryData.find((item) => Number(item[0]) === Number(selectDate)) || [];
   return (
     <>
-      <div className="p-3 w-full  max-w-md lg:w-1/2 space-y-3 relative z-10 pointer-events-none">
+      <div className="absolute top-0 left-0 w-full h-full flex flex-col  w-full space-y-3  z-10 pointer-events-none">
         <div className="p-3 w-full z-10 flex items-center sticky top-0 background pointer-events-auto">
           {selectCountry ? (
             <div className="text-color text-3xl font-bold flex items-center flex-1">
@@ -309,106 +308,137 @@ const Content = () => {
             ))}
           </select>
         </div>
-        <section className="body-font pointer-events-auto">
-          <div className="container mx-auto">
-            <div className="grid grid-cols-2 gap-2 text-center">
-              <div className="col-span-1 ">
-                <div className="shadow background-rich p-3 rounded-lg">
-                  <div className="text-4xl">
-                    <span aria-label="death" role="img">
-                      ⚰️
-                    </span>
-                  </div>
-                  <p className="leading-relaxed">cases</p>
-                  <h2 className="title-font text-lg font-medium md:text-3xl ">
-                    {Number(cases || 0).toLocaleString()}
-                  </h2>
-
-                  <div className="leading-relaxed text-sm">
-                    <span aria-label="sick" role="img">
-                      🔺
-                    </span>{" "}
-                    {Number(newCases || 0).toLocaleString()}
-                  </div>
-                </div>
+        {/* <div className="p-3 flex items-center">
+          <div className="col-span-1 ">
+            <div className="shadow background-rich p-3 rounded-lg">
+              <div className="text-4xl">
+                <span
+                  aria-label="death"
+                  role="img">
+                  ⚰️
+                </span>
               </div>
-              <div className="col-span-1 ">
-                <div className="shadow background-rich p-3 rounded-lg">
-                  <div className="text-4xl">
-                    <span aria-label="sick" role="img">
-                      🤢
-                    </span>
-                  </div>
-                  <p className="leading-relaxed">deaths</p>
-                  <h2 className="title-font text-lg font-medium md:text-3xl ">
-                    {Number(deaths || 0).toLocaleString()}
-                  </h2>
+              <p className="leading-relaxed">
+                cases
+              </p>
+              <h2 className="title-font text-lg font-medium md:text-3xl ">
+                {Number(
+                  cases || 0
+                ).toLocaleString()}
+              </h2>
 
-                  <div className="leading-relaxed text-sm">
-                    <span aria-label="sick" role="img">
-                      🔺
-                    </span>{" "}
-                    {Number(newDeaths || 0).toLocaleString()}
-                  </div>
-                </div>
+              <div className="leading-relaxed text-sm">
+                <span
+                  aria-label="sick"
+                  role="img">
+                  🔺
+                </span>{' '}
+                {Number(
+                  newCases || 0
+                ).toLocaleString()}
               </div>
-              {countryData && (
-                <UseHook
-                  hook={useMemo}
-                  deps={[
-                    () => (
-                      <UseHook hook={useState} deps={["new cases"]}>
-                        {([currentTab, setCurrentTab]) => {
-                          return (
-                            <UseHook hook={useRef}>
-                              {(ref) => (
-                                <UseHook hook={useSize} deps={[ref.current]}>
-                                  {({ width }) => {
-                                    return (
+            </div>
+          </div>
+          <div className="col-span-1 ">
+            <div className="shadow background-rich p-3 rounded-lg">
+              <div className="text-4xl">
+                <span
+                  aria-label="sick"
+                  role="img">
+                  🤢
+                </span>
+              </div>
+              <p className="leading-relaxed">
+                deaths
+              </p>
+              <h2 className="title-font text-lg font-medium md:text-3xl ">
+                {Number(
+                  deaths || 0
+                ).toLocaleString()}
+              </h2>
+
+              <div className="leading-relaxed text-sm">
+                <span
+                  aria-label="sick"
+                  role="img">
+                  🔺
+                </span>{' '}
+                {Number(
+                  newDeaths || 0
+                ).toLocaleString()}
+              </div>
+            </div>
+          </div>
+        </div> */}
+        <div className="flex-1 relative"></div>
+        <section className="body-font pointer-events-auto p-2 relative overflow-hidden">
+          <div className="absolute top-0 shadow background-rich left-0 right-0 bottom-0 opacity-75"></div>
+          <div className="grid grid-cols-2 gap-2 text-center">
+            {countryData && (
+              <UseHook
+                hook={useMemo}
+                deps={[
+                  () => (
+                    <UseHook hook={useState} deps={["new cases"]}>
+                      {([currentTab, setCurrentTab]) => {
+                        return (
+                          <UseHook hook={useRef}>
+                            {(ref) => (
+                              <UseHook hook={useSize} deps={[ref.current]}>
+                                {({ width }) => {
+                                  return (
+                                    <div
+                                      ref={ref}
+                                      className="col-span-2 overflow-auto w-full  rounded-lg flex flex-col item-center py-3 "
+                                    >
+                                      <style>
+                                        {`.recharts-text.recharts-cartesian-axis-tick-value,.recharts-layer.recharts-brush-texts {font-size:0.7rem;font-weight:bold}`}
+                                      </style>
                                       <div
-                                        ref={ref}
                                         style={{
                                           padding: "12px",
                                         }}
-                                        className="col-span-2 overflow-auto w-full shadow background-rich rounded-lg flex flex-col item-center py-3 "
+                                        className="pt-1 pb-3 space-x-3 w-full flex justify-start"
                                       >
-                                        <style>
-                                          {`.recharts-text.recharts-cartesian-axis-tick-value,.recharts-layer.recharts-brush-texts {font-size:0.7rem;font-weight:bold}`}
-                                        </style>
-                                        <div className="pt-1 pb-3 space-x-3 w-full flex justify-start">
-                                          <button
-                                            onClick={() =>
-                                              setCurrentTab("new cases")
-                                            }
-                                            className="px-3 btn bg-white text-gray-500 py-1 rounded-lg font-bold text-sm"
-                                          >
-                                            new cases
-                                          </button>
-                                          <button
-                                            onClick={() =>
-                                              setCurrentTab("current cases")
-                                            }
-                                            className="px-3 btn bg-white text-blue-500 py-1 rounded-lg font-bold text-sm"
-                                          >
-                                            current cases
-                                          </button>
-                                          <button
-                                            onClick={() =>
-                                              setCurrentTab("new deaths")
-                                            }
-                                            className="px-3 btn bg-white  text-green-500 py-1 rounded-lg font-bold text-sm"
-                                          >
-                                            new deaths
-                                          </button>
-                                          <button
-                                            onClick={() =>
-                                              setCurrentTab("current deaths")
-                                            }
-                                            className="px-3 btn bg-white  text-orange-500 py-1 rounded-lg font-bold text-sm"
-                                          >
-                                            current deaths
-                                          </button>
-                                        </div>
+                                        <button
+                                          onClick={() =>
+                                            setCurrentTab("new cases")
+                                          }
+                                          className="px-3 btn bg-white text-gray-500 py-1 rounded-lg font-bold text-sm"
+                                        >
+                                          new cases
+                                        </button>
+                                        <button
+                                          onClick={() =>
+                                            setCurrentTab("current cases")
+                                          }
+                                          className="px-3 btn bg-white text-blue-500 py-1 rounded-lg font-bold text-sm"
+                                        >
+                                          current cases
+                                        </button>
+                                        <button
+                                          onClick={() =>
+                                            setCurrentTab("new deaths")
+                                          }
+                                          className="px-3 btn bg-white  text-green-500 py-1 rounded-lg font-bold text-sm"
+                                        >
+                                          new deaths
+                                        </button>
+                                        <button
+                                          onClick={() =>
+                                            setCurrentTab("current deaths")
+                                          }
+                                          className="px-3 btn bg-white  text-orange-500 py-1 rounded-lg font-bold text-sm"
+                                        >
+                                          current deaths
+                                        </button>
+                                      </div>
+                                      <div
+                                        className="w-full"
+                                        style={{
+                                          height: 300,
+                                        }}
+                                      >
                                         <BarChart
                                           className={((currentTab) => {
                                             switch (currentTab) {
@@ -450,38 +480,40 @@ const Content = () => {
                                             // tick={
                                             //   false
                                             // }
+                                            tickLine={false}
+                                            padding={{
+                                              left: 30,
+                                            }}
                                           />
-                                          <YAxis width={30} />
+                                          <YAxis
+                                            orientation="right"
+                                            width={30}
+                                            tickLine={false}
+                                          />
                                           <Tooltip />
                                           <ReferenceLine y={0} stroke="#000" />
-                                          <Brush
-                                            dataKey="name"
-                                            height={30}
-                                            gap={7}
-                                            stroke="currentColor"
-                                          />
                                           <Bar
                                             dataKey={currentTab}
                                             fill="currentColor"
                                           />
                                         </BarChart>
                                       </div>
-                                    );
-                                  }}
-                                </UseHook>
-                              )}
-                            </UseHook>
-                          );
-                        }}
-                      </UseHook>
-                    ),
-                    [countryData],
-                  ]}
-                >
-                  {(e) => e}
-                </UseHook>
-              )}
-            </div>
+                                    </div>
+                                  );
+                                }}
+                              </UseHook>
+                            )}
+                          </UseHook>
+                        );
+                      }}
+                    </UseHook>
+                  ),
+                  [countryData],
+                ]}
+              >
+                {(e) => e}
+              </UseHook>
+            )}
           </div>
         </section>
       </div>

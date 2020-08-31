@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import Link from "../../modules/navigation/Link";
-
 import {
+  categoryClasses,
   categoryColors,
   normalizePeriodicTableJSON,
 } from "./PeriodicTableJSON";
@@ -199,15 +199,7 @@ const PeriodicTable = ({ onChange = () => null }) => {
                                 }
                               }}
                               onMouseEnter={() => setCurrent(poss)}
-                              className={`cursor-pointer border border-${
-                                categoryColors[element.category]
-                              }-300 text-${
-                                categoryColors[element.category]
-                              }-700 text-center justify-center w-full  bg-${
-                                categoryColors[element.category]
-                              }-200 hover:bg-${
-                                categoryColors[element.category]
-                              }-300  flex flex-col items-center h-full absolute top-0 left-0`}
+                              className={categoryClasses[element.category]}
                             >
                               <div
                                 style={{

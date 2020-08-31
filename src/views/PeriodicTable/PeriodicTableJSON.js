@@ -4008,4 +4008,16 @@ export const categoryColors = {
   lanthanide: "purple",
   actinide: "pink",
 };
+export const categoryClasses = {
+  "diatomic nonmetal": `cursor-pointer border border-red-300 text-red-700 text-center justify-center w-full  bg-red-200 hover:bg-red-300  flex flex-col items-center h-full absolute top-0 left-0`,
+  "noble gas": `cursor-pointer border border-orange-300 text-orange-700 text-center justify-center w-full  bg-orange-200 hover:bg-orange-300  flex flex-col items-center h-full absolute top-0 left-0`,
+  "alkali metal": `cursor-pointer border border-yellow-300 text-yellow-700 text-center justify-center w-full  bg-yellow-200 hover:bg-yellow-300  flex flex-col items-center h-full absolute top-0 left-0`,
+  "alkaline earth metal": `cursor-pointer border border-indigo-300 text-indigo-700 text-center justify-center w-full  bg-indigo-200 hover:bg-indigo-300  flex flex-col items-center h-full absolute top-0 left-0`,
+  metalloid: `cursor-pointer border border-gray-300 text-gray-700 text-center justify-center w-full  bg-gray-200 hover:bg-gray-300  flex flex-col items-center h-full absolute top-0 left-0`,
+  "polyatomic nonmetal": `cursor-pointer border border-green-300 text-green-700 text-center justify-center w-full  bg-green-200 hover:bg-green-300  flex flex-col items-center h-full absolute top-0 left-0`,
+  "post transition metal": `cursor-pointer border border-teal-300 text-teal-700 text-center justify-center w-full  bg-teal-200 hover:bg-teal-300  flex flex-col items-center h-full absolute top-0 left-0`,
+  "transition metal": `cursor-pointer border border-blue-300 text-blue-700 text-center justify-center w-full  bg-blue-200 hover:bg-blue-300  flex flex-col items-center h-full absolute top-0 left-0`,
+  lanthanide: `cursor-pointer border border-purple-300 text-purple-700 text-center justify-center w-full  bg-purple-200 hover:bg-purple-300  flex flex-col items-center h-full absolute top-0 left-0`,
+  actinide: `cursor-pointer border border-pink-300 text-pink-700 text-center justify-center w-full  bg-pink-200 hover:bg-pink-300  flex flex-col items-center h-full absolute top-0 left-0`,
+};
 export default PeriodicTableJSON;
