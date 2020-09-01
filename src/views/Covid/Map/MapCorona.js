@@ -21,6 +21,7 @@ function updateRange(featureCollection, accessor) {
     f.properties.danger = scale(value);
   });
 }
+
 export default class MapCorona extends PureComponent {
   state = {
     year: 2015,
@@ -46,29 +47,80 @@ export default class MapCorona extends PureComponent {
         this._loadData();
       });
     }
+    if (
+      prevProps.selectCountry !== this.props.selectCountry &&
+      this.props.selectCountry
+    ) {
+      setTimeout(() => {
+        const hoveredFeature =
+          this.features &&
+          this.features.find(
+            (f) => f.properties.country === this.props.selectCountry
+          );
+        console.log(hoveredFeature);
+        if (this.map && hoveredFeature) {
+          const { minX, maxX, minY, maxY } = hoveredFeature.geometry.coordinates
+            .flatMap((item) => {
+              if (hoveredFeature.geometry.type === "MultiPolygon")
+                return item.flatMap((item) => item);
+              return item;
+            })
+            .reduce(
+              (result, [x, y]) => {
+                result.minX = result.minX || x;
+                result.minX = x < result.minX ? x : result.minX;
+                result.minY = result.minY || y;
+                result.minY = y < result.minY ? y : result.minY;
+                result.maxX = result.maxX || x;
+                result.maxX = x > result.maxX ? x : result.maxX;
+                result.maxY = result.maxY || y;
+                result.maxY = y > result.maxY ? y : result.maxY;
+                return result;
+              },
+              {
+                minX: 0,
+                maxY: 0,
+                maxX: 0,
+                minY: 0,
+              }
+            );
+          console.log({
+            minX,
+            maxX,
+            minY,
+            maxY,
+          });
+          this.map.getMap().fitBounds([
+            [minX, maxY],
+            [maxX, minY],
+          ]);
+        }
+      });
+    }
   };
   _loadData = () => {
+    this.features = geodata.features.map((item) => {
+      const mappedItem =
+        (this.props.data || []).find((c) => {
+          const country = countryCodes[c["country"]];
+          if (!country) {
+            return false;
+          }
+          const isMapped = countryCodes[c["country"]].ISO_3_CODE === item.id;
+          return isMapped;
+        }) || {};
+      const newItem = {
+        ...item,
+        properties: {
+          ...item.properties,
+          ...mappedItem,
+        },
+      };
+      return newItem;
+    });
     const data = {
       ...geodata,
-      features: geodata.features.map((item) => {
-        const mappedItem =
-          (this.props.data || []).find((c) => {
-            const country = countryCodes[c["country"]];
-            if (!country) {
-              return false;
-            }
-            const isMapped = countryCodes[c["country"]].ISO_3_CODE === item.id;
-            return isMapped;
-          }) || {};
-        const newItem = {
-          ...item,
-          properties: {
-            ...item.properties,
-            ...mappedItem,
-          },
-        };
-        return newItem;
-      }),
+      features: this.features,
     };
     updateRange(data, (f) => f.properties["confirmedcases"]);
     this.setState({
@@ -120,45 +172,9 @@ export default class MapCorona extends PureComponent {
     const hoveredFeature =
       features && features.find((f) => f.layer.id === "data");
     console.log(hoveredFeature);
-    if (this.map && hoveredFeature) {
-      const { minX, maxX, minY, maxY } = hoveredFeature.geometry.coordinates
-        .flatMap((item) => {
-          if (hoveredFeature.geometry.type === "MultiPolygon")
-            return item.flatMap((item) => item);
-          return item;
-        })
-        .reduce(
-          (result, [x, y]) => {
-            result.minX = result.minX || x;
-            result.minX = x < result.minX ? x : result.minX;
-            result.minY = result.minY || y;
-            result.minY = y < result.minY ? y : result.minY;
-            result.maxX = result.maxX || x;
-            result.maxX = x > result.maxX ? x : result.maxX;
-            result.maxY = result.maxY || y;
-            result.maxY = y > result.maxY ? y : result.maxY;
-            return result;
-          },
-          {
-            minX: 0,
-            maxY: 0,
-            maxX: 0,
-            minY: 0,
-          }
-        );
-      console.log({
-        minX,
-        maxX,
-        minY,
-        maxY,
-      });
-      this.map.getMap().fitBounds([
-        [minX, maxY],
-        [maxX, minY],
-      ]);
-      if (this.props.onClick) {
-        this.props.onClick(hoveredFeature.properties.country);
-      }
+
+    if (this.props.onClick) {
+      this.props.onClick(hoveredFeature.properties.country);
     }
   };
   _renderTooltip() {

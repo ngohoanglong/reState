@@ -340,6 +340,7 @@ const Content = () => {
         <div className="flex-1 relative overflow-hidden z-20">
           <Map
             {...{
+              selectCountry,
               selectDate,
               data,
               onClick: setSelectCountry,
