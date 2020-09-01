@@ -13,7 +13,7 @@ export const dataLayer = {
         [4, "#a70000"],
       ],
     },
-    "fill-opacity": 0.8,
+    "fill-opacity": 0.7,
   },
 };
 export const highlightLayer = {
@@ -31,5 +31,7 @@ export const highlightLayer = {
       ],
     },
     "fill-opacity": 1,
+    "fill-antialias": true,
+    "fill-outline-color": "#a70000",
   },
 };

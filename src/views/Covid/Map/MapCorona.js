@@ -14,7 +14,7 @@ function updateRange(featureCollection, accessor) {
   const { features } = featureCollection;
   const scale = scaleQuantile()
     // .domain(features.map(accessor))
-    .domain([1, 100, 300, 5000, 5000])
+    .domain([1, 100, 10000, 100000, 1000000])
     .range(range(5));
   features.forEach((f) => {
     const value = accessor(f);
@@ -29,7 +29,7 @@ export default class MapCorona extends PureComponent {
     viewport: {
       latitude: 37.5776849568384,
       longitude: 112.292191181538,
-      zoom: 0,
+      zoom: 1,
       bearing: 0,
       pitch: 0,
     },
@@ -156,6 +156,9 @@ export default class MapCorona extends PureComponent {
         [minX, maxY],
         [maxX, minY],
       ]);
+      if (this.props.onClick) {
+        this.props.onClick(hoveredFeature.properties.country);
+      }
     }
   };
   _renderTooltip() {

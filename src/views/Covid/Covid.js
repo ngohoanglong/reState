@@ -252,7 +252,7 @@ const Content = () => {
   const ref = useRef(Date.now());
   const repolistname = useNamespace(namespace.data);
   const selectedCountryName = useNamespace(namespace.selectedCountry);
-  const [selectCountry] = useCache(selectedCountryName);
+  const [selectCountry, setSelectCountry] = useCache(selectedCountryName);
   const [data, setData] = useCache(repolistname);
 
   const days = React.useMemo(() => {
@@ -342,6 +342,7 @@ const Content = () => {
             {...{
               selectDate,
               data,
+              onClick: setSelectCountry,
             }}
           />
         </div>

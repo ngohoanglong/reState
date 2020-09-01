@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import MapCorona from "./Map/MapCorona";
-const Map = ({ data, selectDate }) => {
+const Map = ({ data, selectDate, onClick }) => {
   const start = useRef(Date.now());
   const [e, setE] = useState(null);
   useEffect(() => {
@@ -24,9 +24,10 @@ const Map = ({ data, selectDate }) => {
               deaths: cumulativeDeaths,
             })
           )}
+        onClick={onClick}
       />
     );
-  }, [data.groubByDate, selectDate]);
+  }, [data.groubByDate, onClick, selectDate]);
   return e;
 };
 export default Map;
