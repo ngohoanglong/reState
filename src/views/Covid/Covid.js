@@ -254,12 +254,12 @@ const Content = () => {
   const selectedCountryName = useNamespace(namespace.selectedCountry);
   const [selectCountry] = useCache(selectedCountryName);
   const [data, setData] = useCache(repolistname);
-  const [select, setSelected] = useState(0);
+
   const days = React.useMemo(() => {
     return [...(data || { days: [] }).days].reverse();
   }, [data]);
   if (!data || !data.update) return null;
-  const selectDate = days[select];
+  const selectDate = data.lastDay;
   const countryData = selectCountry
     ? data.groupByCountry[selectCountry]
     : data.world;
@@ -267,8 +267,8 @@ const Content = () => {
     countryData.find((item) => Number(item[0]) === Number(selectDate)) || [];
   return (
     <>
-      <div className="absolute top-0 left-0 w-full h-full flex flex-col  w-full space-y-3  z-10 pointer-events-none">
-        <div className="p-3 w-full z-10 flex items-center sticky top-0 background pointer-events-auto">
+      <div className="absolute top-0 left-0 w-full h-full flex flex-col  w-full z-10">
+        <div className="p-3 w-full z-10 flex flex-wrap items-center sticky top-0 background pointer-events-auto">
           {selectCountry ? (
             <div className="text-color text-3xl font-bold flex items-center flex-1">
               <img
@@ -286,91 +286,65 @@ const Content = () => {
               <div>World</div>
             </div>
           )}
-          <select
-            class="block appearance-none background-rich  py-3 px-4 pr-8 rounded leading-tight  focus:shadow-lg"
-            value={select}
-            onChange={(e) => {
-              const value = e.target.value;
-              const now = Date.now();
-
-              ref.current = now;
-              setTimeout(() => {
-                if (now === ref.current) {
-                  setSelected(value);
-                }
-              }, 0);
-            }}
-          >
-            {days.map((value, i) => (
-              <option value={i}>
-                {new Date(Number(days[i])).toDateString()}
-              </option>
-            ))}
-          </select>
+          <div className="flex items-center ">
+            <div className="flex-1 ">
+              <div className="shadow background-rich p-3 flex rounded-lg space-x-3">
+                <div className=" flex flex-col">
+                  <span className="text-4xl" aria-label="death" role="img">
+                    🤢
+                  </span>
+                  <p className="leading-relaxed text-center">cases</p>
+                </div>
+                <div>
+                  <h2 className="title-font text-lg font-medium md:text-3xl ">
+                    {Number(cases || 0).toLocaleString()}
+                  </h2>
+                  <div className="leading-relaxed text-sm">
+                    <span aria-label="sick" role="img">
+                      🔺
+                    </span>{" "}
+                    {Number(newCases || 0).toLocaleString()}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              style={{
+                width: "0.8rem",
+              }}
+            ></div>
+            <div className="flex-1 ">
+              <div className="shadow background-rich p-3 flex rounded-lg space-x-3">
+                <div className="flex flex-col">
+                  <span className="text-4xl" aria-label="sick" role="img">
+                    ⚰️
+                  </span>
+                  <p className="leading-relaxed text-center">deaths</p>
+                </div>
+                <div>
+                  <h2 className="title-font text-lg font-medium md:text-3xl ">
+                    {Number(deaths || 0).toLocaleString()}
+                  </h2>
+                  <div className="leading-relaxed text-sm">
+                    <span aria-label="sick" role="img">
+                      🔺
+                    </span>{" "}
+                    {Number(newDeaths || 0).toLocaleString()}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        {/* <div className="p-3 flex items-center">
-          <div className="col-span-1 ">
-            <div className="shadow background-rich p-3 rounded-lg">
-              <div className="text-4xl">
-                <span
-                  aria-label="death"
-                  role="img">
-                  ⚰️
-                </span>
-              </div>
-              <p className="leading-relaxed">
-                cases
-              </p>
-              <h2 className="title-font text-lg font-medium md:text-3xl ">
-                {Number(
-                  cases || 0
-                ).toLocaleString()}
-              </h2>
 
-              <div className="leading-relaxed text-sm">
-                <span
-                  aria-label="sick"
-                  role="img">
-                  🔺
-                </span>{' '}
-                {Number(
-                  newCases || 0
-                ).toLocaleString()}
-              </div>
-            </div>
-          </div>
-          <div className="col-span-1 ">
-            <div className="shadow background-rich p-3 rounded-lg">
-              <div className="text-4xl">
-                <span
-                  aria-label="sick"
-                  role="img">
-                  🤢
-                </span>
-              </div>
-              <p className="leading-relaxed">
-                deaths
-              </p>
-              <h2 className="title-font text-lg font-medium md:text-3xl ">
-                {Number(
-                  deaths || 0
-                ).toLocaleString()}
-              </h2>
-
-              <div className="leading-relaxed text-sm">
-                <span
-                  aria-label="sick"
-                  role="img">
-                  🔺
-                </span>{' '}
-                {Number(
-                  newDeaths || 0
-                ).toLocaleString()}
-              </div>
-            </div>
-          </div>
-        </div> */}
-        <div className="flex-1 relative"></div>
+        <div className="flex-1 relative overflow-hidden z-20">
+          <Map
+            {...{
+              selectDate,
+              data,
+            }}
+          />
+        </div>
         <section className="body-font pointer-events-auto p-2 relative overflow-hidden">
           <div className="absolute top-0 shadow background-rich left-0 right-0 bottom-0 opacity-75"></div>
           <div className="grid grid-cols-2 gap-2 text-center">
@@ -436,7 +410,7 @@ const Content = () => {
                                       <div
                                         className="w-full"
                                         style={{
-                                          height: 300,
+                                          height: 200,
                                         }}
                                       >
                                         <BarChart
@@ -454,8 +428,8 @@ const Content = () => {
                                                 break;
                                             }
                                           })(currentTab)}
-                                          width={width - 24}
-                                          height={300}
+                                          width={width}
+                                          height={200}
                                           data={[
                                             ...countryData.map((row) => ({
                                               name: new Date(
@@ -517,14 +491,9 @@ const Content = () => {
           </div>
         </section>
       </div>
-      <div className="col-span-2 hidden lg:block absolute top-0 left-0 h-screen overflow-auto w-full overflow-hidden">
-        <Map
-          {...{
-            selectDate,
-            data,
-          }}
-        />
-      </div>
+      {/* <div className="col-span-2 block absolute top-0 left-0 h-screen overflow-auto w-full overflow-hidden">
+       
+      </div> */}
     </>
   );
 };

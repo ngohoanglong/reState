@@ -29,7 +29,7 @@ export default class MapCorona extends PureComponent {
     viewport: {
       latitude: 37.5776849568384,
       longitude: 112.292191181538,
-      zoom: 2,
+      zoom: 0,
       bearing: 0,
       pitch: 0,
     },
@@ -111,7 +111,53 @@ export default class MapCorona extends PureComponent {
       filter: ["in", "title", countyName],
     });
   };
-
+  _onClick = (event) => {
+    let countyName = "";
+    const {
+      features,
+      srcEvent: { offsetX, offsetY },
+    } = event;
+    const hoveredFeature =
+      features && features.find((f) => f.layer.id === "data");
+    console.log(hoveredFeature);
+    if (this.map && hoveredFeature) {
+      const { minX, maxX, minY, maxY } = hoveredFeature.geometry.coordinates
+        .flatMap((item) => {
+          if (hoveredFeature.geometry.type === "MultiPolygon")
+            return item.flatMap((item) => item);
+          return item;
+        })
+        .reduce(
+          (result, [x, y]) => {
+            result.minX = result.minX || x;
+            result.minX = x < result.minX ? x : result.minX;
+            result.minY = result.minY || y;
+            result.minY = y < result.minY ? y : result.minY;
+            result.maxX = result.maxX || x;
+            result.maxX = x > result.maxX ? x : result.maxX;
+            result.maxY = result.maxY || y;
+            result.maxY = y > result.maxY ? y : result.maxY;
+            return result;
+          },
+          {
+            minX: 0,
+            maxY: 0,
+            maxX: 0,
+            minY: 0,
+          }
+        );
+      console.log({
+        minX,
+        maxX,
+        minY,
+        maxY,
+      });
+      this.map.getMap().fitBounds([
+        [minX, maxY],
+        [maxX, minY],
+      ]);
+    }
+  };
   _renderTooltip() {
     const { hoveredFeature, x, y } = this.state;
     return (
@@ -152,6 +198,9 @@ export default class MapCorona extends PureComponent {
 
     return (
       <MapGL
+        ref={(node) => {
+          this.map = node;
+        }}
         {...viewport}
         width="100%"
         height="100%"
@@ -159,6 +208,7 @@ export default class MapCorona extends PureComponent {
         onViewportChange={this._onViewportChange}
         mapboxApiAccessToken={MAPBOX_TOKEN}
         onHover={this._onHover}
+        onClick={this._onClick}
       >
         <Source type="geojson" data={data}>
           <Layer {...dataLayer} />
