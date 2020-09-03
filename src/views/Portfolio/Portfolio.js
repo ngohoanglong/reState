@@ -23,13 +23,7 @@ const NavigationProvider = ({ children }) => {
     </CurrentContext.Provider>
   );
 };
-const useScroll = (element = window, handler) => {
-  useEffect(() => {
-    window.addEventListener("scroll", handler);
 
-    return () => window.removeEventListener("scroll", handler);
-  }, [handler]);
-};
 const Skills = () => {
   const title = "Skills & /Experience";
 
@@ -45,8 +39,22 @@ const Skills = () => {
       xyz: [0, 0, 0],
     },
   });
-
-  useChain([headerRef], [0, 0.7, 1.3]);
+  const formRef = useRef();
+  const formtrail = useTrail(3, {
+    ref: formRef,
+    config: {
+      mass: 10,
+      tension: 200,
+      friction: 50,
+    },
+    opacity: visible ? 1 : 0,
+    x: visible ? 0 : 100,
+    from: {
+      opacity: 0,
+      x: 100,
+    },
+  });
+  useChain([headerRef, formRef], [0, 0.7]);
   return (
     <>
       <div className="pl-8 max-w-lg z-10">
@@ -66,11 +74,17 @@ const Skills = () => {
               <animated.span
                 onMouseEnter={(e) => {
                   const element = e.target;
-                  element.classList.add("hoverring");
+                  element.classList.add("hoverring", "text-blue-400");
 
-                  setTimeout(() => element.classList.remove("hoverring"), 1000);
+                  setTimeout(
+                    () =>
+                      element &&
+                      element.classList &&
+                      element.classList.remove("hoverring", "text-blue-400"),
+                    1000
+                  );
                 }}
-                className="inline-block item text-blue-400"
+                className="inline-block item "
                 key={index}
                 style={{
                   ...rest,
@@ -95,14 +109,14 @@ const Skills = () => {
             )
           )}
         </h1>
-        <p className="whitespace-pre-line mt-4">
+        <animated.p style={formtrail[0]} className="whitespace-pre-line mt-4">
           The main area of my expertise is front end development (client side of
           the web).
-        </p>
-        <p className="whitespace-pre-line mt-4">
+        </animated.p>
+        <animated.p style={formtrail[1]} className="whitespace-pre-line mt-4">
           HTML, CSS, JS building small , medium web and large scale web apps
           with REACTJS, custom animations, and coding interactive layouts.
-        </p>
+        </animated.p>
       </div>
     </>
   );
@@ -121,20 +135,18 @@ const About = () => {
       xyz: [0, 0, 0],
     },
   });
-  const subRef = useRef();
-  const subStyles = useSpring({
-    ref: subRef,
-    config: {
-      mass: 1,
-      tension: 150,
-      friction: 150,
-    },
-    opacity: visible ? 1 : 0,
-    from: { opacity: 0 },
-    to: { opacity: visible ? 1 : 0 },
-  });
   const formRef = useRef();
-  useChain([headerRef, subRef, formRef], [0, 0.7, 1.3]);
+  const formtrail = useTrail(3, {
+    ref: formRef,
+    config: slowConfig,
+    opacity: visible ? 1 : 0,
+    x: visible ? 0 : 100,
+    from: {
+      opacity: 0,
+      x: 100,
+    },
+  });
+  useChain([headerRef, formRef], [0, 0.7, 1.3]);
   return (
     <>
       <div className="pl-8 max-w-lg z-10">
@@ -154,11 +166,17 @@ const About = () => {
               <animated.span
                 onMouseEnter={(e) => {
                   const element = e.target;
-                  element.classList.add("hoverring");
+                  element.classList.add("hoverring", "text-blue-400");
 
-                  setTimeout(() => element.classList.remove("hoverring"), 1000);
+                  setTimeout(
+                    () =>
+                      element &&
+                      element.classList &&
+                      element.classList.remove("hoverring", "text-blue-400"),
+                    1000
+                  );
                 }}
-                className="inline-block item text-blue-400"
+                className="inline-block item "
                 key={index}
                 style={{
                   ...rest,
@@ -183,20 +201,20 @@ const About = () => {
             )
           )}
         </h1>
-        <p className="whitespace-pre-line mt-4">
+        <animated.p style={formtrail[0]} className="whitespace-pre-line mt-4">
           Professionally connected with the web development industry and
           information technology for many years.
-        </p>
-        <p className="whitespace-pre-line mt-4">
+        </animated.p>
+        <animated.p style={formtrail[1]} className="whitespace-pre-line mt-4">
           Well-organised person, problem solver, independent employee with high
           attention to detail. Fan of MMA, outdoor activities, TV series and,
           recently, English literature. A family person, father of two fractious
           boys, therefore remote employment is preferred.
-        </p>
-        <p className="whitespace-pre-line mt-4">
+        </animated.p>
+        <animated.p style={formtrail[2]} className="whitespace-pre-line mt-4">
           Interested in the entire frontend spectrum and working on ambitious
           projects with positive people.
-        </p>
+        </animated.p>
       </div>
     </>
   );
@@ -206,31 +224,12 @@ const items = Object.values(`Hi,/I'm long,/web developer.`);
 const config = {
   mass: 1,
   tension: 2000,
-  friction: 150,
+  friction: 200,
 };
-const useIntersection = (ref, options) => {
-  const [intersectionObserverEntry, setIntersectionObserverEntry] = useState(
-    null
-  );
-  useEffect(() => {
-    if (ref.current) {
-      const handler = (entries) => {
-        setIntersectionObserverEntry(entries[0]);
-      };
-
-      const observer = new IntersectionObserver(handler, options);
-      observer.observe(ref.current);
-
-      return () => {
-        if (ref.current) {
-          observer.disconnect();
-        }
-      };
-    }
-    return () => {};
-  }, [ref, options.threshold, options.root, options.rootMargin, options]);
-
-  return intersectionObserverEntry;
+const slowConfig = {
+  mass: 10,
+  tension: 200,
+  friction: 50,
 };
 const HomeContent = ({}) => {
   const visible = true;
@@ -245,30 +244,24 @@ const HomeContent = ({}) => {
       xyz: [0, 0, 0],
     },
   });
-  const subRef = useRef();
+
   const formRef = useRef();
   const formtrail = useTrail(3, {
     ref: formRef,
-    config,
+    config: {
+      mass: 10,
+      tension: 200,
+      friction: 50,
+    },
     opacity: visible ? 1 : 0,
+    x: visible ? 0 : 100,
     from: {
       opacity: 0,
+      x: 100,
     },
   });
-  useChain([headerRef, subRef, formRef], [0, 0.7, 1.3]);
-  const buttonRef = useRef();
-  const buttonStyles = useSpring({
-    ref: buttonRef,
-    config: {
-      mass: 1,
-      tension: 150,
-      friction: 150,
-    },
-    opacity: visible ? 1 : 0,
-    from: { opacity: 0 },
-    to: { opacity: visible ? 1 : 0 },
-  });
-  useChain([headerRef, buttonRef, formRef], [0, 1, 2]);
+
+  useChain([headerRef, formRef], [0, 1.7]);
   return (
     <div className="pl-8">
       <h1
@@ -290,7 +283,10 @@ const HomeContent = ({}) => {
                 element.classList.add("hoverring", "text-blue-400");
 
                 setTimeout(
-                  () => element.classList.remove("hoverring", "text-blue-400"),
+                  () =>
+                    element &&
+                    element.classList &&
+                    element.classList.remove("hoverring", "text-blue-400"),
                   1000
                 );
               }}
@@ -323,6 +319,7 @@ const HomeContent = ({}) => {
         style={{
           fontSize: "1em",
           letterSpacing: "0.24em",
+          ...formtrail[0],
         }}
         className="mt-4 opacity-50 text-lg whitespace-pre-line"
       >
@@ -331,7 +328,6 @@ const HomeContent = ({}) => {
       <animated.a
         href="#Contact"
         style={{
-          ...buttonStyles,
           ...formtrail[1],
           letterSpacing: "0.25em",
         }}
@@ -449,11 +445,17 @@ const Contact = ({}) => {
               <animated.span
                 onMouseEnter={(e) => {
                   const element = e.target;
-                  element.classList.add("hoverring");
+                  element.classList.add("hoverring", "text-blue-400");
 
-                  setTimeout(() => element.classList.remove("hoverring"), 1000);
+                  setTimeout(
+                    () =>
+                      element &&
+                      element.classList &&
+                      element.classList.remove("hoverring", "text-blue-400"),
+                    1000
+                  );
                 }}
-                className="inline-block item text-blue-400"
+                className="inline-block item "
                 key={index}
                 style={{
                   ...rest,
@@ -596,109 +598,119 @@ const Contact = ({}) => {
     </>
   );
 };
-const PageWrap = ({ title, index, children }) => {
-  const intersectionRef = React.useRef(null);
+const PageWrap = ({}) => {
   const current = useContext(CurrentContext);
   const setCurrent = useContext(ChangeCurrentContext);
-  const intersection = useIntersection(intersectionRef, {
-    root: null,
-    rootMargin: "0px",
-    threshold: 1,
-  });
-  useEffect(() => {
-    const visible = intersection && intersection.intersectionRatio >= 1;
-    if (visible) setCurrent(index);
-  }, [index, intersection, setCurrent]);
+  const children =
+    current === 0 ? (
+      <HomeContent />
+    ) : current === 1 ? (
+      <About />
+    ) : current === 2 ? (
+      <Skills />
+    ) : current === 3 ? (
+      <Contact />
+    ) : (
+      <div className="pl-8">
+        <h1
+          style={{
+            whiteSpace: "pre-wrap",
+            fontSize: "3em",
+            display: "block",
+            maxWidth: "15ch",
+          }}
+          className="leading-none font-bold"
+        >
+          {current}
+        </h1>
+      </div>
+    );
+  const title = array[current];
   return (
     <div
-      ref={intersectionRef}
+      // ref={intersectionRef}
       style={{
         filter: "drop-shadow(var(--text-color-light) 0px 1px 1px)",
       }}
       className="w-full  h-full flex-col flex px-4 absolute top-0 left-0"
     >
-      {index === current && (
-        <>
-          <div
-            style={{
-              paddingTop: 50,
-            }}
-            className="relative "
-          >
-            <div className="flex absolute top-0 left-0 justify-center right-0 z-50">
-              {array.map((value, y) => (
-                <div
-                  style={{
-                    height: 50,
-                    width: 80,
-                  }}
-                  className="font-bold flex justify-center items-center"
-                  key={value}
-                >
-                  {y === index ? (
-                    <a
-                      href={`#${value}`}
-                      className="jsCode"
-                      style={{
-                        fontSize: "1.2em",
-                        fontWeight: "bold",
-                        opacity: 1,
-                      }}
-                    >
-                      {value}
-                      <span className="jsCode">.js</span>
-                    </a>
-                  ) : (
-                    <a
-                      href={`#${value}`}
-                      className="jsCode"
-                      style={{
-                        fontSize: "1.2em",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      {value}
-                      <span className="jsCode">.js</span>
-                    </a>
-                  )}
-                </div>
-              ))}
-            </div>
-            <div className="jsCode ">const</div>
-            <div className="pl-4">
-              <span
-                style={{
-                  opacity: 1,
-                  fontSize: "1em",
-                }}
-                className="font-bold jsCode capitalize"
-              >
-                {title}{" "}
-              </span>
-              <span className="jsCode ">( )</span>
-            </div>
-          </div>
-          {
-            <div className="flex-1 flex flex-col justify-center">
-              <div className="jsCode ">{"{"}</div>
-              <div className="jsCode pl-4">return</div>
-              {current === index && children}
-              <div className="jsCode ">{"}"}</div>
-            </div>
-          }
-          <div className="">
-            <span className="jsCode">export default </span>
-            <span
-              className="jsCode capitalize"
+      <div
+        style={{
+          paddingTop: 50,
+        }}
+        className="relative "
+      >
+        <div className="flex absolute top-0 left-0 justify-center right-0 z-50">
+          {array.map((value, y) => (
+            <div
+              onClick={() => setCurrent(y)}
               style={{
-                opacity: 1,
+                height: 50,
+                width: 80,
               }}
+              className="font-bold flex justify-center items-center cursor-pointer"
+              key={value}
             >
-              {title}
-            </span>
-          </div>
-        </>
-      )}
+              {y === current ? (
+                <div
+                  className="jsCode"
+                  style={{
+                    fontSize: "1.2em",
+                    fontWeight: "bold",
+                    opacity: 1,
+                  }}
+                >
+                  {value}
+                  <span className="jsCode">.js</span>
+                </div>
+              ) : (
+                <div
+                  className="jsCode"
+                  style={{
+                    fontSize: "1.2em",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {value}
+                  <span className="jsCode">.js</span>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+        <div className="jsCode ">const</div>
+        <div className="pl-4">
+          <span
+            style={{
+              opacity: 1,
+              fontSize: "1em",
+            }}
+            className="font-bold jsCode capitalize"
+          >
+            {title}{" "}
+          </span>
+          <span className="jsCode ">( )</span>
+        </div>
+      </div>
+      {
+        <div className="flex-1 flex flex-col justify-center">
+          <div className="jsCode ">{"{"}</div>
+          <div className="jsCode pl-4">return</div>
+          {children}
+          <div className="jsCode ">{"}"}</div>
+        </div>
+      }
+      <div className="">
+        <span className="jsCode">export default </span>
+        <span
+          className="jsCode capitalize"
+          style={{
+            opacity: 1,
+          }}
+        >
+          {title}
+        </span>
+      </div>
     </div>
   );
 };
@@ -710,8 +722,8 @@ const Loading = ({ children }) => {
   });
   const [index, set] = useState(0);
   useEffect(() => {
-    setTimeout(() => toggle(true), 200);
-    setTimeout(() => set(1), 1400);
+    setTimeout(() => toggle(true), 10);
+    setTimeout(() => set(1), 2000);
   }, []);
   const transitions = useTransition(index, (p) => p, {
     from: {
@@ -734,7 +746,7 @@ const Loading = ({ children }) => {
             <animated.div
               style={{
                 width: props.width.interpolate((x) => `${100 - x.toFixed(0)}%`),
-                // backdropFilter: `grayscale(1)`,
+                backdropFilter: `grayscale(1)`,
               }}
               class="absolute z-10 top-0 right-0 font-bold  h-full flex justify-center items-center text-color"
             ></animated.div>
@@ -753,80 +765,6 @@ const Loading = ({ children }) => {
 };
 
 function Portfolio() {
-  const horizontalScrollerRef = useRef();
-  const [e, setE] = useState();
-  useEffect(() => {
-    setE(
-      <div
-        style={{
-          background: "var(--background-rich)",
-        }}
-        className=" w-full h-full relative flex items-start cursor-default"
-      >
-        <Loading>
-          <div className="flex-1 w-full relative">
-            <div id="Home" />
-            <div
-              style={{
-                scrollSnapType: " x mandatory",
-              }}
-              ref={horizontalScrollerRef}
-              className="w-full absolute top-0 left-0 h-screen flex h-screen overflow-hidden  sticky"
-            >
-              {array.map((value, i) => (
-                <div
-                  key={i}
-                  style={{
-                    scrollSnapAlign: "start",
-                  }}
-                  className="w-full h-screen overflow-hidden  flex-shrink-0 relative"
-                >
-                  <PageWrap index={i} title={value}>
-                    {i === 0 ? (
-                      <HomeContent />
-                    ) : i === 1 ? (
-                      <About />
-                    ) : i === 2 ? (
-                      <Skills />
-                    ) : i === 3 ? (
-                      <Contact />
-                    ) : (
-                      <div className="pl-8">
-                        <h1
-                          style={{
-                            whiteSpace: "pre-wrap",
-                            fontSize: "3em",
-                            display: "block",
-                            maxWidth: "15ch",
-                          }}
-                          className="leading-none font-bold"
-                        >
-                          {value}
-                        </h1>
-                      </div>
-                    )}
-                  </PageWrap>
-                </div>
-              ))}
-            </div>
-
-            {array
-              .filter((value) => value !== array[0])
-              .map((v, i) => (
-                <div
-                  id={v}
-                  key={i}
-                  style={{
-                    height: `100vh`,
-                  }}
-                />
-              ))}
-          </div>
-        </Loading>
-      </div>
-    );
-  }, []);
-  if (!e) return null;
   return (
     <>
       <div className="p-3 fixed z-20 top-0 right-0">
@@ -847,7 +785,22 @@ function Portfolio() {
           </svg>
         </Link>
       </div>
-      <NavigationProvider>{e}</NavigationProvider>
+      <NavigationProvider>
+        <div
+          style={{
+            background: "var(--background-rich)",
+          }}
+          className=" w-full h-screen relative flex items-start cursor-default"
+        >
+          <Loading>
+            <div className="flex-1 w-full relative">
+              <div className="w-full absolute top-0 left-0 h-screen flex h-screen overflow-hidden ">
+                <PageWrap></PageWrap>
+              </div>
+            </div>
+          </Loading>
+        </div>
+      </NavigationProvider>
     </>
   );
 }
