@@ -9,6 +9,7 @@ import Github from "./views/Github/Github.lazy";
 import Home from "./views/Home/Home.lazy";
 import PeriodicTable from "./views/PeriodicTable/PeriodicTable.lazy";
 import Portfolio from "./views/Portfolio/Portfolio.lazy";
+
 const Switch = ({ children }) => {
   const [location] = useLocation();
   console.log({ location });
