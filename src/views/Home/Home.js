@@ -31,32 +31,33 @@ const Home = () => (
       {[
         <Link
           to="/github"
-          className="background-rich text-2xl font-bold text-center uppercase text-gray-500 col-span-2 sm:col-span-1"
+          className="background-rich text-2xl font-bold text-center uppercase  col-span-2 sm:col-span-1"
         >
           Github
         </Link>,
         <Link
           to="/covid"
-          className="background-rich text-2xl font-bold text-center uppercase text-gray-500 col-span-2 sm:col-span-1"
+          className="background-rich text-2xl font-bold text-center uppercase  col-span-2 sm:col-span-1"
         >
           covid visualizer
         </Link>,
         <Link
           to="/periodic-table"
-          className="background-rich text-2xl font-bold text-center uppercase text-gray-500 col-span-2 sm:col-span-1"
+          className="background-rich text-2xl font-bold text-center uppercase  col-span-2 sm:col-span-1"
         >
           Periodic Table
         </Link>,
         <Link
           to="/portfolio"
-          className="background-rich text-2xl font-bold text-center uppercase text-gray-500 col-span-2 sm:col-span-1"
+          className="background-rich text-2xl font-bold text-center uppercase  col-span-2 sm:col-span-1"
         >
           portfolio
         </Link>,
-        <div className="background-rich text-2xl font-bold text-center uppercase text-gray-500 col-span-2 sm:col-span-1"></div>,
-        <div className="background p-6 col-span-2 sm:col-span-1 order-first md:order-none flex justify-center items-center">
-          <div className="flex flex-col justify-center items-center">
+        <div className="background-rich text-2xl font-bold text-center uppercase  col-span-2 sm:col-span-1"></div>,
+        <div className="background p-6 col-span-2 sm:col-span-1 order-first md:order-none flex ">
+          <div className="flex flex-col items-center">
             <img
+              alt="https://i.imgflip.com/1124um.jpg"
               className="w-24 h-24 rounded-full object-cover"
               src="https://i.imgflip.com/1124um.jpg"
             />
@@ -64,7 +65,7 @@ const Home = () => (
             <div className="text-gray-600 uppercase tsha">UI/UX DEVELOPER</div>
           </div>
         </div>,
-        <div className="background p-6 col-span-2 sm:col-span-1 order-first md:order-none flex justify-center items-center">
+        <div className="background p-6 col-span-2 sm:col-span-1 order-first md:order-none flex ">
           <div className="flex flex-col justify-center h-full text-center">
             <div className="uppercase font-bold">
               <Transition>about me</Transition>
@@ -77,8 +78,9 @@ const Home = () => (
             <div className="flex items-center justify-center mt-2">
               {[
                 <a
-                  className=" background mr-2 rounded-full w-8 h-8 flex justify-center items-center text-gray-700"
+                  className=" background mr-2 rounded-full w-8 h-8 flex justify-center"
                   href="#"
+                  alt="temp"
                 >
                   <svg
                     fill="currentColor"
@@ -90,8 +92,9 @@ const Home = () => (
                   </svg>
                 </a>,
                 <a
-                  className=" background mr-2 rounded-full w-8 h-8 flex justify-center items-center text-gray-700"
+                  className=" background mr-2 rounded-full w-8 h-8 flex justify-center"
                   href="#"
+                  alt="temp"
                 >
                   <svg
                     fill="currentColor"
@@ -103,8 +106,9 @@ const Home = () => (
                   </svg>
                 </a>,
                 <a
-                  className=" background mr-2 rounded-full w-8 h-8 flex justify-center items-center text-gray-700"
+                  className=" background mr-2 rounded-full w-8 h-8 flex justify-center"
                   href="#"
+                  alt="temp"
                 >
                   <svg
                     fill="currentColor"
@@ -118,8 +122,9 @@ const Home = () => (
                   </svg>
                 </a>,
                 <a
-                  className=" background mr-2 rounded-full w-8 h-8 flex justify-center items-center text-gray-700"
+                  className=" background mr-2 rounded-full w-8 h-8 flex justify-center"
                   href="#"
+                  alt="temp"
                 >
                   <svg
                     fill="currentColor"
@@ -140,12 +145,12 @@ const Home = () => (
             </div>
           </div>
         </div>,
-        <div className="background-rich text-2xl font-bold text-center uppercase text-gray-500 col-span-2 sm:col-span-1"></div>,
-        <div className="background-rich text-2xl font-bold text-center uppercase text-gray-500 col-span-2 sm:col-span-1"></div>,
+        <div className="background-rich text-2xl font-bold text-center uppercase  col-span-2 sm:col-span-1"></div>,
+        <div className="background-rich text-2xl font-bold text-center uppercase  col-span-2 sm:col-span-1"></div>,
 
         <label
           htmlFor="theme"
-          className="background-rich text-2xl font-bold text-center uppercase text-gray-500 col-span-2 sm:col-span-1"
+          className="background-rich text-2xl font-bold text-center uppercase  col-span-2 sm:col-span-1"
         >
           <svg
             stroke="currentColor"
@@ -161,11 +166,11 @@ const Home = () => (
         </label>,
         <label
           htmlFor="home2"
-          className="background-rich text-2xl font-bold text-center uppercase text-gray-500 col-span-2 sm:col-span-1"
+          className="background-rich text-2xl font-bold text-center uppercase  col-span-2 sm:col-span-1"
         >
           home layout 2
         </label>,
-        <div className="background-rich text-2xl font-bold text-center uppercase text-gray-500 col-span-2 sm:col-span-1">
+        <div className="background-rich text-2xl font-bold text-center uppercase  col-span-2 sm:col-span-1">
           <UseHook
             hook={useCache}
             deps={[
@@ -198,6 +203,15 @@ const Home = () => (
                   _target="blank"
                 >
                   analyze
+                </a>
+                <a
+                  href={
+                    "https://lighthouse-dot-webdotdevsite.appspot.com//lh/html?url=https%3A%2F%2Fcafejs.net%2F"
+                  }
+                  className="text-lg text-blue-500 underline cursor-pointer"
+                  _target="blank"
+                >
+                  lighthouse
                 </a>
                 <label
                   htmlFor="pageMark"

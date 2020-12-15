@@ -4,7 +4,11 @@ import App from "./App";
 import "./styles.scss";
 
 const rootElement = document.getElementById("root");
-
+if (navigator.userAgent === "ReactSnap") {
+  rootElement.classList.add("ReactSnap");
+} else {
+  rootElement.classList.remove("ReactSnap");
+}
 ReactDOM.render(
   <React.StrictMode>
     <App />
