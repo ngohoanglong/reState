@@ -1,0 +1,99 @@
+{
+  "basics": {
+    "name": "Ngo Hoang long",
+    "label": "Frontend developer",
+    "picture": "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%2212 -1 100 100%22><text y=%22.9em%22 font-size=%2290%22>😃</text></svg>",
+    "email": "ngohoanglong@gmail.com",
+    "phone": "+84 0346202046",
+    "website": "http://cafejs.net",
+    "summary": "Frontend developer UI - UX - HTML - CSS - Javascript - Reactjs",
+    "location": {
+      "address": "Quan 9",
+      "postalCode": "70000",
+      "city": "HCM city",
+      "countryCode": "VN"
+    },
+    "profiles": [
+      {
+        "network": "Twitter",
+        "username": "@hikavina",
+        "url": "http://twitter.com/hikavina"
+      }
+    ]
+  },
+  "work": [
+    {
+      "company": "Wishare",
+      "position": "frontend developer",
+      "website": "http://wishare.com",
+      "startDate": "2016",
+      "endDate": "2020",
+      "summary": "Description...",
+      "highlights": ["Started the company"]
+    }
+  ],
+  "volunteer": [
+    {
+      "organization": "Organization",
+      "position": "Volunteer",
+      "website": "http://organization.com/",
+      "startDate": "2012-01-01",
+      "endDate": "2013-01-01",
+      "summary": "Description...",
+      "highlights": ["Awarded 'Volunteer of the Month'"]
+    }
+  ],
+  "education": [
+    {
+      "institution": "University",
+      "area": "Software Development",
+      "studyType": "Bachelor",
+      "startDate": "2011-01-01",
+      "endDate": "2013-01-01",
+      "gpa": "4.0",
+      "courses": ["DB1101 - Basic SQL"]
+    }
+  ],
+  "awards": [
+    {
+      "title": "Award",
+      "date": "2014-11-01",
+      "awarder": "Company",
+      "summary": "There is no spoon."
+    }
+  ],
+  "publications": [
+    {
+      "name": "Publication",
+      "publisher": "Company",
+      "releaseDate": "2014-10-01",
+      "website": "http://publication.com",
+      "summary": "Description..."
+    }
+  ],
+  "skills": [
+    {
+      "name": "Web Development",
+      "level": "Master",
+      "keywords": ["HTML", "CSS", "Javascript"]
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Native speaker"
+    }
+  ],
+  "interests": [
+    {
+      "name": "Wildlife",
+      "keywords": ["Ferrets", "Unicorns"]
+    }
+  ],
+  "references": [
+    {
+      "name": "Jane Doe",
+      "reference": "Reference..."
+    }
+  ]
+}

@@ -53,7 +53,31 @@ const Home = () => (
         >
           portfolio
         </Link>,
-        <div className="background-rich text-2xl font-bold text-center uppercase  col-span-2 sm:col-span-1"></div>,
+        <div className="background-rich text-2xl font-bold text-center   col-span-2 sm:col-span-1">
+          <div className="grid grid-cols-2 text-sm gap-2">
+            <div className="col-span-2 text-2xl p-3">Download Resume</div>
+            <a
+              href="https://www.notion.so/Resume-efc8d50f641641d495a0e0f5dac237b7"
+              target="_blank"
+              className=" btn col-span-1 p-3"
+            >
+              website
+            </a>
+            <a
+              href="/resume/html.zip"
+              target="_blank"
+              className=" btn col-span-1 p-3"
+            >
+              html
+            </a>
+            <a href="/resume/Resume.pdf" className=" btn col-span-1 p-3">
+              PDF
+            </a>
+            <a href="/resume/markdown.zip" className=" btn col-span-1 p-3">
+              markdown
+            </a>
+          </div>
+        </div>,
         <div className="background p-6 col-span-2 sm:col-span-1 order-first md:order-none flex ">
           <div className="flex flex-col items-center">
             <img
