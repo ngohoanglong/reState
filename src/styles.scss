@@ -72,6 +72,56 @@ html {
 .btn:focus {
   outline: none;
 }
+.btn-2 {
+  background: #f1f1f1;
+  border-width: 2px;
+  border-color: #ffffffbf;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-2:hover {
+  box-shadow: 10px 10px 10px #cccccc, 10px 10px 10px #ffffff,
+    0 0 0 #cccccc inset, 0 0 0 #ffffff inset;
+}
+.btn-2:focus {
+  outline: none;
+}
+.btn-2:active {
+  border-color: transparent;
+  background: #f1f1f1;
+  box-shadow: 0 0 0 #cccccc, 0 0 0 #ffffff, 10px 10px 10px #cccccc inset,
+    -10px -10px 10px #ffffff inset;
+}
+
+@keyframes anime {
+  0% {
+    width: 60px;
+    height: 60px;
+    background: #f0f0f0;
+    box-shadow: 0 0 0 #cccccc, 0 0 0 #ffffff, 10px 10px 10px #cccccc inset,
+      -10px -10px 10px #ffffff inset;
+  }
+  25% {
+    width: 60px;
+    height: 60px;
+    background: #f8f8f8;
+    box-shadow: 10px 10px 10px #cccccc, 10px 10px 10px #ffffff,
+      0 0 0 #cccccc inset, 0 0 0 #ffffff inset;
+  }
+  50% {
+    width: 60px;
+    height: 240px;
+    background: #f8f8f8;
+    box-shadow: 10px 10px 10px #cccccc, 10px 10px 10px #ffffff,
+      0 0 0 #cccccc inset, 0 0 0 #ffffff inset;
+  }
+  100% {
+    width: 480px;
+    height: 240px;
+    background: #fafafa;
+    box-shadow: 40px 40px 40px #cccccc, 0 0 0 #ffffff, 0 0 0 #cccccc inset,
+      2px 2px 2px #ffffff inset;
+  }
+}
 .text-color {
   color: var(--text-color-normal);
 }

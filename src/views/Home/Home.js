@@ -59,21 +59,21 @@ const Home = () => (
             <a
               href="https://www.notion.so/Resume-efc8d50f641641d495a0e0f5dac237b7"
               target="_blank"
-              className=" btn col-span-1 p-3"
+              className=" btn-2 col-span-1 p-3"
             >
               website
             </a>
             <a
               href="/resume/html.zip"
               target="_blank"
-              className=" btn col-span-1 p-3"
+              className=" btn-2 col-span-1 p-3"
             >
               html
             </a>
-            <a href="/resume/Resume.pdf" className=" btn col-span-1 p-3">
+            <a href="/resume/Resume.pdf" className=" btn-2 col-span-1 p-3">
               PDF
             </a>
-            <a href="/resume/markdown.zip" className=" btn col-span-1 p-3">
+            <a href="/resume/markdown.zip" className=" btn-2 col-span-1 p-3">
               markdown
             </a>
           </div>
