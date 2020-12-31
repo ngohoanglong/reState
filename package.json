@@ -9,6 +9,7 @@
   "license": "MIT",
   "main": "src/index.js",
   "dependencies": {
+    "@react-hook/window-size": "^3.0.7",
     "ahooks": "^2.2.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",

@@ -1,0 +1,6 @@
+.lagRadar {
+  position: fixed;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  z-index: 9999;
+}
