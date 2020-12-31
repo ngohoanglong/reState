@@ -169,9 +169,13 @@ const Home = () => (
             </div>
           </div>
         </div>,
+        <Link
+          to="/keycode"
+          className="background-rich text-2xl font-bold text-center uppercase  col-span-2 sm:col-span-1"
+        >
+          keycode
+        </Link>,
         <div className="background-rich text-2xl font-bold text-center uppercase  col-span-2 sm:col-span-1"></div>,
-        <div className="background-rich text-2xl font-bold text-center uppercase  col-span-2 sm:col-span-1"></div>,
-
         <label
           htmlFor="theme"
           className="background-rich text-2xl font-bold text-center uppercase  col-span-2 sm:col-span-1"

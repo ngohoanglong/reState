@@ -3,7 +3,6 @@ import React from "react";
 import "./useLagRadar.css";
 export default function useLagRadar() {
   const [width, height] = useWindowSize();
-
   React.useEffect(() => {
     return lagRadar({
       frames: 60, // number of frames to draw, more = worse performance

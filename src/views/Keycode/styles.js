@@ -3,14 +3,11 @@ export const styleString = `/* Themes */
 	--background: #f2f4f8;
 	--primary: #b9e9ff;
 	--primary-border: #a2e2ff;
-
 	--text: #424242;
 	--love-text: #d12026;
 	--muted-text: #ccc;
 	--context-text: #6597b2;
-
 	--button: #0091d4;
-
 	--card-background: #fff;
 	--card-hover: rgba(220, 233, 255, 0.48);
 	--table-separator: #dee2e6;
@@ -57,6 +54,7 @@ body {
   margin: 0 auto;
 }
 .wrap {
+  height:100%;
   display: table-cell;
   vertical-align: middle;
 }
@@ -195,10 +193,9 @@ span.love a {
 }
 
 .table {
-  width: 50%;
+  width:100%;
   table-layout: fixed;
   margin: auto;
-  margin-top: 5vh;
   box-shadow: 0 14px 26px rgba(0, 0, 0, 0.04);
   border-radius: 5px;
   border-collapse: collapse;
@@ -208,7 +205,6 @@ span.love a {
   display: block;
   width: 100%;
   overflow: auto;
-  height: 77vh;
   background: var(--card-background);
 }
 
@@ -218,22 +214,22 @@ span.love a {
 }
 
 .table thead {
-  font-size: 12px;
   font-weight: 600;
-  border-bottom: 1px solid var(--primary-border);
-  background-color: var(--primary);
 }
 
 .table th,
 .table td {
-  padding: 0.3rem 1rem;
+  padding: 0.3rem;
   text-align: left;
-  min-width: 100px;
-  font-size: 1.2rem;
-}
 
+  font-size: 0.9rem;
+}
+.table th,
+.table td:first-child{
+ width:50px
+}
 .table th {
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 0.6em;
 }
 .table td {
   border-bottom: 1px solid var(--table-separator);
@@ -268,6 +264,7 @@ span.love a {
 }
 
 .mobile-input input {
+  opacity:0;
   width: calc(100% - 20px);
   height: 4rem;
   margin: 10px;
@@ -313,10 +310,8 @@ span.love a {
   }
   .table {
     width: 100%;
-    margin-top: 4rem;
   }
   .table-body {
-    height: 60vh;
   }
 }
 

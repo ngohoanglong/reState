@@ -799,6 +799,10 @@ video {
   background-color: rgba(251, 182, 206, var(--bg-opacity));
 }
 
+.border-collapse {
+  border-collapse: collapse;
+}
+
 .border-transparent {
   border-color: transparent;
 }

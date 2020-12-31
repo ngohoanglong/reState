@@ -241,16 +241,8 @@ export const createKeycodeview = (body, mobileInputDiv, canvas) => {
 
   function createNotification(text) {
     // eslint-disable-next-line no-undef
-    new Noty({
-      type: "info",
-      layout: "topLeft",
-      timeout: "1500",
-      theme: "metroui",
-      progressBar: false,
-      text,
-    }).show();
+    alert(text);
   }
-
   function createTextarea(text) {
     const textArea = document.createElement("textarea");
 

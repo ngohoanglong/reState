@@ -1,7 +1,7 @@
 import Layout from "layouts/Layout";
 import React, { useEffect, useState } from "react";
 import { styleString } from "./styles";
-import { createKeycodeview, toggleTable } from "./utils";
+import { createKeycodeview } from "./utils";
 
 function Keycode() {
   const [mounted, setmouted] = useState();
@@ -17,20 +17,11 @@ function Keycode() {
     }
   });
   return (
-    <div>
+    <>
       <style>{styleString}</style>
-      <div>
+      <div className="h-full flex items-center justify-center">
         <canvas width={128} height={128} hidden />
         <div className="display">
-          <table className="table hide">
-            <thead>
-              <tr>
-                <th>Key Code</th>
-                <th>Key</th>
-              </tr>
-            </thead>
-            <tbody className="table-body"></tbody>
-          </table>
           <div className="wrap" aria-live="polite" aria-atomic="true">
             <p className="keycode-display" />
             <p className="text-display">
@@ -82,12 +73,9 @@ function Keycode() {
             </div>
             <div className="mobile-input"></div>
           </div>
-          <button onClick={toggleTable} className="table-toggle-button">
-            Table
-          </button>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
@@ -95,9 +83,19 @@ export default function KeycodePage() {
   return (
     <Layout
       {...{
-        left: <div>left</div>,
+        left: (
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Key Code</th>
+                <th>Key</th>
+              </tr>
+            </thead>
+            <tbody className="table-body"></tbody>
+          </table>
+        ),
         mid: <Keycode />,
-        right: <div>right</div>,
+        right: null,
         header: <Layout.Header />,
       }}
     />

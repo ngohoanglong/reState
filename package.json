@@ -27,7 +27,7 @@
     "tailwindcss": "^1.4.6"
   },
   "scripts": {
-    "prebuild": "node generate-build-id.js && tailwindcss build ./src/tailwind/index.css -o ./src/tailwind/tailwind.css",
+    "prebuild": "node generate-build-id.js && tailwindcss build ./src/assets/css/tailwind/index.css -o ./src/assets/css/tailwind/tailwind.css",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
