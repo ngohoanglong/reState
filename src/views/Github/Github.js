@@ -1,4 +1,3 @@
-import useLagRadar from "hooks/useLagRadar";
 import React, { useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import { Layout } from "../../layouts/Layout";
@@ -9,8 +8,6 @@ const Left = () => {
   return <RepoList />;
 };
 const RepoList = () => {
-  useLagRadar();
-
   const repolistname = useNamespace("repolist");
   const currentReponame = useNamespace("currentRepo");
   const setCurrentRepo = useCacheSet(currentReponame);

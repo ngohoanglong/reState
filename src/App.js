@@ -6,6 +6,7 @@ import React from "react";
 import routes from "routes";
 
 export default function App({ store }) {
+  // useLagRadar()
   return (
     <CacheProvider initialStore={store}>
       <LocalStringsProvider>
