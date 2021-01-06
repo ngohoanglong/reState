@@ -2,7 +2,10 @@ export const resumedata = {
   basics: {
     name: "John Doe",
     label: "Programmer",
-    picture: "",
+    cover:
+      "https://cdn1.iconfinder.com/data/icons/cute-corgi-dog-emoticon/595/CUTE_CORGI_DOG_EMOTICON-06-512.png",
+    picture:
+      "https://cdn1.iconfinder.com/data/icons/cute-corgi-dog-emoticon/595/CUTE_CORGI_DOG_EMOTICON-06-512.png",
     email: "john@gmail.com",
     phone: "(912) 555-4321",
     website: "http://johndoe.com",

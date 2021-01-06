@@ -1622,6 +1622,10 @@ video {
     overflow: hidden;
   }
 
+  .md\:p-3 {
+    padding: 0.75rem;
+  }
+
   .md\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
@@ -1658,6 +1662,10 @@ video {
     .lg\:container {
       max-width: 1280px;
     }
+  }
+
+  .lg\:p-6 {
+    padding: 1.5rem;
   }
 }
 

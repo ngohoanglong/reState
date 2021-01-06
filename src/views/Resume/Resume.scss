@@ -10,7 +10,7 @@ $button: #8f98a9;
 * {
   outline: none;
   box-sizing: border-box;
-  transition: all 0.3s linear;
+  // transition: all 0.3s linear;
 }
 
 html {
@@ -32,18 +32,10 @@ body {
   overflow: hidden;
   margin: 0 auto;
 }
-
-.left-side {
-  width: 260px;
-  border-right: 1px solid $border-color;
-  display: flex;
-  flex-direction: column;
-  transition: 0.3s;
-  background-color: $bg-color;
-  overflow: auto;
-  flex-shrink: 0;
-  @media screen and (max-width: 930px) {
-    &.active {
+#left-side-active:checked {
+  & ~ .left-side {
+    @media screen and (max-width: 930px) {
+      width: 260px;
       z-index: 4;
       & > *:not(.logo) {
         opacity: 1;
@@ -57,7 +49,11 @@ body {
         opacity: 1;
       }
     }
-    &:not(.active) {
+  }
+}
+#left-side-active:not(:checked) {
+  & ~ .left-side {
+    @media screen and (max-width: 930px) {
       width: 56px;
       overflow: hidden;
       & > *:not(.logo):not(.left-side-button) {
@@ -73,6 +69,16 @@ body {
       }
     }
   }
+}
+.left-side {
+  width: 260px;
+  border-right: 1px solid $border-color;
+  display: flex;
+  flex-direction: column;
+  transition: 0.3s;
+  background-color: $bg-color;
+  overflow: auto;
+  flex-shrink: 0;
 }
 
 .right-side {
@@ -242,9 +248,10 @@ body {
 }
 
 .main-container {
-  padding: 20px;
+  // padding: 20px;
   flex-grow: 1;
   overflow: auto;
+  scroll-behavior: smooth;
   background-color: #24273b;
 }
 
@@ -313,6 +320,7 @@ body {
   z-index: 1;
   bottom: 16px;
   left: 24px;
+  filter: drop-shadow(rgba(0, 0, 0, 0.8) 0px 1px 1px);
 }
 
 .profile-img {
@@ -361,6 +369,10 @@ body {
 .box {
   background-color: $bg-color;
   border-radius: 4px;
+  border: 1px solid transparent;
+  &:target {
+    border-color: #1488fa;
+  }
 }
 
 .intro {
