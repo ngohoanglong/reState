@@ -1,5 +1,6 @@
-import * as serviceWorker from "serviceWorker";
 import buildInfo from "_buildId.json";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+
 localStorage.setItem("currentVersion", buildInfo.lastedVersion);
 
 const getLastedVersion = () => {
@@ -17,10 +18,10 @@ const getLastedVersion = () => {
     });
 };
 if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
-  serviceWorker.unregister();
+  serviceWorkerRegistration.unregister();
 } else {
   getLastedVersion();
-  serviceWorker.register({
+  serviceWorkerRegistration.register({
     onUpdate: (registration) => {},
     onSuccess: () => {
       localStorage.setItem("currentVersion", buildInfo.lastedVersion);

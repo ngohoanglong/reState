@@ -2,9 +2,10 @@ import useCache from "modules/cache/useCache";
 import UseHook from "modules/hook";
 import { Transition } from "modules/localstrings";
 import React from "react";
-import * as serviceWorker from "serviceWorker";
+import * as serviceWorkerRegistration from "serviceWorkerRegistration";
 import Link from "../../modules/navigation/Link";
 import styles from "./Home.module.scss";
+
 const Style = () => (
   <style>
     {`
@@ -240,7 +241,7 @@ const Home = () => (
                   "" + value.currentVersion !== "" + value.lastedVersion && (
                     <div
                       onClick={() => {
-                        serviceWorker.unregister();
+                        serviceWorkerRegistration.unregister();
                         window.location.reload();
                       }}
                       className="text-lg text-blue-500 underline cursor-pointer"

@@ -536,6 +536,9 @@ const Covid = () => {
 };
 export default () => {
   const [location] = useLocation();
+  if (navigator.userAgent === "ReactSnap") {
+    return null;
+  }
   return (
     <Namespace namespace={location}>
       <Covid />

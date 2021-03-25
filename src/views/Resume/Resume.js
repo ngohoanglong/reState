@@ -517,7 +517,7 @@ export default function layout() {
       <div className="main">
         <Resume1 />
       </div>
-      <div className="overlay" />
+      <label htmlFor="left-side-active" className="overlay" />
     </div>
   );
 }

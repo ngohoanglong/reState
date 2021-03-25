@@ -32,44 +32,7 @@ body {
   overflow: hidden;
   margin: 0 auto;
 }
-#left-side-active:checked {
-  & ~ .left-side {
-    @media screen and (max-width: 930px) {
-      width: 260px;
-      z-index: 4;
-      & > *:not(.logo) {
-        opacity: 1;
-        transition: 0.3s 0.2s;
-      }
-      .left-side-button svg:first-child {
-        opacity: 0;
-      }
-      .left-side-button svg:last-child {
-        transform: translate(-50%, -50%);
-        opacity: 1;
-      }
-    }
-  }
-}
-#left-side-active:not(:checked) {
-  & ~ .left-side {
-    @media screen and (max-width: 930px) {
-      width: 56px;
-      overflow: hidden;
-      & > *:not(.logo):not(.left-side-button) {
-        opacity: 0;
-      }
-      .logo {
-        writing-mode: vertical-lr;
-        transform: rotate(180deg);
-        transform-origin: bottom;
-        display: flex;
-        align-items: center;
-        margin-top: -10px;
-      }
-    }
-  }
-}
+
 .left-side {
   width: 260px;
   border-right: 1px solid $border-color;
@@ -253,6 +216,9 @@ body {
   overflow: auto;
   scroll-behavior: smooth;
   background-color: #24273b;
+  @media screen and (max-width: 930px) {
+    width: calc(100vw - 56px);
+  }
 }
 
 .profile {
@@ -945,5 +911,58 @@ body {
   ::-webkit-scrollbar {
     // width: 10px;
     border-radius: 10px;
+  }
+}
+
+#left-side-active:checked {
+  & ~ .left-side {
+    @media screen and (max-width: 930px) {
+      width: 260px;
+      z-index: 4;
+      & > *:not(.logo) {
+        opacity: 1;
+        transition: 0.3s 0.2s;
+      }
+      .left-side-button svg:first-child {
+        opacity: 0;
+      }
+      .left-side-button svg:last-child {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+      }
+    }
+  }
+  & ~ .main .main-container {
+    @media screen and (max-width: 930px) {
+      overflow: hidden;
+    }
+  }
+  & ~ .overlay {
+    @media screen and (max-width: 930px) {
+      z-index: 3;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: all;
+    }
+  }
+}
+
+#left-side-active:not(:checked) {
+  & ~ .left-side {
+    @media screen and (max-width: 930px) {
+      width: 56px;
+      overflow: hidden;
+      & > *:not(.logo):not(.left-side-button) {
+        opacity: 0;
+      }
+      .logo {
+        writing-mode: vertical-lr;
+        transform: rotate(180deg);
+        transform-origin: bottom;
+        display: flex;
+        align-items: center;
+        margin-top: -10px;
+      }
+    }
   }
 }
