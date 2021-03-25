@@ -40,3 +40,7 @@ yarn-error.log*
 /.firebase
 .firebaserc
 .firebase
+
+**/*/_buildId.json
+public/_buildId.json
+src/_buildId.json
