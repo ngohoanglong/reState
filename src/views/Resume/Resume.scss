@@ -921,11 +921,10 @@ body {
   }
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-  border-radius: 10px;
+::-webkit-scrollbar-thumb {
+  background-color: #1e2031 !important;
+  border: 3px solid transparent !important;
 }
-
 /* Track */
 ::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.01);
@@ -940,4 +939,11 @@ body {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.1);
+}
+@media (pointer: fine) {
+  /* ... */
+  ::-webkit-scrollbar {
+    // width: 10px;
+    border-radius: 10px;
+  }
 }

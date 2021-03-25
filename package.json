@@ -1,22 +1,27 @@
 {
-  "name": "react",
+  "name": "ngohoanglong",
   "version": "1.0.0",
-  "description": "React example starter project",
+  "description": "ngohoanglong home page",
   "keywords": [
     "react",
-    "starter"
+    "nextjs",
+    "tailwindcss"
   ],
   "license": "MIT",
   "main": "src/index.js",
   "dependencies": {
+    "@craco/craco": "^6.1.1",
     "@react-hook/window-size": "^3.0.7",
+    "@tailwindcss/postcss7-compat": "^2.0.3",
     "ahooks": "^2.2.0",
+    "autoprefixer": "^9",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
     "node-sass": "^4.14.1",
+    "postcss": "^7",
     "prettier": "^2.0.5",
-    "react": "17.0.0-rc.0",
-    "react-dom": "17.0.0-rc.0",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
     "react-map-gl": "^5.2.7",
     "react-markdown": "^4.3.1",
     "react-scripts": "^4.0.1",
@@ -24,12 +29,13 @@
     "react-spring": "^8.0.27",
     "recharts": "^1.8.5",
     "source-map-explorer": "^2.4.2",
-    "tailwindcss": "^1.4.6"
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   },
   "scripts": {
-    "prebuild": "node generate-build-id.js && tailwindcss build ./src/assets/css/tailwind/index.css -o ./src/assets/css/tailwind/tailwind.css",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build:css": "tailwindcss build ./src/assets/css/tailwind/index.css -o ./src/assets/css/tailwind/tailwind.css",
+    "prebuild": "node generate-build-id.js",
+    "start": "craco start",
+    "build": "craco build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "deploy": "yarn build && yarn analyze && react-snap && firebase deploy",

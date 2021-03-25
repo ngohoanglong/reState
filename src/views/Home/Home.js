@@ -5,10 +5,9 @@ import React from "react";
 import * as serviceWorker from "serviceWorker";
 import Link from "../../modules/navigation/Link";
 import styles from "./Home.module.scss";
-const Home = () => (
-  <>
-    <style>
-      {`
+const Style = () => (
+  <style>
+    {`
     #home2:checked + .${styles.Home}:hover {
       padding: 4px;
       gap: 8px;
@@ -20,7 +19,11 @@ const Home = () => (
       filter: brightness(4.5);
     }
     `}
-    </style>
+  </style>
+);
+const Home = () => (
+  <>
+    <Style />
     <input id="home2" type="checkbox" hidden name="home2"></input>
     <div
       className={
@@ -29,51 +32,71 @@ const Home = () => (
       }
     >
       {[
-        <Link
-          to="/github"
-          className="background-rich text-2xl font-bold text-center uppercase  col-span-2 sm:col-span-1"
-        >
-          Github
-        </Link>,
-        <Link
-          to="/covid"
-          className="background-rich text-2xl font-bold text-center uppercase  col-span-2 sm:col-span-1"
-        >
-          covid visualizer
-        </Link>,
-        <Link
-          to="/periodic-table"
-          className="background-rich text-2xl font-bold text-center uppercase  col-span-2 sm:col-span-1"
-        >
-          Periodic Table
-        </Link>,
-        <Link
-          to="/portfolio"
-          className="background-rich text-2xl font-bold text-center uppercase  col-span-2 sm:col-span-1"
-        >
-          portfolio
-        </Link>,
-        <div className="background-rich text-2xl font-bold text-center   col-span-2 sm:col-span-1">
+        <div className="background-rich text-2xl font-bold text-center uppercase  col-span-2 sm:col-span-1">
+          <div className="grid grid-cols-2 text-sm gap-2">
+            <div className="col-span-2 text-2xl p-3">Side project</div>
+            <Link
+              to="/github"
+              className=" border border-2 hover:border-gray-600  broder-gray-300 col-span-1 p-3"
+            >
+              Github
+            </Link>
+            <Link
+              to="/covid"
+              className=" border border-2 hover:border-gray-600  broder-gray-300 col-span-1 p-3"
+            >
+              covid
+            </Link>
+            <Link
+              to="/periodic-table"
+              className=" border border-2 hover:border-gray-600  broder-gray-300 col-span-1 p-3"
+            >
+              periodic-table
+            </Link>
+            <Link
+              to="/portfolio"
+              className=" border border-2 hover:border-gray-600  broder-gray-300 col-span-1 p-3"
+            >
+              portfolio
+            </Link>
+          </div>
+        </div>,
+        <div className="background-rich text-2xl font-bold text-center uppercase  col-span-2 sm:col-span-1">
+          soon
+        </div>,
+        <div className="background-rich text-2xl font-bold text-center uppercase  col-span-2 sm:col-span-1">
+          soon
+        </div>,
+        <div className="background-rich text-2xl font-bold text-center uppercase  col-span-2 sm:col-span-1">
+          soon
+        </div>,
+        <div className="background-rich text-2xl font-bold text-center  col-span-2 sm:col-span-1">
           <div className="grid grid-cols-2 text-sm gap-2">
             <div className="col-span-2 text-2xl p-3">Download Resume</div>
             <a
               href="https://www.notion.so/Resume-efc8d50f641641d495a0e0f5dac237b7"
               target="_blank"
-              className=" btn-2 col-span-1 p-3"
+              className=" border border-2 hover:border-gray-600  broder-gray-300 col-span-1 p-3"
             >
               website
             </a>
             <a
               href="/resume/html.zip"
               target="_blank"
-              className=" btn-2 col-span-1 p-3"
+              className=" border border-2 hover:border-gray-600  broder-gray-300 col-span-1 p-3"
             >
               html
             </a>
-            <a href="/resume/Resume.pdf" className=" btn-2 col-span-1 p-3">
+            <a
+              href="https://drive.google.com/file/d/1w1UmbJtk6J2BtiSaHpsDn4CMTLPvC08c/view?usp=sharing"
+              className=" border border-2 hover:border-gray-600  broder-gray-300 col-span-1 p-3"
+            >
               PDF
             </a>
-            <a href="/resume/markdown.zip" className=" btn-2 col-span-1 p-3">
+            <a
+              href="/resume/markdown.zip"
+              className=" border border-2 hover:border-gray-600  broder-gray-300 col-span-1 p-3"
+            >
               markdown
             </a>
           </div>
@@ -198,7 +221,7 @@ const Home = () => (
         >
           home layout 2
         </label>,
-        <div className="background-rich text-2xl font-bold text-center uppercase  col-span-2 sm:col-span-1">
+        <div className="background-rich text-2xl font-bold text-center uppercase col-span-2 sm:col-span-1">
           <UseHook
             hook={useCache}
             deps={[
@@ -255,7 +278,11 @@ const Home = () => (
         React.cloneElement(e, {
           ...e.props,
           key: i,
-          className: `${styles.child} p-6 ${e.props.className}`,
+          style: {
+            animationDelay: `${150 + i * 50}ms`,
+            [`--animate-delay`]: 150 + i * 50,
+          },
+          className: `${styles.child} p-6 ${e.props.className} opacity-0 animate__animated animate__faster animate__fadeIn`,
           children: e.props.children || i,
         })
       )}
