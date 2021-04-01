@@ -6,6 +6,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { animated, useSpring } from "react-spring";
 import {
   Bar,
   BarChart,
@@ -24,11 +25,62 @@ import useNamespace from "../../modules/namespace/useNamespace";
 import useLocation from "../../modules/navigation/useLocation";
 import useLocalStorage from "../../modules/storage/useLocalStorage";
 import Map from "./Map.lazy";
+import staticdata from "./sources.data";
+const convertData = (data) => {
+  const {
+    0: groubByDate = [],
+    1: groupByCountry = [],
+    2: groupByLegion = [],
+  } = groupBy(data.rows, [0, 1, 2]);
+  const days = Object.keys(groubByDate).sort(
+    (a, b) => -(Number(a) - Number(b))
+  );
 
+  Object.keys(groupByCountry).forEach((key) => {
+    const countryData = groupByCountry[key];
+    countryData.sort((a, b) => -(Number(a[0]) - Number(b[0])));
+  });
+  const countries = Object.keys(groupByCountry);
+  const legions = Object.keys(groupByLegion);
+  const lastDay = days[0];
+  const save = {
+    update: Date.now(),
+    groubByDate,
+    world: Object.keys(groubByDate)
+      .map((key) =>
+        groubByDate[key].reduce(
+          (res, row) => {
+            res[3] = res[3] + row[3];
+            res[4] = res[4] + row[4];
+            res[5] = res[5] + row[5];
+            res[6] = res[6] + row[6];
+            return res;
+          },
+          [key, "WORLD", "WORLD", 0, 0, 0, 0]
+        )
+      )
+      .sort((a, b) => -(Number(a[0]) - Number(b[0]))),
+    groupByCountry,
+    groupByLegion,
+    days,
+    countries,
+    legions,
+    lastDay,
+  };
+  return save;
+};
 const namespace = {
   data: "data",
   data__async_loading: "data__async_loading",
   selectedCountry: "selectedCountry",
+};
+const AnimatedNumber = ({ number }) => {
+  const props = useSpring({ number });
+  return (
+    <animated.span class="content">
+      {props.number.interpolate((x) => x.toFixed(0))}
+    </animated.span>
+  );
 };
 const Left = () => {
   return <RepoList />;
@@ -54,69 +106,33 @@ const RepoList = () => {
       setData(JSON.parse(dataLocalstorage));
     }
   }, [data, dataLocalstorage, setData]);
-  const handleSearch = useCallback(
-    ({ keyword }) => {
-      setLoading(true);
-      fetch(
-        `https://cors-anywhere.herokuapp.com/https://dashboards-dev.sprinklr.com/data/9043/global-covid19-who-gis.json`
-      )
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          setTimeout(() => {
-            const {
-              0: groubByDate = [],
-              1: groupByCountry = [],
-              2: groupByLegion = [],
-            } = groupBy(data.rows, [0, 1, 2]);
-            const days = Object.keys(groubByDate).sort(
-              (a, b) => -(Number(a) - Number(b))
-            );
-
-            Object.keys(groupByCountry).forEach((key) => {
-              const countryData = groupByCountry[key];
-              countryData.sort((a, b) => -(Number(a[0]) - Number(b[0])));
-            });
-            const countries = Object.keys(groupByCountry);
-            const legions = Object.keys(groupByLegion);
-            const lastDay = days[0];
-            const save = {
-              update: Date.now(),
-              groubByDate,
-              world: Object.keys(groubByDate)
-                .map((key) =>
-                  groubByDate[key].reduce(
-                    (res, row) => {
-                      res[3] = res[3] + row[3];
-                      res[4] = res[4] + row[4];
-                      res[5] = res[5] + row[5];
-                      res[6] = res[6] + row[6];
-                      return res;
-                    },
-                    [key, "WORLD", "WORLD", 0, 0, 0, 0]
-                  )
-                )
-                .sort((a, b) => -(Number(a[0]) - Number(b[0]))),
-              groupByCountry,
-              groupByLegion,
-              days,
-              countries,
-              legions,
-              lastDay,
-            };
-            setDataLocalstorage(JSON.stringify(save));
-            setData(save);
-            setLoading(false);
-          });
-        })
-        .finally(() => setLoading(false));
-    },
-    [setData, setDataLocalstorage, setLoading]
-  );
+  const handleSearch = useCallback(() => {
+    setLoading(true);
+    fetch(
+      `https://cors-anywhere.herokuapp.com/https://dashboards-dev.sprinklr.com/data/9043/global-covid19-who-gis.json`
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setTimeout(() => {
+          let save = convertData(data);
+          setDataLocalstorage(JSON.stringify(save));
+          setData(save);
+        });
+      })
+      .catch(() => {
+        setTimeout(() => {
+          let save = convertData(staticdata);
+          setDataLocalstorage(JSON.stringify(save));
+          setData(save);
+        });
+      })
+      .finally(() => setLoading(false));
+  }, [setData, setDataLocalstorage, setLoading]);
 
   useEffect(() => {
-    handleSearch({ keyword: "react" });
+    handleSearch();
   }, [handleSearch]);
 
   if (!data) return null;
@@ -146,7 +162,7 @@ const RepoList = () => {
           }
           return true;
         }}
-        className="sticky background-rich top-0 z-10 block w-full px-2 py-3 border-b border-transparent border-b-4 focus:border-gray-300 outline-none"
+        className="sticky background-rich top-0 z-10 block w-full px-2 py-3 border-transparent border-b-4 focus:border-gray-300 outline-none"
         placeholder="Search..."
       />
       {loading && (
@@ -270,7 +286,7 @@ const Content = () => {
       <div className="absolute top-0 left-0 w-full h-full flex flex-col  w-full z-10">
         <div className="p-3 w-full z-10 flex flex-wrap items-center sticky top-0 background pointer-events-auto">
           {selectCountry ? (
-            <div className="text-color text-3xl font-bold flex items-center flex-1">
+            <div className="text-color text-3xl py-3 font-bold flex items-center flex-1">
               <img
                 className="w-12 mr-2"
                 src={`https://www.countryflags.io/${selectCountry}/flat/64.png`}
@@ -278,7 +294,7 @@ const Content = () => {
               <div>{selectCountry}</div>
             </div>
           ) : (
-            <div className="text-color flex-1 font-bold text-3xl flex items-center">
+            <div className="text-color flex-1 font-bold text-3xl  py-3  flex items-center">
               <img
                 className="w-12 mr-2"
                 src={`https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Flag_of_the_United_Nations.svg/225px-Flag_of_the_United_Nations.svg.png`}
@@ -286,7 +302,7 @@ const Content = () => {
               <div>World</div>
             </div>
           )}
-          <div className="flex items-center ">
+          <div className="flex items-center w-full md:w-auto">
             <div className="flex-1 ">
               <div className="shadow background-rich p-3 flex rounded-lg space-x-3">
                 <div className=" flex flex-col">
@@ -296,9 +312,9 @@ const Content = () => {
                   <p className="leading-relaxed text-center">cases</p>
                 </div>
                 <div>
-                  <h2 className="title-font text-lg font-medium md:text-3xl ">
-                    {Number(cases || 0).toLocaleString()}
-                  </h2>
+                  <div className="title-font text-lg font-medium md:text-3xl ">
+                    <AnimatedNumber number={Number(cases || 0)} />
+                  </div>
                   <div className="leading-relaxed text-sm">
                     <span aria-label="sick" role="img">
                       🔺
@@ -322,9 +338,9 @@ const Content = () => {
                   <p className="leading-relaxed text-center">deaths</p>
                 </div>
                 <div>
-                  <h2 className="title-font text-lg font-medium md:text-3xl ">
-                    {Number(deaths || 0).toLocaleString()}
-                  </h2>
+                  <div className="title-font text-lg font-medium md:text-3xl ">
+                    <AnimatedNumber number={Number(deaths || 0)} />
+                  </div>
                   <div className="leading-relaxed text-sm">
                     <span aria-label="sick" role="img">
                       🔺

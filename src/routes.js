@@ -10,14 +10,14 @@ import Resume from "views/Resume/Resume.lazy";
 
 const routes = (
   <Switch>
-    <Covid path="/covid" icon="🤩" />
+    <Covid path="/covid" icon="🤢" />
     <Resume path="/resume" icon="🤩" />
     <Keycode path="/keycode" icon="🤩" />
-    <Github path="/github" icon="😃" />
+    <Github path="/github" icon="✨" />
     <PeriodicTable path="/periodic-table" icon="😭" />
     <Portfolio path="/portfolio" icon="😈" />
-    <Home path="/home" icon="❤️" />
-    <Home path="/" icon="❤️" />
+    <Home path="/home" image="./avatar.png" />
+    <Home path="/" image="./avatar.png" />
   </Switch>
 );
 export default routes;

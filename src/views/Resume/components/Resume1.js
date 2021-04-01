@@ -1,26 +1,20 @@
 import React from "react";
 const blocks = [
-  "basics",
-  "work",
-  "volunteer",
-  "education",
-  "awards",
-  "publications",
-  "skills",
+  "about",
+  "skill",
   "languages",
-  "interests",
+  "experience",
   "references",
+  "blogs",
+  "interests",
+  "contact",
 ];
 export default function Resume1() {
   return (
     <div className="main-container p-2 md:p-3 lg:p-6">
       <div className="profile overflow-hidden">
         <div className="profile-avatar  pointer-events-none">
-          <img
-            src="https://cdn140.picsart.com/285259779035211.png?type=webp&to=min&r=640"
-            alt
-            className="profile-img"
-          />
+          <img src="/avatar.png" alt className="profile-img" />
           <div className="profile-name">Quan Ha</div>
         </div>
         <img
@@ -44,16 +38,16 @@ export default function Resume1() {
               </a>
             )
           )}
-          <div className="flex-1" />
           <div
             style={{
+              minWidth: "400px",
               background: "inherit",
             }}
-            className="w-24 flex-shrink-0 z-10"
+            className="w-24 flex-1  flex-shrink-0 z-10"
           />
           <div
             style={{
-              boxShadow: "-6px 0px 48px 19px #1b86f9",
+              boxShadow: "rgb(27 134 249) -6px 0px 95px 19px",
             }}
             className="shadow-xl sticky right-0"
           ></div>

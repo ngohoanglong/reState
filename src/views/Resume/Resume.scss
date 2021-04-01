@@ -10,7 +10,7 @@ $button: #8f98a9;
 * {
   outline: none;
   box-sizing: border-box;
-  // transition: all 0.3s linear;
+  transition: none !important;
 }
 
 html {
@@ -38,7 +38,7 @@ body {
   border-right: 1px solid $border-color;
   display: flex;
   flex-direction: column;
-  transition: 0.3s;
+
   background-color: $bg-color;
   overflow: auto;
   flex-shrink: 0;
@@ -56,7 +56,7 @@ body {
     position: fixed;
     right: 0;
     top: 0;
-    transition: 0.3s;
+
     height: 100%;
     transform: translateX(280px);
     z-index: 4;
@@ -151,7 +151,6 @@ body {
 .follow-text {
   display: flex;
   align-items: center;
-  transition: 0.3s;
 }
 
 .follow-me:hover {
@@ -169,7 +168,7 @@ body {
   left: 0;
   top: -100%;
   display: flex;
-  transition: 0.3s;
+
   padding: 0 20px;
   align-items: center;
   background-color: $border-color;
@@ -268,7 +267,7 @@ body {
 .profile-menu-link {
   padding: 20px 16px;
   color: $side-title;
-  transition: 0.3s;
+
   cursor: pointer;
 
   &.active,
@@ -778,7 +777,6 @@ body {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: 0.3s;
 
   @media screen and (max-width: 1210px) {
     &.active {
@@ -839,7 +837,6 @@ body {
     color: #fff;
     border-bottom: 1px solid $border-color;
     svg {
-      transition: 0.2s;
       width: 24px;
     }
     svg:last-child {
@@ -888,18 +885,20 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #1e2031 !important;
-  border: 3px solid transparent !important;
+  border: 3px solid #24273b !important;
 }
 /* Track */
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.01);
+  background: #24273b;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.11);
-  border-radius: 10px;
+  background-color: #151728 !important;
+  border: 3px solid #97979723 !important;
+  min-height: 200px;
+  -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.11);
+  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.11);
 }
 
 /* Handle on hover */
@@ -921,7 +920,6 @@ body {
       z-index: 4;
       & > *:not(.logo) {
         opacity: 1;
-        transition: 0.3s 0.2s;
       }
       .left-side-button svg:first-child {
         opacity: 0;

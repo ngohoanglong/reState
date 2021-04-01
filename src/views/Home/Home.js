@@ -63,7 +63,15 @@ const Home = () => (
           </div>
         </div>,
         <div className="background-rich text-2xl font-bold text-center uppercase  col-span-2 sm:col-span-1">
-          soon
+          <div className="grid grid-cols-2 text-sm gap-2">
+            <div className="col-span-2 text-2xl p-3">Side project 2</div>
+            <a
+              href="https://ngohoanglong2019.herokuapp.com/"
+              className=" border border-2 hover:border-gray-600  broder-gray-300 col-span-1 p-3"
+            >
+              covid dashboard
+            </a>
+          </div>
         </div>,
         <div className="background-rich text-2xl font-bold text-center uppercase  col-span-2 sm:col-span-1">
           soon

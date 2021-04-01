@@ -13,25 +13,27 @@ export const dataLayer = {
         [4, "#a70000"],
       ],
     },
-    "fill-opacity": 0.7,
+    "fill-opacity": 1,
+    "fill-antialias": true,
   },
 };
 export const highlightLayer = {
   id: "counties-highlighted",
-  type: "fill",
+  type: "line",
   paint: {
-    "fill-color": {
-      property: "danger",
-      stops: [
-        [0, "#ffbaba"],
-        [1, "#ff7b7b"],
-        [2, "#ff5252"],
-        [3, "#ff0000"],
-        [4, "#a70000"],
-      ],
-    },
-    "fill-opacity": 1,
-    "fill-antialias": true,
-    "fill-outline-color": "#a70000",
+    // "fill-color": {
+    //   property: "danger",
+    //   stops: [
+    //     [0, "#ffbaba"],
+    //     [1, "#ff7b7b"],
+    //     [2, "#ff5252"],
+    //     [3, "#ff0000"],
+    //     [4, "#a70000"],
+    //   ],
+    // },
+    // "fill-opacity": 1,
+    // "fill-antialias": true,
+    "line-color": "blue",
+    "line-width": 3,
   },
 };

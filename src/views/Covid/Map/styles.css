@@ -25,6 +25,7 @@ input {
 }
 
 .tooltip {
+  transition: all 0.3s linear;
   position: absolute;
   margin: 8px;
   padding: 0.4em 0.8em;

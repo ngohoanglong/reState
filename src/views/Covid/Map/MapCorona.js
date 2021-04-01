@@ -21,7 +21,13 @@ function updateRange(featureCollection, accessor) {
     f.properties.danger = scale(value);
   });
 }
-
+function isTouchDevice() {
+  return (
+    "ontouchstart" in window ||
+    navigator.maxTouchPoints > 0 ||
+    navigator.msMaxTouchPoints > 0
+  );
+}
 export default class MapCorona extends PureComponent {
   state = {
     year: 2015,
@@ -51,13 +57,15 @@ export default class MapCorona extends PureComponent {
       prevProps.selectCountry !== this.props.selectCountry &&
       this.props.selectCountry
     ) {
-      setTimeout(() => {
+      if (this.timeout) {
+        clearTimeout(this.timeout);
+      }
+      this.timeout = setTimeout(() => {
         const hoveredFeature =
           this.features &&
           this.features.find(
             (f) => f.properties.country === this.props.selectCountry
           );
-        console.log(hoveredFeature);
         if (this.map && hoveredFeature) {
           const { minX, maxX, minY, maxY } = hoveredFeature.geometry.coordinates
             .flatMap((item) => {
@@ -95,7 +103,10 @@ export default class MapCorona extends PureComponent {
             [maxX, minY],
           ]);
         }
-      });
+        this.setState({
+          filter: ["in", "title", this.props.selectCountry],
+        });
+      }, 300);
     }
   };
   _loadData = () => {
@@ -136,7 +147,7 @@ export default class MapCorona extends PureComponent {
         updatePercentiles(data, (f) => f.properties.income[value]);
         // trigger update
         this.setState({
-          data: { ...data },
+          data,
         });
       }
     }
@@ -160,15 +171,10 @@ export default class MapCorona extends PureComponent {
       hoveredFeature,
       x: offsetX,
       y: offsetY,
-      filter: ["in", "title", countyName],
     });
   };
   _onClick = (event) => {
-    let countyName = "";
-    const {
-      features,
-      srcEvent: { offsetX, offsetY },
-    } = event;
+    const { features } = event;
     const hoveredFeature =
       features && features.find((f) => f.layer.id === "data");
     console.log(hoveredFeature);
@@ -178,11 +184,15 @@ export default class MapCorona extends PureComponent {
     }
   };
   _renderTooltip() {
+    const canTouch = isTouchDevice();
     const { hoveredFeature, x, y } = this.state;
     return (
       hoveredFeature && (
-        <div className="tooltip" style={{ left: x, top: y }}>
-          <div>State: {hoveredFeature.properties.name}</div>
+        <div
+          className="tooltip"
+          style={canTouch ? { right: 0, top: 0 } : { left: x, top: y }}
+        >
+          <div>{hoveredFeature.properties.name}</div>
           <div>
             Confirmed:{" "}
             <span className="font-bold text-red-500">
@@ -214,7 +224,7 @@ export default class MapCorona extends PureComponent {
     //       return window.renderCount
     //     })(),
     // })
-
+    console.log({ selectCountry: this.props.selectCountry });
     return (
       <MapGL
         ref={(node) => {
