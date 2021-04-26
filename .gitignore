@@ -31,8 +31,6 @@ src/envs/_current/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-*.lock
-/package-lock.json
 
 /src/envs/buildId.js
 

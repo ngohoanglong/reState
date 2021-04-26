@@ -5,14 +5,11 @@
   "prettier.semi": false,
   "prettier.singleQuote": true,
   "prettier.jsxBracketSameLine": true,
-  // "prettier.eslintIntegration": true,
-  // "prettier.eslintIntegration": false,
-
-  // "git.enabled": false,
   "git.autofetch": false,
   "editor.codeActionsOnSave": {
     "source.organizeImports": true,
     "source.fixAll.eslint": true
   },
   "editor.formatOnSave": true,
+  "workbench.editor.pinnedTabSizing": "shrink"
 }

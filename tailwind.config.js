@@ -1,12 +1,13 @@
 module.exports = {
   purge: {
-    enabled: true,
+    enabled: process.env.NODE_ENV === 'production',
     content: [
       './src/**/*.js',
       './src/**/*.jsx',
     ],
   },
   theme: {
+    namedGroups: ['foo', 'bar'],
     screens: {
       sm: '640px',
       md: '768px',
@@ -153,5 +154,19 @@ module.exports = {
     },
   },
   corePlugins: {},
-  plugins: [],
+  plugins: [
+    require('./tailwind/plugins/nestedGroup'),
+    require('./tailwind/plugins/typography'),
+  ],
+  variants: {
+    extend: {
+      opacity: ['group-focus'],
+      translate: ['active', 'group-hover', 'group-focus'],
+      display: ['active', 'group-hover', 'group-focus'],
+      margin: ['group-hover', 'group-focus'],
+      pointerEvents: ['focus', 'group-hover', 'group-focus'],
+      width: ['focus', 'group-hover', 'group-focus'],
+      zIndex: ['focus'],
+    },
+  },
 }

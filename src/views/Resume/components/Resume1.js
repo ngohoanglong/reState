@@ -15,7 +15,7 @@ export default function Resume1() {
       <div className="profile overflow-hidden">
         <div className="profile-avatar  pointer-events-none">
           <img src="/avatar.png" alt className="profile-img" />
-          <div className="profile-name">Quan Ha</div>
+          <div className="profile-name">Ngo Hoang Long</div>
         </div>
         <img
           src="https://cdn1.iconfinder.com/data/icons/cute-corgi-dog-emoticon/595/CUTE_CORGI_DOG_EMOTICON-06-512.png"
@@ -94,7 +94,7 @@ export default function Resume1() {
                 >
                   <path d="M437 75C388.7 26.6 324.4 0 256 0S123.3 26.6 75 75C26.6 123.3 0 187.6 0 256s26.6 132.7 75 181c48.3 48.4 112.6 75 181 75s132.7-26.6 181-75c48.4-48.3 75-112.6 75-181s-26.6-132.7-75-181zM252.4 481.9c-52-.9-103.7-19.5-145.2-55.8L256 277.2l21.7 21.8a165.9 165.9 0 00-35.7 87c-3.5 30.5 0 63.3 10.4 95.9zM299 320.3l105.7 105.8a224.8 224.8 0 01-121.3 54.1C262 419.5 268 360.3 299 320.3zm21.2-21.2c40-31 99.2-37 160-15.6A224.8 224.8 0 01426 404.8zM482 252.4a231.7 231.7 0 00-96-10.4 165.9 165.9 0 00-87 35.7L277.3 256l148.9-148.8c36.3 41.5 55 93.2 55.8 145.2zm-290.2-39.5c-40 31-99.2 37-160 15.6A224.8 224.8 0 0186 107.2zm-84.5-127a224.8 224.8 0 01121.3-54.1C250 92.5 244 151.7 213 191.7zM270 126c3.5-30.5 0-63.3-10.4-95.9 52 .9 103.7 19.5 145.2 55.8L256 234.8 234.3 213a165.9 165.9 0 0035.7-87zM30 259.6a242 242 0 0072.7 11.7c7.8 0 15.6-.5 23.2-1.3a165.9 165.9 0 0087-35.7l21.8 21.7L85.9 404.8a225.3 225.3 0 01-55.8-145.2z" />
                 </svg>
-                Player name <a href="#">Quan Ha</a>
+                Player name <a href="#">Ngo Hoang Long</a>
               </div>
             </div>
           </div>
@@ -163,7 +163,7 @@ export default function Resume1() {
               />
               <textarea
                 className="status-textarea"
-                placeholder="Write something to Quan Ha.."
+                placeholder="Write something to Ngo Hoang Long.."
                 defaultValue={""}
               />
             </div>
@@ -222,7 +222,7 @@ export default function Resume1() {
               />
               <div className="album-detail">
                 <div className="album-title">
-                  <strong>Quan Ha</strong> create new <span>album</span>
+                  <strong>Ngo Hoang Long</strong> create new <span>album</span>
                 </div>
                 <div className="album-date">6 hours ago</div>
               </div>
