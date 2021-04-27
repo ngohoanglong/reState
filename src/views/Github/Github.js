@@ -181,28 +181,12 @@ const Github = () => {
           </div>
         ),
         right: (
-          <div>
-            <div className="w-full justify-center items-center overflow-hidden md:max-w-sm ">
-              <div className="relative h-24">
-                <img
-                  className="absolute h-full w-full object-cover"
-                  src="https://images.unsplash.com/photo-1448932133140-b4045783ed9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80"
-                />
-              </div>
-              <div className="relative shadow mx-auto h-24 w-24 -my-12 rounded-full overflow-hidden border-4">
-                <img
-                  className="object-cover w-full h-full"
-                  src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=200&q=80"
-                />
-              </div>
-              <div className="mt-16">
-                <h1 className="text-lg text-center font-semibold">Cassie</h1>
-                <p className="text-sm text-gray-600 text-center">
-                  13 connections in common
-                </p>
-              </div>
-            </div>
-          </div>
+          <iframe
+            className="w-full h-full p-2"
+            width="100%"
+            height="100%"
+            src="/"
+          ></iframe>
         ),
         header: <Layout.Header />,
       }}

@@ -3,7 +3,7 @@ import Resume1 from "./components/Resume1";
 import "./Resume.scss";
 export default function layout() {
   return (
-    <div className="container">
+    <div className="flex overflow-hidden h-screen max-w-7xl w-full mx-auto">
       <input hidden id="left-side-active" type="checkbox" />
       <div className="left-side">
         <label htmlFor="left-side-active" className="left-side-button">

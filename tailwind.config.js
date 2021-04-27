@@ -157,6 +157,8 @@ module.exports = {
   plugins: [
     require('./tailwind/plugins/nestedGroup'),
     require('./tailwind/plugins/typography'),
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
   ],
   variants: {
     extend: {

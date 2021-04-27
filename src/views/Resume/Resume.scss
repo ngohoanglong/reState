@@ -7,30 +7,8 @@ $body-font: "Source Sans Pro", sans-serif;
 $side-title: #5c5e6e;
 $button: #8f98a9;
 
-* {
-  outline: none;
-  box-sizing: border-box;
-  transition: none !important;
-}
-
-html {
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-}
-
-body {
-  font-family: $body-font;
-  background-color: #373e57;
-  color: #ccc8db;
-}
-
 .container {
-  background-color: $bg-color;
-  display: flex;
   max-width: 1600px;
-  height: 100vh;
-  overflow: hidden;
-  margin: 0 auto;
 }
 
 .left-side {

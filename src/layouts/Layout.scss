@@ -83,11 +83,6 @@ header {
   right: 0;
   width: 100%;
   min-height: 100%;
-  // height: -moz-available; /* WebKit-based browsers will ignore this. */
-  // height: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
-  // overflow-y: auto;
-  // padding-right: 250px;
-  scroll-snap-align: start;
   z-index: 1;
   background: var(--background);
   transition: filter 0.25s linear;

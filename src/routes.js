@@ -1,10 +1,10 @@
 import { Switch } from "components/ui";
 import React from "react";
+import Bookmarklet from "views/Bookmarklet/Bookmarklet.lazy";
 import Covid from "views/Covid/Covid.lazy";
 import Github from "views/Github/Github.lazy";
 import Home from "views/Home/Home.lazy";
 import Keycode from "views/Keycode/Keycode.lazy";
-import MenuGenerator from "views/MenuGenerator/MenuGenerator.lazy";
 import PeriodicTable from "views/PeriodicTable/PeriodicTable.lazy";
 import Portfolio from "views/Portfolio/Portfolio.lazy";
 import Resume from "views/Resume/Resume.lazy";
@@ -18,7 +18,7 @@ const routes = (
     <PeriodicTable path="/periodic-table" icon="😭" />
     <Portfolio path="/portfolio" icon="😈" />
     <Home path="/home" image="./avatar.png" />
-    <MenuGenerator path="/menu-generator" image="./avatar.png" />
+    <Bookmarklet path="/bookmarklet" image="./avatar.png" />
 
     {/* must local at bottom */}
     <Home path="/" image="./avatar.png" />
