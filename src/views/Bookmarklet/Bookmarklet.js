@@ -15,6 +15,52 @@ const bookmarklets = [
     name: "clearLocalStorage",
     content: `localstorage.clear()`,
   },
+  {
+    name: "stupidDarkTheme",
+    content: ` const invertElement = window.document.querySelector(
+      '#toggleInvert'
+    )
+    if (invertElement) {
+      invertElement.remove()
+    } else {
+      document.head.innerHTML =
+        document.head.innerHTML +
+        "<style id='toggleInvert'>img, svg{filter:invert(1);}html{filter:invert(1);}</style>"
+    }`,
+  },
+  {
+    name: "translateENtoVN",
+    content: ` var trans = window.getSelection();
+    window.open("https://translate.google.com/? sl=auto&tl=vi&text="+ trans,'targetWindow',"toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=SomeSize,height=SomeSize")`,
+  },
+  {
+    name: "pagetranslateENtoVN",
+    content: `var d, b, o, v, p
+    b = (d = document).body
+    o = d.createElement('script')
+    o.setAttribute(
+      'src',
+      'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit'
+    )
+    o.setAttribute(
+      'type',
+      'text/javascript'
+    )
+    b.appendChild(o)
+    v = b.insertBefore(
+      d.createElement('div'),
+      b.firstChild
+    )
+    v.id = 'google_translate_element'
+    p = d.createElement('script')
+    p.text =
+      'function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"en"},"google_translate_element");}'
+    p.setAttribute(
+      'type',
+      'text/javascript'
+    )
+    b.appendChild(p)`,
+  },
 ];
 const useCommentsScript = ({
   url = "https://utteranc.es/client.js",
