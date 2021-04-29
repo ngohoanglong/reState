@@ -40,13 +40,15 @@ header {
 }
 #openLeft:checked ~ .layout > *:first-child {
   visibility: visible;
+  display: block;
 }
 
 // .layout.openLeft>*:first-child{
-//   visibility: visible;
+//   visibility: visible; display: block;
 // }
 #openRight:checked ~ .layout > *:nth-child(3) {
   visibility: visible;
+  display: block;
 }
 #openRight:checked ~ .layout > *:nth-child(2),
 #openLeft:checked ~ .layout > *:nth-child(2) {
@@ -66,6 +68,7 @@ header {
   left: var(--header-width);
   background: inherit;
   visibility: hidden;
+  display: none;
   z-index: 2;
 
   & > *:first-child {
@@ -95,6 +98,7 @@ header {
   bottom: 0;
   background: inherit;
   visibility: hidden;
+  display: none;
   z-index: 2;
   border-left: 1px solid currentColor;
 }
@@ -123,6 +127,7 @@ header {
   .layout > *:first-child {
     left: var(--header-width);
     visibility: visible;
+    display: block;
     & > *:first-child {
       display: none;
     }
@@ -130,6 +135,7 @@ header {
   .layout > *:first-child {
     left: var(--header-width);
     visibility: visible;
+    display: block;
     & > *:first-child {
       display: none;
     }
@@ -182,6 +188,7 @@ header {
   }
   .layout > *:nth-child(3) {
     visibility: visible;
+    display: block;
     border: none;
   }
   .layout > *:nth-child(3) > * {
