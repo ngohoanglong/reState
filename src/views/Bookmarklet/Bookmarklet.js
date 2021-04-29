@@ -1,5 +1,5 @@
 import Layout from "layouts/Layout";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import collection from "./collection";
 const { data: collectionHtml } = collection;
 const createinputonchange = (fn) => (e) => fn(e.target.value);
@@ -16,6 +16,32 @@ const bookmarklets = [
     content: `localstorage.clear()`,
   },
 ];
+const useCommentsScript = ({
+  url = "https://utteranc.es/client.js",
+  repo = "ngohoanglong/reState",
+  containerElement,
+}) => {
+  const [ready, setReady] = useState();
+  useEffect(() => {
+    if (ready) {
+      let cE = containerElement || document.body;
+      const script = document.createElement("script");
+      script.src = url;
+      script.setAttribute("repo", repo);
+      script.setAttribute("issue-term", "pathname");
+      script.setAttribute("label", "home");
+      script.setAttribute("theme", "github-light");
+      script.setAttribute("crossorigin", "anonymous");
+      script.async = true;
+      cE.appendChild(script);
+      return () => {
+        cE && cE.removeChild && cE.removeChild(script);
+      };
+    }
+    setReady(true);
+  }, [containerElement, ready, repo, url]);
+};
+
 function Bookmarklet({ bookmarklet }) {
   const [content, setbookmarklet] = useState(bookmarklet.content);
   const [name, setname] = useState(bookmarklet.name);
@@ -70,7 +96,7 @@ function Bookmarklet({ bookmarklet }) {
         </div>
         <div className="w-6 h-6"></div>
         <div className="flex-1" />
-        <div className="p-6 py-32 bg-ba">
+        <div className="p-6 py-32">
           <form className="space-y-3 flex-1">
             <div className="flex flex-col space-y-1">
               <label>and here is the code:</label>
@@ -98,53 +124,55 @@ function Bookmarklet({ bookmarklet }) {
     </>
   );
 }
-const Right = () => {
+const Collections = () => {
   return (
-    <>
-      <div
-        className="w-full p-3 text-sm flex flex-col items-start overflow-auto h-screen"
-        width="100%"
-        height="100%"
-      >
-        <div className="text-xl font-bold p-6 w-full text-center">
-          Collections
-        </div>
-        <p className="w-full text-center">
-          <i>
-            Just drag &amp; Drop the blue bookmarklet(s) of your choice to your
-            bookmarks bar.
-          </i>
-        </p>
-        {JSON.parse(collectionHtml).map(({ type, ...rest }, i) => {
-          if (type === "group") {
-            return (
-              <React.Fragment key={i}>
-                <a
-                  href={"#group_" + rest.title}
-                  className="p-2 -ml-3 mr-8 sticky top-2 background border-b border-gray-600 mt-6 mb-3"
-                >
-                  {rest.title}
-                </a>
-                <div id={"group_" + rest.title} />
-              </React.Fragment>
-            );
-          }
+    <div className="flex min-h-screen flex-col">
+      <div className=" font-bold w-full">Collections</div>
+      <p className="w-full text-xs">
+        Just drag &amp; Drop the blue bookmarklet(s) of your choice to your
+        bookmarks bar.
+      </p>
+      {JSON.parse(collectionHtml).map(({ type, ...rest }, i) => {
+        if (type === "group") {
           return (
-            <div key={i} className="mt-3">
+            <React.Fragment key={i}>
               <a
-                className="py-1 pb-2 rounded text-white inline-block bg-blue-600 px-3"
-                title={rest.title}
-                href={rest.href}
+                href={"#group_" + rest.title}
+                className="p-2 mr-8 background border-b border-gray-600 mt-6 mb-3"
               >
-                {rest.text}
+                {rest.title}
               </a>
-              <div />
-              <p>{rest.description}</p>
-            </div>
+              <div id={"group_" + rest.title} />
+            </React.Fragment>
           );
-        })}
-      </div>
-    </>
+        }
+        return (
+          <div key={i} className="mt-3">
+            <a
+              className="py-2 rounded uppercase text-xs text-white inline-block bg-blue-600 px-3"
+              title={rest.title}
+              href={rest.href}
+            >
+              {rest.text}
+            </a>
+            <div />
+            <p>{rest.description}</p>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+const Right = () => {
+  const commentsRef = useRef();
+  useCommentsScript({ containerElement: commentsRef.current });
+  return (
+    <div
+      ref={commentsRef}
+      className="w-full p-3 text-sm flex flex-col items-start overflow-auto h-screen"
+      width="100%"
+      height="100%"
+    ></div>
   );
 };
 export default function BookmarkletPage() {
@@ -153,7 +181,7 @@ export default function BookmarkletPage() {
     <Layout
       {...{
         left: (
-          <div className="p-3 space-y-6">
+          <div className="p-3 space-y-6 relative">
             <h1 className="font-bold text-2xl">Bookmarklet</h1>
             <p className="leading-normal">
               <small>From Wikipedia, the free encyclopedia</small>
@@ -182,6 +210,8 @@ export default function BookmarkletPage() {
                 </li>
               ))}
             </ul>
+            <div className="h-2 w-full background "></div>
+            <Collections />
           </div>
         ),
         mid: <Bookmarklet key={bookmarklet.name} bookmarklet={bookmarklet} />,

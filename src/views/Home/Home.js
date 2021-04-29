@@ -71,6 +71,12 @@ const Home = () => (
             >
               covid dashboard
             </a>
+            <Link
+              to="/bookmarklet"
+              className=" border border-2 hover:border-gray-600  broder-gray-300 col-span-1 p-3"
+            >
+              bookmarklet (wtf it is?)
+            </Link>
           </div>
         </div>,
         <div className="background-rich text-2xl font-bold text-center uppercase  col-span-2 sm:col-span-1">
