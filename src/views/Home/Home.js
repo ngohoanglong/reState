@@ -272,7 +272,7 @@ const Home = () => (
                 </a>
                 <a
                   href={
-                    "https://lighthouse-dot-webdotdevsite.appspot.com//lh/html?url=https%3A%2F%2Fcafejs.net%2F"
+                    "https://pagespeed.web.dev/report?url=https%3A%2F%2Fcafejs.net%2F&form_factor=mobile"
                   }
                   className="text-lg text-blue-500 underline cursor-pointer"
                   _target="blank"
