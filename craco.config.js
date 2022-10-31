@@ -1,4 +1,5 @@
 module.exports = {
+  target: 'node',
   style: {
     postcss: {
       plugins: [
@@ -6,5 +7,18 @@ module.exports = {
         require('autoprefixer'),
       ],
     },
+  },
+  resolve: {
+    fallback: {
+      path: require.resolve(
+        'path-browserify'
+      ),
+    },
+    extensions: [
+      '.jsx',
+      '.js',
+      '.tsx',
+      '.ts',
+    ],
   },
 }
